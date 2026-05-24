@@ -1,0 +1,1444 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>花かご Hanakago — 里の家</title>
+<link rel="icon" type="image/svg+xml" href="assets/mark.svg">
+<link rel="stylesheet" href="styles/kit.css">
+
+<template id="__bundler_thumbnail" data-bg-color="#f5efe4">
+  <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="140" fill="#f5efe4"/>
+    <g transform="translate(100 70)" fill="none" stroke="#2a2622" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M -22 6 Q -20 22 0 24 Q 20 22 22 6 Z"/>
+      <path d="M -18 10 L 18 10" opacity=".5"/>
+      <path d="M -14 16 L 14 16" opacity=".5"/>
+      <path d="M -18 6 Q 0 -16 18 6"/>
+      <g fill="#7c8a55" stroke="none">
+        <circle cx="0" cy="-12" r="3.6"/>
+        <circle cx="-7" cy="-6" r="3.2"/>
+        <circle cx="7" cy="-6" r="3.2"/>
+        <circle cx="0" cy="-4" r="2.6" fill="#56603b"/>
+      </g>
+    </g>
+    <text x="100" y="118" text-anchor="middle" font-family="serif" font-size="11" fill="#5a5048" letter-spacing="2">花かご · 里の家</text>
+  </svg>
+</template>
+
+<style>
+/* ─────── Variant A · 里の家 (Sato no Ie / Quiet House) overrides ─────── */
+
+.satoA .hk-hero {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  align-items: stretch;
+  overflow: hidden;
+}
+.satoA .hk-hero__image { position: absolute; inset: 0; z-index: 0; }
+.satoA .hk-hero__image img { width: 100%; height: 100%; object-fit: cover; }
+.satoA .hk-hero__veil {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(245,239,228,.50) 0%, rgba(245,239,228,.05) 38%, rgba(0,0,0,0) 100%),
+    linear-gradient(110deg, rgba(245,239,228,.85) 0%, rgba(245,239,228,.30) 50%, rgba(0,0,0,.10) 100%);
+}
+.satoA .hk-hero__inner {
+  position: relative; z-index: 2;
+  max-width: var(--container); width: 100%; margin: 0 auto;
+  padding: 22vh var(--gutter) var(--s-9);
+  display: grid; align-content: center;
+}
+.satoA .hk-hero__eyebrow .en-d {
+  font-family: var(--font-display-en); font-style: italic;
+  font-size: var(--t-md); color: var(--matcha-deep); letter-spacing: 0.08em;
+}
+.satoA .hk-hero__title {
+  font-family: var(--font-display-jp); font-weight: 500;
+  font-size: clamp(58px, 8.4vw, 112px);
+  line-height: 1.08; letter-spacing: 0.14em;
+  margin: var(--s-5) 0 var(--s-6);
+  color: var(--sumi);
+}
+.satoA .hk-hero__title .accent { color: var(--matcha-deep); }
+.satoA .hk-hero__lede {
+  font-family: var(--font-body-jp);
+  font-size: var(--t-md); line-height: 2.1; letter-spacing: 0.08em;
+  color: var(--sumi-2); max-width: 44ch;
+}
+.satoA .hk-hero__meta {
+  display: flex; align-items: center; gap: var(--s-5);
+  margin-top: var(--s-8);
+  font-size: var(--t-sm); color: var(--sumi-2); letter-spacing: 0.08em;
+}
+.satoA .hk-hero__meta .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--sumi-3); }
+.satoA .hk-hero__seasons {
+  display: none;
+}
+.satoA .hk-hero__season {
+  background: transparent; border: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 14px 24px;
+  color: var(--sumi-3); cursor: pointer;
+  transition: color var(--dur-sm) var(--ease), background var(--dur-sm) var(--ease);
+  border-right: 1px solid var(--hairline-soft);
+}
+.satoA .hk-hero__season:last-child { border-right: 0; }
+.satoA .hk-hero__season:hover { color: var(--sumi); background: rgba(255,255,255,.18); }
+.satoA .hk-hero__season.is-active { color: var(--matcha-deep); background: rgba(255,255,255,.32); }
+.satoA .hk-hero__season-kanji { font-family: var(--font-display-jp); font-size: var(--t-lg); letter-spacing: 0.1em; }
+.satoA .hk-hero__season-en   { font-family: var(--font-display-en); font-style: italic; font-size: 12px; letter-spacing: 0.15em; }
+
+.satoA .hk-hero__scroll {
+  position: absolute; right: var(--gutter); bottom: var(--s-7); z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  color: var(--sumi-3); font-family: var(--font-display-en); font-style: italic;
+  font-size: 12px; letter-spacing: 0.18em;
+}
+.satoA .hk-hero__scroll::after {
+  content: ""; width: 1px; height: 60px;
+  background: linear-gradient(180deg, var(--sumi-3), transparent);
+  animation: scroll-bob 2.2s var(--ease) infinite;
+}
+@keyframes scroll-bob { 0%,100% { transform: scaleY(.7); opacity:.4; } 50% { transform: scaleY(1); opacity:1; } }
+
+/* News */
+.satoA .hk-news { background: var(--kinari-2); }
+.satoA .hk-news__list { list-style: none; padding: 0; margin: var(--s-6) 0 0; }
+.satoA .hk-news__item { border-bottom: 1px solid var(--hairline-soft); }
+.satoA .hk-news__item:first-of-type { border-top: 1px solid var(--hairline-soft); }
+.satoA .hk-news__head {
+  width: 100%;
+  background: transparent; border: 0;
+  display: grid;
+  grid-template-columns: 120px 100px 1fr 24px;
+  align-items: center; gap: var(--s-5);
+  padding: var(--s-5) 0;
+  cursor: pointer; text-align: left;
+  font: inherit; color: inherit;
+  transition: background var(--dur-sm) var(--ease);
+}
+.satoA .hk-news__head:hover { background: rgba(255,255,255,.30); }
+.satoA .hk-news__date  { font-family: var(--font-display-en); font-style: italic; color: var(--matcha-deep); font-size: var(--t-base); letter-spacing: 0.05em; }
+.satoA .hk-news__title { font-family: var(--font-body-jp); font-size: var(--t-base); color: var(--sumi-2); }
+.satoA .hk-news__chev {
+  width: 24px; height: 24px; position: relative;
+  display: inline-block;
+  transition: transform var(--dur-sm) var(--ease);
+  color: var(--sumi-3);
+}
+.satoA .hk-news__chev::before,
+.satoA .hk-news__chev::after {
+  content: ''; position: absolute; background: currentColor;
+  left: 50%; top: 50%; transform: translate(-50%, -50%);
+}
+.satoA .hk-news__chev::before { width: 14px; height: 1px; }
+.satoA .hk-news__chev::after  { width: 1px; height: 14px; transition: opacity var(--dur-sm) var(--ease); }
+.satoA .hk-news__head[aria-expanded="true"] .hk-news__chev          { transform: rotate(180deg); color: var(--matcha-deep); }
+.satoA .hk-news__head[aria-expanded="true"] .hk-news__chev::after   { opacity: 0; }
+.satoA .hk-news__body {
+  display: grid; grid-template-rows: 0fr;
+  transition: grid-template-rows 320ms var(--ease);
+}
+.satoA .hk-news__head[aria-expanded="true"] + .hk-news__body { grid-template-rows: 1fr; }
+.satoA .hk-news__body-inner {
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 120px 100px 1fr 24px;
+  gap: var(--s-5);
+}
+.satoA .hk-news__head[aria-expanded="true"] + .hk-news__body .hk-news__body-inner {
+  padding: 0 0 var(--s-6);
+}
+.satoA .hk-news__body-text {
+  grid-column: 3 / 4;
+  color: var(--sumi-2);
+  font-size: var(--t-sm);
+  line-height: 1.95;
+  max-width: 56ch;
+}
+.satoA .hk-news__body-text p + p { margin-top: var(--s-3); }
+
+/* About — kakejiku grid */
+.satoA .hk-about__grid {
+  display: grid; grid-template-columns: 360px 1fr;
+  gap: var(--s-9); align-items: start;
+}
+.satoA .hk-about__head {
+  padding-right: var(--s-7); border-right: 1px solid var(--hairline);
+}
+.satoA .hk-about__body { display: grid; gap: var(--s-3); max-width: 56ch; }
+.satoA .hk-about__body p { color: var(--sumi-2); line-height: 1.85; letter-spacing: 0.06em; }
+
+.satoA .hk-about__sign {
+  margin-top: var(--s-3);
+  font-size: var(--t-sm); color: var(--sumi-3); line-height: 1.7;
+  letter-spacing: 0.06em;
+}
+.satoA .hk-about__sign em { font-family: var(--font-display-en); font-style: italic; color: var(--matcha-deep); font-size: var(--t-xs); letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: var(--s-1); }
+.satoA .hk-about__pillars {
+  margin-top: var(--s-9);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--s-7);
+}
+.satoA .hk-pillar { background: transparent; }
+.satoA .hk-pillar__img { aspect-ratio: 4 / 3; overflow: hidden; }
+.satoA .hk-pillar__img img { width: 100%; height: 100%; object-fit: cover;
+  transition: transform var(--dur-lg) var(--ease); }
+.satoA .hk-pillar:hover .hk-pillar__img img { transform: scale(1.02); }
+.satoA .hk-pillar__meta { padding: var(--s-5) 0 0; }
+.satoA .hk-pillar__no { font-family: var(--font-display-en); font-style: italic;
+  font-size: var(--t-sm); color: var(--matcha-deep); letter-spacing: 0.16em; }
+.satoA .hk-pillar__name { font-family: var(--font-display-jp); font-weight: 500;
+  font-size: var(--t-xl); color: var(--sumi); letter-spacing: 0.10em; margin: 6px 0 var(--s-3); }
+.satoA .hk-pillar__desc { color: var(--sumi-2); line-height: 1.95; font-size: var(--t-sm); }
+
+/* Menu */
+.satoA .hk-menu { background: var(--kinari); }
+.satoA .hk-menu__cats {
+  list-style: none; padding: 0; margin: var(--s-6) 0 var(--s-9);
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--s-4);
+}
+.satoA .hk-menu__cat { display: grid; }
+.satoA .hk-menu__cat-img { aspect-ratio: 1 / 1; overflow: hidden; }
+.satoA .hk-menu__cat-img img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--dur-md) var(--ease); }
+.satoA .hk-menu__cat:hover .hk-menu__cat-img img { transform: scale(1.03); }
+.satoA .hk-menu__cat-meta { padding: var(--s-3) 0; display: grid; gap: 2px; border-bottom: 1px solid var(--hairline-soft); }
+.satoA .hk-menu__cat-en { font-family: var(--font-display-en); font-style: italic; font-size: var(--t-md); color: var(--matcha-deep); }
+.satoA .hk-menu__cat-jp { font-family: var(--font-display-jp); font-size: var(--t-md); color: var(--sumi); letter-spacing: 0.06em; }
+
+.satoA .hk-menu__sub-title {
+  display: flex; align-items: baseline; gap: var(--s-4);
+  font-family: var(--font-display-jp); font-weight: 500;
+  font-size: var(--t-lg); letter-spacing: 0.06em;
+  color: var(--sumi);
+  margin: 0 0 var(--s-6);
+}
+.satoA .hk-menu__sub-title em { font-family: var(--font-display-en); font-style: italic;
+  font-size: var(--t-base); color: var(--matcha-deep); font-weight: 400; letter-spacing: 0.06em; }
+
+.satoA .hk-menu__featured {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; gap: var(--s-5);
+}
+.satoA .hk-menu__item {
+  display: grid; grid-template-columns: 280px 1fr;
+  gap: var(--s-7); align-items: stretch;
+  background: var(--washi);
+}
+.satoA .hk-menu__item-img { aspect-ratio: 1 / 1; }
+.satoA .hk-menu__item-img img { width: 100%; height: 100%; object-fit: cover; }
+.satoA .hk-menu__item-meta { padding: var(--s-5) var(--s-6) var(--s-5) 0;
+  display: grid; align-content: center; gap: var(--s-3); }
+.satoA .hk-menu__item-no { font-family: var(--font-display-en); font-style: italic; font-size: var(--t-sm); color: var(--matcha-deep); letter-spacing: 0.18em; }
+.satoA .hk-menu__item-name { font-family: var(--font-display-jp); font-weight: 500; font-size: var(--t-xl); letter-spacing: 0.08em; color: var(--sumi); margin: 0; }
+.satoA .hk-menu__item-desc { color: var(--sumi-2); line-height: 1.95; font-size: var(--t-sm); margin: 0; }
+.satoA .hk-menu__item-foot {
+  display: flex; justify-content: space-between; align-items: baseline;
+  margin-top: var(--s-3); padding-top: var(--s-4);
+  border-top: 1px solid var(--hairline-soft);
+}
+.satoA .hk-menu__item-price { font-family: var(--font-display-jp); font-size: var(--t-md); color: var(--sumi); }
+
+/* Dog run */
+.satoA .hk-dog { background: var(--kinari-2); position: relative; overflow: hidden; }
+.satoA .hk-dog__inner { display: grid; gap: var(--s-7); }
+.satoA .hk-dog__head {
+  padding-bottom: var(--s-5);
+  border-bottom: 1px solid var(--hairline-soft);
+  display: grid; grid-template-columns: minmax(0, 1fr) 360px;
+  gap: var(--s-7); align-items: end;
+}
+.satoA .hk-dog__head .hk-eyebrow { grid-column: 1 / 2; grid-row: 1; }
+.satoA .hk-dog__head .hk-h2     { grid-column: 1 / 2; grid-row: 2; }
+.satoA .hk-dog__head .hk-sub    { grid-column: 2 / 3; grid-row: 1 / 3; align-self: end; text-align: right; }
+.satoA .hk-dog__body { display: grid; gap: var(--s-7); }
+.satoA .hk-dog__copy { color: var(--sumi-2); line-height: 2.05; max-width: 64ch; }
+.satoA .hk-dog__pattern {
+  position: absolute; top: 0; right: -120px; bottom: 0; width: 480px;
+  background: url('assets/pattern-asanoha.svg'); background-size: 120px;
+  opacity: 0.05; pointer-events: none;
+}
+.satoA .hk-dog__hero-img { aspect-ratio: 5/2; overflow: hidden; margin-bottom: var(--s-6); }
+.satoA .hk-dog__hero-img img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Rules (subsection inside Dog Garden) */
+.satoA .hk-dog__rules {
+  margin-top: var(--s-7); padding-top: var(--s-6);
+  border-top: 1px solid var(--hairline-soft);
+}
+.satoA .hk-dog__rules-header {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--s-5); align-items: end;
+  margin-bottom: var(--s-5);
+}
+.satoA .hk-dog__rules-title {
+  display: block;
+}
+.satoA .hk-dog__rules-title em {
+  font-family: var(--font-display-en); font-style: italic;
+  font-size: var(--t-md); color: var(--matcha-deep);
+  letter-spacing: 0.06em; display: block; margin-bottom: var(--s-1);
+}
+.satoA .hk-dog__rules-title span {
+  font-family: var(--font-display-jp); font-weight: 500;
+  font-size: var(--t-xl); color: var(--sumi);
+  letter-spacing: 0.08em;
+}
+.satoA .hk-dog__rules-sub {
+  font-family: var(--font-body-jp); font-size: var(--t-sm); color: var(--sumi-3);
+  line-height: 1.7; align-self: end; text-align: right;
+  white-space: nowrap; margin: 0;
+}
+.satoA .hk-dog__rules .hk-rules { grid-template-columns: repeat(3, 1fr); gap: var(--s-5) var(--s-7); }
+/* ==================== RESPONSIVE ==================== */
+/* Tablet and below */
+@media (max-width: 1080px) {
+  .satoA { --gutter: 40px; }
+  .satoA .hk-menu__cats { grid-template-columns: repeat(3, 1fr); }
+  .satoA .hk-gallery { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 180px; }
+  .satoA .hk-footer__inner { grid-template-columns: 1fr; gap: var(--s-7); }
+  .satoA .hk-dog__head { grid-template-columns: 1fr; }
+  .satoA .hk-dog__head .hk-sub { grid-column: 1; grid-row: auto; text-align: left; align-self: start; }
+  .satoA .hk-dog__rules-header { grid-template-columns: 1fr; }
+  .satoA .hk-dog__rules-sub { text-align: left; white-space: normal; }
+  .satoA .hk-dog__rules .hk-rules { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Mobile */
+@media (max-width: 720px) {
+  .satoA { --gutter: 20px; --section-py: 64px; --s-9: 56px; }
+
+  /* Header */
+  .satoA .hk-header { padding: 14px 20px; }
+  .satoA .hk-header.is-scrolled { padding: 10px 20px; }
+  .satoA .hk-nav { display: none; }
+  .satoA .hk-hours-pill { font-size: 11px; padding: 4px 10px; }
+  .satoA .hk-brand__name { display: none; }
+
+  /* Hero */
+  .satoA .hk-hero__inner { padding: 22vh 20px var(--s-6); }
+  .satoA .hk-hero__title { font-size: clamp(36px, 9.5vw, 56px) !important; letter-spacing: 0.04em; }
+  .satoA .hk-hero__lede { font-size: var(--t-sm); }
+  .satoA .hk-hero__scroll { right: 20px; }
+
+  /* Section titles */
+  .satoA .hk-h2 { font-size: var(--t-2xl); }
+
+  /* News */
+  .satoA .hk-news__head {
+    grid-template-columns: 1fr 24px;
+    gap: var(--s-1) var(--s-3); padding: var(--s-4) 0;
+  }
+  .satoA .hk-news__date  { grid-column: 1; grid-row: 1; font-size: var(--t-xs); }
+  .satoA .hk-news__head .hk-chip { grid-column: 1; grid-row: 2; justify-self: start; }
+  .satoA .hk-news__title { grid-column: 1; grid-row: 3; font-size: var(--t-sm); margin-top: 4px; }
+  .satoA .hk-news__chev  { grid-column: 2; grid-row: 1 / 4; align-self: center; }
+  .satoA .hk-news__body-inner { grid-template-columns: 1fr; padding-right: 24px; }
+  .satoA .hk-news__body-text  { grid-column: 1; }
+
+  /* About */
+  .satoA .hk-about__grid { grid-template-columns: 1fr; gap: var(--s-5); }
+  .satoA .hk-about__head { padding-right: 0; border-right: 0; }
+  .satoA .hk-about__pillars { grid-template-columns: 1fr; gap: var(--s-7); margin-top: var(--s-7); }
+
+  /* Menu */
+  .satoA .hk-menu__cats { grid-template-columns: 1fr 1fr; gap: var(--s-3); }
+  .satoA .hk-menu__featured { gap: var(--s-4); }
+  .satoA .hk-menu__item { grid-template-columns: 1fr; gap: 0; }
+  .satoA .hk-menu__item-img { aspect-ratio: 4/3; }
+  .satoA .hk-menu__item-meta { padding: var(--s-4) var(--s-5) var(--s-5); }
+
+  /* Dog */
+  .satoA .hk-dog__hero-img { aspect-ratio: 4/3; }
+  .satoA .hk-pricing { grid-template-columns: 1fr; gap: var(--s-3); }
+  .satoA .hk-dog__rules .hk-rules { grid-template-columns: 1fr; }
+
+  /* Gallery */
+  .satoA .hk-gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 140px; gap: var(--s-2); }
+
+  /* Access */
+  .satoA .hk-access__grid { grid-template-columns: 1fr; gap: var(--s-5); }
+  .satoA .hk-access__row { grid-template-columns: 1fr; gap: 4px; padding: var(--s-3) 0; }
+  .satoA .hk-access__row dt { font-size: var(--t-xs); }
+  .satoA .hk-access__phone { font-size: var(--t-lg) !important; }
+  .satoA .hk-access__map-link { font-size: var(--t-xs); }
+
+  /* CTA */
+  .satoA .hk-cta__inner { grid-template-columns: 1fr; gap: var(--s-5); padding: var(--s-9) var(--gutter); }
+  .satoA .hk-cta h2 { font-size: var(--t-2xl); }
+
+  /* Footer */
+  .satoA .hk-footer__inner { padding: var(--s-9) 20px var(--s-7); }
+  .satoA .hk-footer__cols { grid-template-columns: 1fr 1fr; gap: var(--s-5); }
+  .satoA .hk-footer__legal { flex-direction: column; gap: var(--s-2); align-items: flex-start; font-size: var(--t-xs); }
+
+  /* Tweaks panel — shrink to fit screen */
+  .tw-panel { width: calc(100vw - 32px); right: 16px; bottom: 16px; }
+}
+
+/* Very small phones */
+@media (max-width: 420px) {
+  .satoA .hk-gallery { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+  .satoA .hk-menu__cats { grid-template-columns: 1fr; }
+  .satoA .hk-footer__cols { grid-template-columns: 1fr; }
+}
+
+/* Gallery */
+.satoA .hk-gallery-wrap { background: var(--kinari); }
+.satoA .hk-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 220px;
+  gap: var(--s-3);
+  margin-top: var(--s-6);
+}
+.satoA .hk-gallery__cell {
+  overflow: hidden; cursor: pointer; position: relative;
+  background: var(--washi);
+}
+.satoA .hk-gallery__cell img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform var(--dur-lg) var(--ease);
+}
+.satoA .hk-gallery__cell:hover img { transform: scale(1.04); }
+.satoA .hk-gallery__cell.is-wide { grid-column: span 2; }
+.satoA .hk-gallery__cell.is-tall { grid-row: span 2; }
+.satoA .hk-gallery__cell::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(20,17,14,.35));
+  opacity: 0; transition: opacity var(--dur-sm) var(--ease);
+}
+.satoA .hk-gallery__cell:hover::after { opacity: 1; }
+.satoA .hk-gallery__cap {
+  position: absolute; left: 12px; bottom: 10px;
+  font-family: var(--font-display-jp); font-size: var(--t-sm);
+  color: rgba(255,255,255,.9); letter-spacing: 0.10em;
+  opacity: 0; transition: opacity var(--dur-sm) var(--ease);
+  z-index: 1;
+}
+.satoA .hk-gallery__cell:hover .hk-gallery__cap { opacity: 1; }
+
+/* Access */
+.satoA .hk-access { background: var(--kinari); }
+.satoA .hk-access__grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--s-9); align-items: start; }
+.satoA .hk-access__image { aspect-ratio: 4/3; overflow: hidden; border: 1px solid var(--hairline-soft); position: relative; background: var(--kinari); }
+.satoA .hk-access__image img,
+.satoA .hk-access__image svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+.satoA .hk-access__map-link {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  margin-top: var(--s-3);
+  font-family: var(--font-display-en); font-style: italic;
+  font-size: var(--t-sm); color: var(--matcha-deep);
+  letter-spacing: 0.06em;
+}
+.satoA .hk-access__map-link:hover { color: var(--sumi); }
+.satoA .hk-access__info { margin: 0; display: grid; gap: 0; padding-top: var(--s-2); }
+.satoA .hk-access__row {
+  display: grid; grid-template-columns: 110px 1fr; gap: var(--s-4);
+  padding: var(--s-4) 0; border-bottom: 1px solid var(--hairline-soft);
+}
+.satoA .hk-access__row dt {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-body-jp); font-size: var(--t-sm);
+  color: var(--sumi-3); letter-spacing: 0.10em;
+}
+.satoA .hk-access__row dd {
+  margin: 0; font-family: var(--font-body-jp); font-size: var(--t-base);
+  line-height: 1.85; color: var(--sumi);
+}
+.satoA .hk-access__phone { font-family: var(--font-display-en); font-style: normal; font-size: var(--t-xl); color: var(--sumi); }
+
+/* CTA band */
+.satoA .hk-cta {
+  background: var(--sumi);
+  color: var(--shoji);
+  position: relative;
+  overflow: hidden;
+}
+.satoA .hk-cta__pattern {
+  position: absolute; inset: 0;
+  background: url('assets/pattern-asanoha.svg');
+  background-size: 200px; opacity: .05;
+}
+.satoA .hk-cta__inner {
+  position: relative;
+  padding: var(--s-11) var(--gutter);
+  max-width: var(--container); margin: 0 auto;
+  display: grid; grid-template-columns: 1fr auto; gap: var(--s-7);
+  align-items: center;
+}
+.satoA .hk-cta h2 { color: var(--shoji); font-family: var(--font-display-jp);
+  font-weight: 500; font-size: var(--t-3xl); letter-spacing: 0.10em; line-height: 1.3; margin: 0;}
+.satoA .hk-cta p { color: var(--sumi-4); margin: var(--s-3) 0 0; max-width: 56ch; line-height: 1.95; }
+.satoA .hk-cta .hk-btn { background: var(--shoji); color: var(--sumi); border-color: var(--shoji); }
+.satoA .hk-cta .hk-btn:hover { background: var(--washi); }
+
+/* =================================================== TWEAKS — palette overrides
+   Three expressive controls reshape the page's mood:
+     [data-palette]  季の色   — accent color rotation (苔 / 桜 / 紅葉 / 冬)
+     [data-rhythm]   間       — section spacing (つめる / 標準 / ゆったり)
+     [data-mood]     ムード   — page light & hero veil (朝 / 昼 / 夕)
+   Each tweak overrides root tokens scoped to .satoA, so all existing components
+   recolor and re-space without touching individual rules. */
+
+/* — 季の色 — */
+.satoA[data-palette="sakura"]  { --matcha: #c97a82; --matcha-deep: #9a4b56;
+  --paletteA-tint: 201,122,130; --paletteA-pale: #ead4d6; }
+.satoA[data-palette="kuchiba"] { --matcha: #b6743c; --matcha-deep: #7e4d22;
+  --paletteA-tint: 182,116,60;  --paletteA-pale: #ead6c1; }
+.satoA[data-palette="ai"]      { --matcha: #6a8197; --matcha-deep: #243a4c;
+  --paletteA-tint: 60,84,104;   --paletteA-pale: #cfd9e1; }
+.satoA[data-palette]:not([data-palette="matcha"]) .hk-chip--matcha {
+  color: var(--matcha-deep);
+  background: rgba(var(--paletteA-tint), .10);
+  border-color: rgba(var(--paletteA-tint), .30);
+}
+
+/* — 間 — */
+.satoA[data-rhythm="tight"]  { --section-py: 56px; }
+.satoA[data-rhythm="tight"]  .hk-hero { padding-top: 110px; padding-bottom: var(--s-7); }
+.satoA[data-rhythm="tight"]  .hk-hero__inner { gap: var(--s-5); }
+.satoA[data-rhythm="tight"]  .hk-h2 { font-size: var(--t-2xl); }
+.satoA[data-rhythm="airy"]   { --section-py: 144px; }
+.satoA[data-rhythm="airy"]   .hk-hero { min-height: 100vh; padding-top: 200px; }
+.satoA[data-rhythm="airy"]   .hk-hero__inner { gap: var(--s-8); }
+
+/* — ムード — */
+.satoA[data-mood="asa"] { --kinari: #f9f4ec; --kinari-2: #f3ecdf; --washi: #efe3cf; }
+.satoA[data-mood="asa"] .hk-hero__veil {
+  background: linear-gradient(180deg, rgba(245,239,228,0) 0%, rgba(245,239,228,.20) 70%, rgba(245,239,228,.55) 100%);
+}
+.satoA[data-mood="asa"] .hk-hero__image img { filter: brightness(1.05) saturate(.85); }
+.satoA[data-mood="yu"]  { --kinari: #ece2cf; --kinari-2: #e3d6bf; --washi: #d9c7a8; }
+.satoA[data-mood="yu"]  .hk-hero__veil {
+  background: linear-gradient(180deg, rgba(64,38,28,.30) 0%, rgba(76,40,24,.40) 60%, rgba(40,22,14,.65) 100%);
+}
+.satoA[data-mood="yu"]  .hk-hero__image img { filter: brightness(.88) saturate(1.15) hue-rotate(-8deg); }
+.satoA[data-mood="yu"]  .hk-hero__title, .satoA[data-mood="yu"] .hk-hero__lede { color: var(--shoji); }
+
+/* =================================================== TWEAKS — panel chrome */
+.tw-panel {
+  position: fixed; right: 20px; bottom: 20px; z-index: 9999;
+  width: 296px;
+  background: #fbf7ef;
+  border: 1px solid rgba(42,38,34,.12);
+  box-shadow: 0 1px 0 rgba(42,38,34,.04), 0 18px 40px -22px rgba(42,38,34,.35);
+  font-family: var(--font-body-jp);
+  color: var(--sumi);
+  display: none;
+  user-select: none;
+}
+.tw-panel.is-open { display: block; }
+.tw-panel__head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px 12px; border-bottom: 1px solid rgba(42,38,34,.08);
+  cursor: grab;
+}
+.tw-panel__head:active { cursor: grabbing; }
+.tw-panel__title {
+  font-family: var(--font-display-jp); font-weight: 500;
+  font-size: 15px; letter-spacing: 0.16em; color: var(--sumi);
+}
+.tw-panel__title em {
+  display: block; font-family: var(--font-display-en); font-style: italic;
+  font-weight: 400; font-size: 11px; letter-spacing: 0.18em; color: var(--sumi-3);
+  margin-top: 2px;
+}
+.tw-panel__close {
+  background: transparent; border: 0; cursor: pointer;
+  width: 26px; height: 26px; font-size: 18px; color: var(--sumi-3);
+  display: flex; align-items: center; justify-content: center;
+}
+.tw-panel__close:hover { color: var(--sumi); }
+.tw-panel__body { padding: 16px; display: grid; gap: 18px; }
+.tw-group__label {
+  font-family: var(--font-display-jp); font-size: 13px; letter-spacing: 0.18em;
+  color: var(--sumi); margin-bottom: 8px; display: flex; align-items: baseline; gap: 8px;
+}
+.tw-group__label em {
+  font-family: var(--font-display-en); font-style: italic;
+  font-size: 10px; letter-spacing: 0.18em; color: var(--sumi-3); text-transform: lowercase;
+}
+.tw-swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.tw-swatch {
+  background: transparent; border: 0; padding: 0; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.tw-swatch__dot {
+  width: 100%; aspect-ratio: 1 / 1; border-radius: 999px;
+  border: 1px solid rgba(42,38,34,.10);
+  transition: transform 160ms cubic-bezier(.22,.61,.36,1), box-shadow 160ms;
+}
+.tw-swatch[data-val="matcha"]  .tw-swatch__dot { background: #56603b; }
+.tw-swatch[data-val="sakura"]  .tw-swatch__dot { background: #9a4b56; }
+.tw-swatch[data-val="kuchiba"] .tw-swatch__dot { background: #7e4d22; }
+.tw-swatch[data-val="ai"]      .tw-swatch__dot { background: #243a4c; }
+.tw-swatch__kanji {
+  font-family: var(--font-display-jp); font-size: 12px; color: var(--sumi-2);
+  letter-spacing: 0.06em;
+}
+.tw-swatch.is-on .tw-swatch__dot {
+  transform: scale(1.08);
+  box-shadow: 0 0 0 1px var(--kinari), 0 0 0 2px var(--sumi);
+}
+.tw-swatch.is-on .tw-swatch__kanji { color: var(--sumi); }
+.tw-seg {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0;
+  border: 1px solid rgba(42,38,34,.14);
+}
+.tw-seg button {
+  background: transparent; border: 0; padding: 9px 6px; cursor: pointer;
+  font-family: var(--font-display-jp); font-size: 13px; letter-spacing: 0.10em;
+  color: var(--sumi-2);
+  border-right: 1px solid rgba(42,38,34,.10);
+  transition: background 160ms, color 160ms;
+}
+.tw-seg button:last-child { border-right: 0; }
+.tw-seg button em {
+  display: block; font-family: var(--font-display-en); font-style: italic;
+  font-weight: 400; font-size: 9px; letter-spacing: 0.16em; color: var(--sumi-3);
+  margin-top: 2px; text-transform: lowercase;
+}
+.tw-seg button:hover { background: rgba(42,38,34,.04); color: var(--sumi); }
+.tw-seg button.is-on { background: var(--sumi); color: var(--shoji); }
+.tw-seg button.is-on em { color: rgba(251,247,239,.55); }
+</style>
+</head>
+<body>
+<div class="hk-page satoA" data-screen-label="A 里の家">
+
+  <!-- =================================================== HEADER -->
+  <header class="hk-header" id="hdr">
+    <a class="hk-brand" href="#top">
+      <svg class="hk-brand__mark" viewBox="0 0 64 64">
+        <use href="assets/mark.svg#root"/>
+      </svg>
+      <img class="hk-brand__mark" src="assets/mark.svg" alt="" aria-hidden="true" style="margin-left:-38px;">
+      <span class="hk-brand__name">
+        <span class="hk-brand__jp">花かご</span>
+        <span class="hk-brand__en">Hanakago café and dog garden</span>
+      </span>
+    </a>
+    <nav class="hk-nav">
+      <a href="#concept">店舗のこと</a>
+      <a href="#menu">カフェ</a>
+      <a href="#dog">ドッグラン</a>
+      <a href="#gallery">ギャラリー</a>
+      <a href="#access">アクセス</a>
+    </nav>
+    <span class="hk-hours-pill" id="hoursPill">読み込み中</span>
+  </header>
+
+  <!-- ==================================================== HERO -->
+  <section class="hk-hero" id="top">
+    <div class="hk-hero__image">
+      <img id="heroImg" src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=2000&q=80&auto=format&fit=crop" alt="">
+    </div>
+    <div class="hk-hero__veil"></div>
+
+    <div class="hk-hero__inner">
+      <h1 class="hk-hero__title"><span style="color: rgb(37, 42, 34);">自然とともに、<br><span style="color: rgb(46, 85, 22);">特別な時間</span>を。</span></h1>
+      <p class="hk-hero__lede">京都・亀岡、古民家を開いた和カフェ。 
+広い庭にはドッグランを併設。</p>
+
+    </div>
+
+    <div class="hk-hero__scroll">scroll</div>
+  </section>
+
+  <!-- =================================================== NEWS
+       お知らせを追加・更新するときは、<li class="hk-news__item"> ブロックを
+       コピーして一番上に貼り付け、4 箇所（日付・タグ・見出し・本文）を
+       書き換えてください。クリックで本文が展開します。
+  -->
+  <section class="hk-news">
+    <div class="hk-section">
+      <span class="hk-eyebrow">— News —</span>
+      <h2 class="hk-h2">花かごからのお知らせ</h2>
+      <ul class="hk-news__list">
+
+        <li class="hk-news__item">
+          <button class="hk-news__head" type="button" aria-expanded="false">
+            <span class="hk-news__date">2026.05.10</span>
+            <span class="hk-chip">お品書き</span>
+            <span class="hk-news__title">秋の上生菓子と、新しい煎茶のお品書きを公開いたしました。</span>
+            <span class="hk-news__chev" aria-hidden="true"></span>
+          </button>
+          <div class="hk-news__body">
+            <div class="hk-news__body-inner">
+              <div class="hk-news__body-text">
+                <p>九月の上生菓子は「月白」「野菊」「初紅葉」の三種。煎茶は、和束の新作を二種お品書きに加えました。お席にてお品書きをご覧いただけます。</p>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="hk-news__item">
+          <button class="hk-news__head" type="button" aria-expanded="false">
+            <span class="hk-news__date">2026.05.02</span>
+            <span class="hk-chip">ドッグラン</span>
+            <span class="hk-news__title">ドッグランの芝の張替を行いました。ふかふかとした足元で。</span>
+            <span class="hk-news__chev" aria-hidden="true"></span>
+          </button>
+          <div class="hk-news__body">
+            <div class="hk-news__body-inner">
+              <div class="hk-news__body-text">
+                <p>庭の天然芝を一面張り替えました。しばらくはふかふかとした感触をお楽しみいただけます。雨上がりはお足ふきをご用意しておりますので、お声がけください。</p>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="hk-news__item">
+          <button class="hk-news__head" type="button" aria-expanded="false">
+            <span class="hk-news__date">2026.04.18</span>
+            <span class="hk-chip">営業</span>
+            <span class="hk-news__title">営業日変更のお知らせ。金・土・日の三日間の営業となります。</span>
+            <span class="hk-news__chev" aria-hidden="true"></span>
+          </button>
+          <div class="hk-news__body">
+            <div class="hk-news__body-inner">
+              <div class="hk-news__body-text">
+                <p>営業日を金曜・土曜・日曜の三日間に変更いたしました。営業時間は通常どおり、11:00 〜 17:30（L.O. 17:00）です。</p>
+                <p>ご予約・お問い合わせは、ページ下部の連絡先よりお願いいたします。</p>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="hk-news__item">
+          <button class="hk-news__head" type="button" aria-expanded="false">
+            <span class="hk-news__date">2026.04.02</span>
+            <span class="hk-chip">入荷</span>
+            <span class="hk-news__title">宇治より、新茶を入荷いたしました。今年は香りが特に良いです。</span>
+            <span class="hk-news__chev" aria-hidden="true"></span>
+          </button>
+          <div class="hk-news__body">
+            <div class="hk-news__body-inner">
+              <div class="hk-news__body-text">
+                <p>宇治・和束の新茶が届きました。煎茶として、また玉露の三煎仕立てでお出ししております。茶葉のお持ち帰り（30g 袋入り）もご用意しております。</p>
+              </div>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================================================ CONCEPT -->
+  <section class="hk-about" id="concept">
+    <div class="hk-section">
+      <div class="hk-about__grid">
+        <header class="hk-about__head">
+          <span class="hk-eyebrow">— About —</span>
+          <h2 class="hk-h2">花かごの<br>こと</h2>
+        </header>
+        <div class="hk-about__body">
+          <p class="p-lg">京都の街なかから、車でおおよそ三十分。 
+カフェとドッグランが楽しめる複合施設です。</p>
+          <div class="hk-about__sign">
+            <em>
+</em>
+            摘みたての花のように、ひと束にしてお届けする。<br>
+            その想いで、店名を「花かご」といたしました。
+          </div>
+        </div>
+      </div>
+
+      <div class="hk-about__pillars">
+        <article class="hk-pillar">
+          <div class="hk-pillar__img">
+            <img src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=1200&q=80&auto=format&fit=crop" alt="">
+          </div>
+          <div class="hk-pillar__meta">
+            <span class="hk-pillar__no">01 — Café</span>
+            <h3 class="hk-pillar__name">土間の和カフェ</h3>
+            <p class="hk-pillar__desc">
+              宇治のお茶、その季節の上生菓子、和パフェ。<br>
+              昼下がりの一服を、土間の席で。
+            </p>
+          </div>
+        </article>
+        <article class="hk-pillar">
+          <div class="hk-pillar__img">
+            <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=1200&q=80&auto=format&fit=crop" alt="">
+          </div>
+          <div class="hk-pillar__meta">
+            <span class="hk-pillar__no">02 — Dog Garden</span>
+            <h3 class="hk-pillar__name">芝のドッグラン</h3>
+            <p class="hk-pillar__desc">
+              天然芝、約二百坪。<br>
+              木立に囲まれた静かな庭で、ゆっくり過ごしていただけます。
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================== MENU -->
+  <section class="hk-menu" id="menu">
+    <div class="hk-section">
+      <span class="hk-eyebrow">— Menu —</span>
+      <h2 class="hk-h2">カフェのお品書き</h2>
+      <p class="hk-sub">お茶・上生菓子・和パフェ・ケーキ・季節のひと品。お庭を眺めながら、お楽しみください。</p>
+
+      <ul class="hk-menu__cats">
+        <li class="hk-menu__cat">
+          <div class="hk-menu__cat-img"><img src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=600&q=80&auto=format&fit=crop" alt=""></div>
+          <div class="hk-menu__cat-meta">
+            <span class="hk-menu__cat-en">Tea</span>
+            <span class="hk-menu__cat-jp">宇治茶</span>
+          </div>
+        </li>
+        <li class="hk-menu__cat">
+          <div class="hk-menu__cat-img"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80&auto=format&fit=crop" alt=""></div>
+          <div class="hk-menu__cat-meta">
+            <span class="hk-menu__cat-en">Wagashi</span>
+            <span class="hk-menu__cat-jp">和甘味</span>
+          </div>
+        </li>
+        <li class="hk-menu__cat">
+          <div class="hk-menu__cat-img"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80&auto=format&fit=crop" alt=""></div>
+          <div class="hk-menu__cat-meta">
+            <span class="hk-menu__cat-en">Parfait</span>
+            <span class="hk-menu__cat-jp">和パフェ</span>
+          </div>
+        </li>
+        <li class="hk-menu__cat">
+          <div class="hk-menu__cat-img"><img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&q=80&auto=format&fit=crop" alt=""></div>
+          <div class="hk-menu__cat-meta">
+            <span class="hk-menu__cat-en">Light Meal</span>
+            <span class="hk-menu__cat-jp">お食事</span>
+          </div>
+        </li>
+        <li class="hk-menu__cat">
+          <div class="hk-menu__cat-img"><img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80&auto=format&fit=crop" alt=""></div>
+          <div class="hk-menu__cat-meta">
+            <span class="hk-menu__cat-en">Seasonal</span>
+            <span class="hk-menu__cat-jp">季のひと品</span>
+          </div>
+        </li>
+      </ul>
+
+      <h3 class="hk-menu__sub-title">
+        <em>— Featured —</em>
+        <span>花かごのお品書き</span>
+      </h3>
+
+      <ul class="hk-menu__featured">
+        <li class="hk-menu__item">
+          <div class="hk-menu__item-img">
+            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=80&auto=format&fit=crop" alt="">
+          </div>
+          <div class="hk-menu__item-meta">
+            <span class="hk-menu__item-no">No. 01</span>
+            <h4 class="hk-menu__item-name">花かごの和パフェ</h4>
+            <p class="hk-menu__item-desc">
+              葛ゼリーと抹茶のアイス、白玉と粒餡を重ねて。<br>
+              てっぺんには、その日の手しごとをひとつ。
+            </p>
+            <div class="hk-menu__item-foot">
+              <span class="hk-chip hk-chip--matcha">看板</span>
+              <span class="hk-menu__item-price">¥1,580</span>
+            </div>
+          </div>
+        </li>
+        <li class="hk-menu__item">
+          <div class="hk-menu__item-img">
+            <img src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=900&q=80&auto=format&fit=crop" alt="">
+          </div>
+          <div class="hk-menu__item-meta">
+            <span class="hk-menu__item-no">No. 02</span>
+            <h4 class="hk-menu__item-name">玉露 三煎</h4>
+            <p class="hk-menu__item-desc">
+              和束の玉露を、ぬるめのお湯でゆっくりと。<br>
+              一煎目、二煎目、出汁のような最後の一口まで。
+            </p>
+            <div class="hk-menu__item-foot">
+              <span class="hk-chip hk-chip--matcha">通年</span>
+              <span class="hk-menu__item-price">¥980</span>
+            </div>
+          </div>
+        </li>
+        <li class="hk-menu__item">
+          <div class="hk-menu__item-img">
+            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=80&auto=format&fit=crop" alt="">
+          </div>
+          <div class="hk-menu__item-meta">
+            <span class="hk-menu__item-no">No. 03</span>
+            <h4 class="hk-menu__item-name">上生菓子 三種盛り</h4>
+            <p class="hk-menu__item-desc">
+              季節の上生菓子を、その日の手しごとから三種。<br>
+              お抹茶のお点前付き。
+            </p>
+            <div class="hk-menu__item-foot">
+              <span class="hk-chip">お点前付</span>
+              <span class="hk-menu__item-price">¥1,800</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================================================ DOG RUN -->
+  <section class="hk-dog" id="dog">
+    <div class="hk-dog__pattern" aria-hidden="true"></div>
+    <div class="hk-section">
+      <div class="hk-dog__inner">
+        <header class="hk-dog__head">
+          <span class="hk-eyebrow">— Dog Garden —</span>
+          <h2 class="hk-h2">ドッグランについて</h2>
+          <p class="hk-sub" style="font-size: var(--t-sm); color: rgb(138, 127, 115)">
+            天然芝・約二百坪。<br>
+            木立と土塀に囲まれた静かなお庭です。
+          </p>
+        </header>
+
+        <div class="hk-dog__body">
+          <div class="hk-dog__hero-img">
+            <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?w=1600&q=80&auto=format&fit=crop" alt="">
+          </div>
+          <p class="hk-dog__copy">
+            縁側に犬を連れて、人はお茶を一服。<br>
+            お庭のドッグランは、カフェのご利用の有無に関わらずご利用いただけます。<br>
+            完全予約制ではありませんが、混雑時はお待ちいただく場合がございます。
+          </p>
+
+          <div class="hk-pricing" role="table" aria-label="ドッグラン 料金表">
+            <div class="hk-pricing__col">
+              <div class="hk-pricing__plan">— 1 hour</div>
+              <div class="hk-pricing__jp">1時間券</div>
+              <div class="hk-pricing__price"><span class="yen">¥</span>1,000<span class="unit">/ 頭</span></div>
+              <div class="hk-pricing__note">2頭目以降は ¥500 / 頭。<br>飼い主の同伴人数に上限はございません。</div>
+            </div>
+            <div class="hk-pricing__col">
+              <div class="hk-pricing__plan">— Half day</div>
+              <div class="hk-pricing__jp">半日券</div>
+              <div class="hk-pricing__price"><span class="yen">¥</span>1,800<span class="unit">/ 頭</span></div>
+              <div class="hk-pricing__note">12:00–15:00 もしくは 15:00–閉店。<br>カフェのご利用 ¥500 以上で ¥200 引。</div>
+            </div>
+            <div class="hk-pricing__col">
+              <div class="hk-pricing__plan">— Members</div>
+              <div class="hk-pricing__jp">月会員</div>
+              <div class="hk-pricing__price"><span class="yen">¥</span>4,800<span class="unit">/ 月</span></div>
+              <div class="hk-pricing__note">月内 何度でも 1時間券。<br>初回時に予防接種証明書のご提示をお願いいたします。</div>
+            </div>
+          </div>
+
+          <p style="margin:var(--s-4) 0 0; font-size:var(--t-sm); color:var(--sumi-3);">
+            ※ お子様連れの方、初めての方は、入場前にスタッフへお声がけください。<br>
+            ※ 雨天時はお庭の状態により、ご利用をお断りする場合がございます。
+          </p>
+
+          <div class="hk-dog__rules" style="border-width: 2px 0px 0px">
+            <div class="hk-dog__rules-header">
+              <header class="hk-dog__rules-title">
+                <em>— Etiquette —</em>
+                <span>ご利用のお約束</span>
+              </header>
+              <p class="hk-dog__rules-sub">皆様の大事なワンちゃんの安全のために</p>
+            </div>
+
+            <div class="hk-rules">
+              <div class="hk-rule">
+                <span class="hk-rule__no">01</span>
+                <div class="hk-rule__body">
+                  <strong>予防接種について</strong>
+                  一年以内の狂犬病・混合ワクチン接種証明書を初回時にご提示ください。
+                </div>
+              </div>
+              <div class="hk-rule">
+                <span class="hk-rule__no">02</span>
+                <div class="hk-rule__body">
+                  <strong>発情期・体調について</strong>
+                  メス犬の発情期および体調のすぐれない子はご遠慮いただいております。
+                </div>
+              </div>
+              <div class="hk-rule">
+                <span class="hk-rule__no">03</span>
+                <div class="hk-rule__body">
+                  <strong>リードについて</strong>
+                  ドッグラン内はノーリードで結構ですが、出入口の前後では必ずお付けください。
+                </div>
+              </div>
+              <div class="hk-rule">
+                <span class="hk-rule__no">04</span>
+                <div class="hk-rule__body">
+                  <strong>排泄物の処理</strong>
+                  排泄物は必ずお持ち帰りください。マナーポーチをご準備しております。
+                </div>
+              </div>
+              <div class="hk-rule">
+                <span class="hk-rule__no">05</span>
+                <div class="hk-rule__body">
+                  <strong>カフェ店内へのご同伴</strong>
+                  縁側席・テラス席はワンちゃん同伴可。土間席はご同伴をお控えください。
+                </div>
+              </div>
+              <div class="hk-rule">
+                <span class="hk-rule__no">06</span>
+                <div class="hk-rule__body">
+                  <strong>事故・怪我について</strong>
+                  ワンちゃん同士の事故等につきましては、当店は責任を負いかねます。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================ GALLERY -->
+  <section class="hk-gallery-wrap" id="gallery">
+    <div class="hk-section">
+      <span class="hk-eyebrow">— Gallery —</span>
+      <h2 class="hk-h2">花かごの様子</h2>
+      <div class="hk-gallery" id="gallery">
+        <div class="hk-gallery__cell is-wide is-tall" data-cap="木漏れ日の庭" data-src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=2000&q=80&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&q=80&auto=format&fit=crop" alt="">
+          <span class="hk-gallery__cap">木漏れ日の庭</span>
+        </div>
+        <div class="hk-gallery__cell" data-cap="縁側の席" data-src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1600&q=80&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=900&q=80&auto=format&fit=crop" alt="">
+          <span class="hk-gallery__cap">縁側の席</span>
+        </div>
+        <div class="hk-gallery__cell" data-cap="芝のドッグラン" data-src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=1600&q=80&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=900&q=80&auto=format&fit=crop" alt="">
+          <span class="hk-gallery__cap">芝のドッグラン</span>
+        </div>
+        <div class="hk-gallery__cell" data-cap="玉露の一服" data-src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=1600&q=80&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=900&q=80&auto=format&fit=crop" alt="">
+          <span class="hk-gallery__cap">玉露の一服</span>
+        </div>
+        <div class="hk-gallery__cell is-wide" data-cap="上生菓子" data-src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=2000&q=80&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1200&q=80&auto=format&fit=crop" alt="">
+          <span class="hk-gallery__cap">上生菓子</span>
+        </div>
+        <div class="hk-gallery__cell" data-cap="お庭で寛ぐ" data-src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=1600&q=80&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=900&q=80&auto=format&fit=crop" alt="">
+          <span class="hk-gallery__cap">お庭で寛ぐ</span>
+        </div>
+        <div class="hk-gallery__cell" data-cap="土間の店内" data-src="https://images.unsplash.com/photo-1583416750470-965b2707b355?w=1600&q=80&auto=format&fit=crop">
+          <img src="https://images.unsplash.com/photo-1583416750470-965b2707b355?w=900&q=80&auto=format&fit=crop" alt="">
+          <span class="hk-gallery__cap">土間の店内</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================= ACCESS -->
+  <section class="hk-access" id="access">
+    <div class="hk-section">
+      <div class="hk-access__grid">
+        <div>
+          <div class="hk-access__image" role="img" aria-label="花かご位置図 — 京都府亀岡市曽我部町西条中檀ノ上1-1">
+            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+              <!-- Paper background -->
+              <rect width="800" height="600" fill="#f5efe4"/>
+
+              <!-- Faint grid (washi feel) -->
+              <g stroke="#8a7f73" stroke-width="0.5" opacity="0.08">
+                <path d="M0 100h800M0 200h800M0 300h800M0 400h800M0 500h800M100 0v600M200 0v600M300 0v600M400 0v600M500 0v600M600 0v600M700 0v600"/>
+              </g>
+
+              <!-- Rice paddies (soft matcha rectangles, west side) -->
+              <g fill="#c5d099" opacity="0.45">
+                <rect x="60"  y="230" width="110" height="50"/>
+                <rect x="60"  y="300" width="110" height="40"/>
+                <rect x="190" y="260" width="90"  height="60"/>
+                <rect x="60"  y="410" width="160" height="50"/>
+                <rect x="240" y="430" width="110" height="40"/>
+              </g>
+              <g stroke="#7c8a55" stroke-width="0.6" fill="none" opacity="0.5">
+                <rect x="60"  y="230" width="110" height="50"/>
+                <rect x="60"  y="300" width="110" height="40"/>
+                <rect x="190" y="260" width="90"  height="60"/>
+                <rect x="60"  y="410" width="160" height="50"/>
+                <rect x="240" y="430" width="110" height="40"/>
+              </g>
+
+              <!-- Mountains (silhouettes on the west) -->
+              <path d="M 0 540 L 60 470 L 110 510 L 170 460 L 230 500 L 0 600 Z"
+                    fill="#5a5048" opacity="0.10"/>
+
+              <!-- River (桂川) curving down the east side -->
+              <path d="M 760 0 C 700 130, 740 280, 640 420 C 590 500, 620 560, 600 600"
+                    stroke="#b0c3d2" stroke-width="34" fill="none" stroke-linecap="round" opacity="0.65"/>
+              <path d="M 760 0 C 700 130, 740 280, 640 420 C 590 500, 620 560, 600 600"
+                    stroke="#7c95a8" stroke-width="1" fill="none" stroke-dasharray="4 5" opacity="0.6"/>
+              <text x="686" y="258" font-family="serif" font-size="13" fill="#5a5048"
+                    letter-spacing="2" transform="rotate(78 686 258)" opacity="0.8">桂川</text>
+
+              <!-- JR Sagano line (railway) running E-W near top -->
+              <line x1="0" y1="110" x2="800" y2="95" stroke="#2a2622" stroke-width="3"/>
+              <line x1="0" y1="110" x2="800" y2="95" stroke="#fbf7ef" stroke-width="1" stroke-dasharray="8 8"/>
+              <text x="60" y="86" font-family="serif" font-style="italic" font-size="11" fill="#5a5048"
+                    letter-spacing="2">JR Sagano Line</text>
+
+              <!-- Station marker -->
+              <g transform="translate(560 102)">
+                <rect x="-10" y="-10" width="20" height="20" fill="#fbf7ef" stroke="#2a2622" stroke-width="1.5"/>
+                <circle r="3.5" fill="#2a2622"/>
+                <text x="18" y="6" font-family="serif" font-size="14" fill="#2a2622" letter-spacing="2">JR 亀岡駅</text>
+              </g>
+
+              <!-- Roads -->
+              <g stroke="#2a2622" stroke-width="2.2" fill="none" opacity="0.85">
+                <path d="M 0 360 C 200 350, 400 380, 800 350"/>
+                <path d="M 380 110 C 360 220, 410 320, 380 600"/>
+                <path d="M 200 600 C 280 500, 360 420, 540 380 S 720 360, 800 380"/>
+              </g>
+              <g stroke="#8a7f73" stroke-width="1" fill="none" opacity="0.55">
+                <path d="M 0 220 C 150 240, 280 200, 480 230 S 700 240, 800 220"/>
+                <path d="M 0 480 C 140 460, 260 500, 400 470 S 600 490, 800 470"/>
+                <path d="M 150 0 C 160 100, 140 200, 170 600"/>
+                <path d="M 620 0 C 600 80, 640 180, 600 280"/>
+              </g>
+
+              <!-- Hanakago pin -->
+              <g transform="translate(380 370)">
+                <circle r="36" fill="#56603b" opacity="0.12"/>
+                <circle r="22" fill="none" stroke="#56603b" stroke-width="1.5" opacity="0.55"/>
+                <circle r="13" fill="#56603b"/>
+                <circle r="4.5" fill="#fbf7ef"/>
+                <text x="0" y="60" text-anchor="middle" font-family="serif" font-weight="500"
+                      font-size="22" fill="#2a2622" letter-spacing="6">花かご</text>
+                <text x="0" y="82" text-anchor="middle" font-family="serif" font-style="italic"
+                      font-size="11" fill="#56603b" letter-spacing="3">— Hanakago —</text>
+              </g>
+
+              <!-- North arrow -->
+              <g transform="translate(740 530)">
+                <circle r="22" fill="#fbf7ef" stroke="#2a2622" stroke-width="1"/>
+                <path d="M 0 -13 L 6 9 L 0 5 L -6 9 Z" fill="#2a2622"/>
+                <text y="-3" text-anchor="middle" font-family="serif" font-size="10"
+                      font-weight="500" fill="#2a2622">N</text>
+              </g>
+
+              <!-- Scale bar -->
+              <g transform="translate(40 560)">
+                <line x1="0" y1="0" x2="90" y2="0" stroke="#2a2622" stroke-width="2"/>
+                <line x1="0" y1="-4" x2="0" y2="4" stroke="#2a2622" stroke-width="1.5"/>
+                <line x1="45" y1="-3" x2="45" y2="3" stroke="#2a2622" stroke-width="1"/>
+                <line x1="90" y1="-4" x2="90" y2="4" stroke="#2a2622" stroke-width="1.5"/>
+                <text x="0"  y="20" font-family="serif" font-style="italic" font-size="10" fill="#5a5048">0</text>
+                <text x="45" y="20" text-anchor="middle" font-family="serif" font-style="italic" font-size="10" fill="#5a5048">250</text>
+                <text x="90" y="20" text-anchor="middle" font-family="serif" font-style="italic" font-size="10" fill="#5a5048">500 m</text>
+              </g>
+
+              <!-- Map label -->
+              <g transform="translate(40 44)">
+                <text font-family="serif" font-style="italic" font-size="11" fill="#56603b"
+                      letter-spacing="4">— MAP —</text>
+                <text y="22" font-family="serif" font-weight="500" font-size="15" fill="#2a2622"
+                      letter-spacing="3">京都府 亀岡市 曽我部町</text>
+              </g>
+            </svg>
+          </div>
+          <a class="hk-access__map-link"
+             href="https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E9%83%BD%E5%BA%9C%E4%BA%80%E5%B2%A1%E5%B8%82%E6%9B%BD%E6%88%91%E9%83%A8%E7%94%BA%E8%A5%BF%E6%9D%A1%E4%B8%AD%E6%AA%80%E3%83%8E%E4%B8%8A1-1"
+             target="_blank" rel="noopener noreferrer">Google マップで開く →</a>
+        </div>
+        <div>
+          <span class="hk-eyebrow">— Access —</span>
+          <h2 class="hk-h2">店舗情報</h2>
+          <dl class="hk-access__info">
+            <div class="hk-access__row">
+              <dt>📍 住所</dt>
+              <dd>〒621-0028<br>京都府亀岡市曽我部町西条中檀ノ上 1-1</dd>
+            </div>
+            <div class="hk-access__row">
+              <dt>☎ 電話</dt>
+              <dd><span class="hk-access__phone" style="font-family: &quot;Noto Sans JP&quot;; font-size: 17px; line-height: 1.4">0771-22-0123</span></dd>
+            </div>
+            <div class="hk-access__row">
+              <dt>🕐 営業</dt>
+              <dd>11:00 — 17:30 (L.O. 17:00)<br>金・土・日のみ営業</dd>
+            </div>
+            <div class="hk-access__row">
+              <dt>🚗 駐車場</dt>
+              <dd>8台 (無料)</dd>
+            </div>
+            <div class="hk-access__row">
+              <dt>＠ SNS</dt>
+              <dd><a href="https://www.instagram.com/hanakago.kameoka/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer">@hanakago.kameoka</a></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== CTA -->
+  <section class="hk-cta" id="contact">
+    <div class="hk-cta__pattern"></div>
+    <div class="hk-cta__inner">
+      <div>
+        <h2>ご来店、<br>心よりお待ちしております。</h2>
+        <p>
+          お席のご予約はカフェのみ承っております。<br>
+          ドッグランは予約制ではございませんが、混雑時はお待ちいただく場合がございます。
+        </p>
+      </div>
+      <div style="display:flex; gap:var(--s-3); flex-direction:column;">
+        <a href="#" class="hk-btn">カフェ席を予約する →</a>
+        <a href="#" class="hk-btn hk-btn--ghost" style="color: rgb(42, 38, 34); border-color: var(--shoji)">お問い合わせ →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================== FOOTER -->
+  <footer class="hk-footer">
+    <div class="hk-footer__pattern" aria-hidden="true"></div>
+    <div class="hk-footer__inner">
+      <div class="hk-footer__brand">
+        <span class="hk-brand__jp">花かご</span>
+        <span class="hk-brand__en">Hanakago café and dog garden</span>
+        <p class="hk-footer__tag">
+</p>
+      </div>
+      <div class="hk-footer__cols">
+        <nav class="hk-footer__col">
+          <span class="hk-label">Sitemap</span>
+          <a href="#concept">店舗のこと</a>
+          <a href="#menu">カフェのお品書き</a>
+          <a href="#dog">ドッグラン</a>
+          <a href="#gallery">ギャラリー</a>
+          <a href="#access">アクセス</a>
+        </nav>
+        <div class="hk-footer__col">
+          <span class="hk-label">Visit</span>
+          <span>京都府亀岡市曽我部町</span>
+          <span>0771-22-0123</span>
+          <span>11:00 – 17:30<br>金・土・日のみ営業</span>
+        </div>
+        <div class="hk-footer__col">
+          <span class="hk-label">Follow</span>
+          <a href="https://www.instagram.com/hanakago.kameoka/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer">Instagram @hanakago.kameoka</a>
+          <a href="#">Mail からのお問い合わせ</a>
+        </div>
+      </div>
+    </div>
+    <div class="hk-footer__legal">
+      <span>© 2026 花かご Hanakago café and dog garden</span>
+      <span>プライバシーポリシー</span>
+    </div>
+  </footer>
+</div>
+
+<!-- ================================================ LIGHTBOX -->
+<div class="hk-lightbox" id="lb" role="dialog" aria-modal="true">
+  <button class="hk-lightbox__close" aria-label="閉じる">×</button>
+  <img class="hk-lightbox__img" id="lbImg" alt="">
+  <div class="hk-lightbox__caption" id="lbCap"></div>
+</div>
+
+<!-- ================================================ TWEAKS PANEL -->
+<aside class="tw-panel is-open" id="twPanel" aria-label="Tweaks">
+  <div class="tw-panel__head">
+    <div class="tw-panel__title">
+      Tweaks
+      <em>— 設えを、ひと束。</em>
+    </div>
+    <button class="tw-panel__close" id="twClose" aria-label="閉じる">×</button>
+  </div>
+  <div class="tw-panel__body">
+    <div class="tw-group">
+      <div class="tw-group__label">季の色 <em>— accent</em></div>
+      <div class="tw-swatches">
+        <button class="tw-swatch" data-val="matcha"  type="button" aria-label="苔">
+          <span class="tw-swatch__dot"></span><span class="tw-swatch__kanji">苔</span>
+        </button>
+        <button class="tw-swatch" data-val="sakura"  type="button" aria-label="桜">
+          <span class="tw-swatch__dot"></span><span class="tw-swatch__kanji">桜</span>
+        </button>
+        <button class="tw-swatch" data-val="kuchiba" type="button" aria-label="紅葉">
+          <span class="tw-swatch__dot"></span><span class="tw-swatch__kanji">紅葉</span>
+        </button>
+        <button class="tw-swatch" data-val="ai"      type="button" aria-label="冬">
+          <span class="tw-swatch__dot"></span><span class="tw-swatch__kanji">冬</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="tw-group">
+      <div class="tw-group__label">間 <em>— rhythm</em></div>
+      <div class="tw-seg" data-group="rhythm">
+        <button data-val="tight"  type="button">つめる<em>tight</em></button>
+        <button data-val="normal" type="button">標準<em>normal</em></button>
+        <button data-val="airy"   type="button">ゆったり<em>airy</em></button>
+      </div>
+    </div>
+
+    <div class="tw-group">
+      <div class="tw-group__label">ムード <em>— light</em></div>
+      <div class="tw-seg" data-group="mood">
+        <button data-val="asa"  type="button">朝<em>morning</em></button>
+        <button data-val="hiru" type="button">昼<em>noon</em></button>
+        <button data-val="yu"   type="button">夕<em>dusk</em></button>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<script>
+/* ────────────────── HEADER scroll ────────────────── */
+const hdr = document.getElementById('hdr');
+const onScroll = () => {
+  if (window.scrollY > 60) hdr.classList.add('is-scrolled');
+  else hdr.classList.remove('is-scrolled');
+};
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* ────────────────── LIVE HOURS ─────────────────────
+   Open: Fri / Sat / Sun  11:00 — 17:30  (L.O. 17:00)
+   ─────────────────────────────────────────────────── */
+function updateHours() {
+  const pill = document.getElementById('hoursPill');
+  const now = new Date();
+  const day = now.getDay(); // 0=Sun
+  const hour = now.getHours();
+  const min = now.getMinutes();
+  const tMin = hour * 60 + min;
+  // Open only Fri (5), Sat (6), Sun (0).
+  const isClosed = !(day === 0 || day === 5 || day === 6);
+  const openMin = 11 * 60;
+  const closeMin = 17 * 60 + 30;
+  const inHours = tMin >= openMin && tMin < closeMin;
+  if (isClosed) {
+    pill.textContent = '本日は定休日';
+    pill.className = 'hk-hours-pill is-closed';
+  } else if (inHours) {
+    pill.textContent = `営業中 — ${17}:30 まで`;
+    pill.className = 'hk-hours-pill is-open';
+  } else if (tMin < openMin) {
+    pill.textContent = '本日 11:00 開店';
+    pill.className = 'hk-hours-pill is-closed';
+  } else {
+    pill.textContent = '本日の営業を終了';
+    pill.className = 'hk-hours-pill is-closed';
+  }
+}
+updateHours();
+setInterval(updateHours, 60_000);
+
+/* ────────────────── LIGHTBOX ─────────────────────── */
+const lb = document.getElementById('lb');
+const lbImg = document.getElementById('lbImg');
+const lbCap = document.getElementById('lbCap');
+document.querySelectorAll('.hk-gallery__cell').forEach(cell => {
+  cell.addEventListener('click', () => {
+    lbImg.src = cell.dataset.src;
+    lbCap.textContent = cell.dataset.cap || '';
+    lb.classList.add('is-open');
+  });
+});
+const closeLb = () => lb.classList.remove('is-open');
+lb.addEventListener('click', (e) => { if (e.target === lb || e.target.classList.contains('hk-lightbox__close')) closeLb(); });
+window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
+
+/* ────────────────── NEWS expander ────────────── */
+document.querySelectorAll('.hk-news__head').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+  });
+});
+
+/* ────────────────── REVEAL on scroll ────────────── */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-in'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.hk-section, .hk-cta__inner').forEach(el => {
+  el.classList.add('hk-reveal');
+  io.observe(el);
+});
+
+/* ────────────────── TWEAKS ────────────────────── */
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "palette": "matcha",
+  "rhythm": "normal",
+  "mood":   "hiru"
+}/*EDITMODE-END*/;
+
+const tweakState = { ...TWEAK_DEFAULTS };
+const pageRoot = document.querySelector('.satoA');
+
+function applyTweaks() {
+  pageRoot.dataset.palette = tweakState.palette;
+  pageRoot.dataset.rhythm  = tweakState.rhythm;
+  pageRoot.dataset.mood    = tweakState.mood;
+  document.querySelectorAll('.tw-swatch').forEach(b => {
+    b.classList.toggle('is-on', b.dataset.val === tweakState.palette);
+  });
+  document.querySelectorAll('.tw-seg[data-group="rhythm"] button').forEach(b => {
+    b.classList.toggle('is-on', b.dataset.val === tweakState.rhythm);
+  });
+  document.querySelectorAll('.tw-seg[data-group="mood"] button').forEach(b => {
+    b.classList.toggle('is-on', b.dataset.val === tweakState.mood);
+  });
+}
+
+function setTweak(key, val) {
+  tweakState[key] = val;
+  applyTweaks();
+  try {
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [key]: val } }, '*');
+  } catch (e) { /* iframe context may not allow; ignore */ }
+}
+
+applyTweaks();
+
+const tw = document.getElementById('twPanel');
+const twClose = document.getElementById('twClose');
+
+document.querySelectorAll('.tw-swatch').forEach(btn => {
+  btn.addEventListener('click', () => setTweak('palette', btn.dataset.val));
+});
+document.querySelectorAll('.tw-seg button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const group = btn.closest('.tw-seg').dataset.group;
+    setTweak(group, btn.dataset.val);
+  });
+});
+
+window.addEventListener('message', (e) => {
+  const msg = e.data;
+  if (!msg || typeof msg !== 'object') return;
+  if (msg.type === '__activate_edit_mode')   tw.classList.add('is-open');
+  if (msg.type === '__deactivate_edit_mode') tw.classList.remove('is-open');
+});
+twClose.addEventListener('click', () => {
+  tw.classList.remove('is-open');
+  try { window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*'); } catch (e) {}
+});
+try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch (e) {}
+
+/* Drag the panel by its head */
+(() => {
+  const head = tw.querySelector('.tw-panel__head');
+  let dragging = false, startX = 0, startY = 0, baseR = 20, baseB = 20;
+  head.addEventListener('mousedown', (e) => {
+    dragging = true; startX = e.clientX; startY = e.clientY;
+    const r = parseFloat(getComputedStyle(tw).right);
+    const b = parseFloat(getComputedStyle(tw).bottom);
+    baseR = r; baseB = b;
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove', (e) => {
+    if (!dragging) return;
+    tw.style.right  = (baseR - (e.clientX - startX)) + 'px';
+    tw.style.bottom = (baseB - (e.clientY - startY)) + 'px';
+  });
+  window.addEventListener('mouseup', () => { dragging = false; });
+})();
+</script>
+</body>
+</html>
