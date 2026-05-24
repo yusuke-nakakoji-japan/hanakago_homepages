@@ -1,6 +1,6 @@
 # 花かご Hanakago — Website
 
-A static site for 花かご (Hanakago), 京都府亀岡市曽我部町.
+A static site for 花かご (Hanakago)
 
 ## Deploy to GitHub Pages
 
