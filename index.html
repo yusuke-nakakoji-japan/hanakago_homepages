@@ -31,7 +31,7 @@
 
 .satoA .hk-hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 82vh;
   display: grid;
   align-items: stretch;
   overflow: hidden;
@@ -47,7 +47,7 @@
 .satoA .hk-hero__inner {
   position: relative; z-index: 2;
   max-width: var(--container); width: 100%; margin: 0 auto;
-  padding: 22vh var(--gutter) var(--s-9);
+  padding: 16vh var(--gutter) var(--s-8);
   display: grid; align-content: center;
 }
 .satoA .hk-hero__eyebrow .en-d {
@@ -64,8 +64,8 @@
 .satoA .hk-hero__title .accent { color: var(--matcha-deep); }
 .satoA .hk-hero__lede {
   font-family: var(--font-body-jp);
-  font-size: var(--t-md); line-height: 2.1; letter-spacing: 0.08em;
-  color: var(--sumi-2); max-width: 44ch;
+  font-size: var(--t-md); line-height: 2.1; letter-spacing: 0.06em;
+  color: var(--sumi-2);
 }
 .satoA .hk-hero__meta {
   display: flex; align-items: center; gap: var(--s-5);
@@ -177,23 +177,6 @@
   letter-spacing: 0.06em;
 }
 .satoA .hk-about__sign em { font-family: var(--font-display-en); font-style: italic; color: var(--matcha-deep); font-size: var(--t-xs); letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: var(--s-1); }
-.satoA .hk-about__pillars {
-  margin-top: var(--s-9);
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: var(--s-7);
-}
-.satoA .hk-pillar { background: transparent; }
-.satoA .hk-pillar__img { aspect-ratio: 4 / 3; overflow: hidden; }
-.satoA .hk-pillar__img img { width: 100%; height: 100%; object-fit: cover;
-  transition: transform var(--dur-lg) var(--ease); }
-.satoA .hk-pillar:hover .hk-pillar__img img { transform: scale(1.02); }
-.satoA .hk-pillar__meta { padding: var(--s-5) 0 0; }
-.satoA .hk-pillar__no { font-family: var(--font-display-en); font-style: italic;
-  font-size: var(--t-sm); color: var(--matcha-deep); letter-spacing: 0.16em; }
-.satoA .hk-pillar__name { font-family: var(--font-display-jp); font-weight: 500;
-  font-size: var(--t-xl); color: var(--sumi); letter-spacing: 0.10em; margin: 6px 0 var(--s-3); }
-.satoA .hk-pillar__desc { color: var(--sumi-2); line-height: 1.95; font-size: var(--t-sm); }
-
 /* Menu */
 .satoA .hk-menu { background: var(--kinari); }
 .satoA .hk-menu__cats {
@@ -220,13 +203,69 @@
 
 .satoA .hk-menu__featured {
   list-style: none; padding: 0; margin: 0;
-  display: grid; gap: var(--s-5);
+  display: flex;
+  gap: var(--s-5);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px var(--s-7);
+  margin: 0 calc(var(--s-7) * -1);
 }
+.satoA .hk-menu__featured::-webkit-scrollbar { display: none; }
 .satoA .hk-menu__item {
+  flex: 0 0 calc(100% - var(--s-9) - var(--s-7));
+  scroll-snap-align: center;
   display: grid; grid-template-columns: 280px 1fr;
   gap: var(--s-7); align-items: stretch;
   background: var(--washi);
+  cursor: pointer;
+  opacity: 0.45;
+  transform: scale(0.965);
+  transition: opacity 380ms cubic-bezier(.22,.61,.36,1), transform 380ms cubic-bezier(.22,.61,.36,1);
 }
+.satoA .hk-menu__item.is-active {
+  opacity: 1;
+  transform: scale(1);
+  cursor: default;
+}
+.satoA .hk-menu__carousel {
+  position: relative;
+  margin-top: var(--s-6);
+}
+.satoA .hk-menu__arrow {
+  position: absolute; top: 50%;
+  transform: translateY(-50%);
+  width: 44px; height: 44px;
+  background: var(--shoji);
+  border: 1px solid var(--hairline);
+  border-radius: 0;
+  color: var(--sumi);
+  cursor: pointer;
+  display: grid; place-items: center;
+  z-index: 2;
+  box-shadow: 0 6px 18px -8px rgba(42,38,34,.25);
+  transition: background 200ms, color 200ms, opacity 200ms;
+}
+.satoA .hk-menu__arrow svg { width: 20px; height: 20px; display: block; }
+.satoA .hk-menu__arrow:hover { background: var(--sumi); color: var(--shoji); }
+.satoA .hk-menu__arrow:disabled { opacity: .25; cursor: not-allowed; }
+.satoA .hk-menu__arrow--prev { left: 0; }
+.satoA .hk-menu__arrow--next { right: 0; }
+.satoA .hk-menu__dots {
+  display: flex; justify-content: center; gap: 8px;
+  margin-top: var(--s-5);
+}
+.satoA .hk-menu__dot {
+  width: 28px; height: 1.5px;
+  background: var(--hairline);
+  border: 0; padding: 0; cursor: pointer;
+  transition: background 240ms var(--ease), width 240ms var(--ease);
+}
+.satoA .hk-menu__dot.is-active { background: var(--matcha-deep); width: 44px; }
+.satoA .hk-menu__dot:focus-visible { outline: 2px solid var(--matcha-deep); outline-offset: 4px; }
 .satoA .hk-menu__item-img { aspect-ratio: 1 / 1; }
 .satoA .hk-menu__item-img img { width: 100%; height: 100%; object-fit: cover; }
 .satoA .hk-menu__item-meta { padding: var(--s-5) var(--s-6) var(--s-5) 0;
@@ -263,33 +302,26 @@
 .satoA .hk-dog__hero-img { aspect-ratio: 5/2; overflow: hidden; margin-bottom: var(--s-6); }
 .satoA .hk-dog__hero-img img { width: 100%; height: 100%; object-fit: cover; }
 
-/* Rules (subsection inside Dog Garden) */
+/* Rules (continuation of Dog Garden section) */
 .satoA .hk-dog__rules {
-  margin-top: var(--s-7); padding-top: var(--s-6);
+  margin-top: var(--s-6);
+  padding-top: var(--s-5);
   border-top: 1px solid var(--hairline-soft);
 }
-.satoA .hk-dog__rules-header {
-  display: grid; grid-template-columns: minmax(0, 1fr) auto;
-  gap: var(--s-5); align-items: end;
-  margin-bottom: var(--s-5);
-}
-.satoA .hk-dog__rules-title {
+.satoA .hk-dog__rules::before {
+  content: 'ご利用にあたって';
   display: block;
-}
-.satoA .hk-dog__rules-title em {
-  font-family: var(--font-display-en); font-style: italic;
-  font-size: var(--t-md); color: var(--matcha-deep);
-  letter-spacing: 0.06em; display: block; margin-bottom: var(--s-1);
-}
-.satoA .hk-dog__rules-title span {
   font-family: var(--font-display-jp); font-weight: 500;
-  font-size: var(--t-xl); color: var(--sumi);
-  letter-spacing: 0.08em;
+  font-size: var(--t-md); color: var(--sumi);
+  letter-spacing: 0.14em;
+  margin-bottom: var(--s-4);
 }
-.satoA .hk-dog__rules-sub {
-  font-family: var(--font-body-jp); font-size: var(--t-sm); color: var(--sumi-3);
-  line-height: 1.7; align-self: end; text-align: right;
-  white-space: nowrap; margin: 0;
+.satoA .hk-dog__notes {
+  margin: var(--s-5) 0 0;
+  padding-top: var(--s-4);
+  border-top: 1px dashed var(--hairline-soft);
+  font-size: var(--t-sm); color: var(--sumi-3);
+  line-height: 1.85;
 }
 .satoA .hk-dog__rules .hk-rules { grid-template-columns: repeat(3, 1fr); gap: var(--s-5) var(--s-7); }
 /* ==================== RESPONSIVE ==================== */
@@ -297,12 +329,11 @@
 @media (max-width: 1080px) {
   .satoA { --gutter: 40px; }
   .satoA .hk-menu__cats { grid-template-columns: repeat(3, 1fr); }
-  .satoA .hk-gallery { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 180px; }
+  .satoA .hk-byobu { height: 460px; }
+  .satoA .hk-byobu__panel { flex-basis: 76px; }
   .satoA .hk-footer__inner { grid-template-columns: 1fr; gap: var(--s-7); }
   .satoA .hk-dog__head { grid-template-columns: 1fr; }
   .satoA .hk-dog__head .hk-sub { grid-column: 1; grid-row: auto; text-align: left; align-self: start; }
-  .satoA .hk-dog__rules-header { grid-template-columns: 1fr; }
-  .satoA .hk-dog__rules-sub { text-align: left; white-space: normal; }
   .satoA .hk-dog__rules .hk-rules { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -314,11 +345,13 @@
   .satoA .hk-header { padding: 14px 20px; }
   .satoA .hk-header.is-scrolled { padding: 10px 20px; }
   .satoA .hk-nav { display: none; }
-  .satoA .hk-hours-pill { font-size: 11px; padding: 4px 10px; }
+  .satoA .hk-hours-pill { display: none; }
+  .satoA .hk-menu-btn { display: block; }
   .satoA .hk-brand__name { display: none; }
 
-  /* Hero */
-  .satoA .hk-hero__inner { padding: 22vh 20px var(--s-6); }
+  /* Hero — tighter on mobile */
+  .satoA .hk-hero { min-height: 0; }
+  .satoA .hk-hero__inner { padding: 96px 20px var(--s-6); min-height: 62svh; }
   .satoA .hk-hero__title { font-size: clamp(36px, 9.5vw, 56px) !important; letter-spacing: 0.04em; }
   .satoA .hk-hero__lede { font-size: var(--t-sm); }
   .satoA .hk-hero__scroll { right: 20px; }
@@ -341,22 +374,27 @@
   /* About */
   .satoA .hk-about__grid { grid-template-columns: 1fr; gap: var(--s-5); }
   .satoA .hk-about__head { padding-right: 0; border-right: 0; }
-  .satoA .hk-about__pillars { grid-template-columns: 1fr; gap: var(--s-7); margin-top: var(--s-7); }
 
   /* Menu */
   .satoA .hk-menu__cats { grid-template-columns: 1fr 1fr; gap: var(--s-3); }
-  .satoA .hk-menu__featured { gap: var(--s-4); }
-  .satoA .hk-menu__item { grid-template-columns: 1fr; gap: 0; }
-  .satoA .hk-menu__item-img { aspect-ratio: 4/3; }
+  .satoA .hk-menu__cat-img { aspect-ratio: 4 / 3; }
+  .satoA .hk-menu__featured { gap: var(--s-3); padding: 6px 20px; margin: 0 -20px; }
+  .satoA .hk-menu__item { flex-basis: calc(100% - 56px); grid-template-columns: 1fr; gap: 0; }
+  .satoA .hk-menu__item-img { aspect-ratio: 5 / 3; }
   .satoA .hk-menu__item-meta { padding: var(--s-4) var(--s-5) var(--s-5); }
+  .satoA .hk-menu__arrow { display: none; }
 
   /* Dog */
-  .satoA .hk-dog__hero-img { aspect-ratio: 4/3; }
+  .satoA .hk-dog__hero-img { aspect-ratio: 16 / 9; }
   .satoA .hk-pricing { grid-template-columns: 1fr; gap: var(--s-3); }
   .satoA .hk-dog__rules .hk-rules { grid-template-columns: 1fr; }
 
-  /* Gallery */
-  .satoA .hk-gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 140px; gap: var(--s-2); }
+  /* Gallery (byōbu) */
+  .satoA .hk-byobu { height: 320px; }
+  .satoA .hk-byobu__panel { flex-basis: 52px; }
+  .satoA .hk-byobu__label { font-size: 14px; letter-spacing: 0.24em; }
+  .satoA .hk-byobu__open-cap { font-size: 16px; left: 16px; right: 16px; bottom: 16px; }
+  .satoA .hk-byobu__no { font-size: 10px; top: 10px; left: 10px; }
 
   /* Access */
   .satoA .hk-access__grid { grid-template-columns: 1fr; gap: var(--s-5); }
@@ -365,9 +403,33 @@
   .satoA .hk-access__phone { font-size: var(--t-lg) !important; }
   .satoA .hk-access__map-link { font-size: var(--t-xs); }
 
-  /* CTA */
-  .satoA .hk-cta__inner { grid-template-columns: 1fr; gap: var(--s-5); padding: var(--s-9) var(--gutter); }
-  .satoA .hk-cta h2 { font-size: var(--t-2xl); }
+  /* CTA — centered, full-width buttons, wrap naturally */
+  .satoA .hk-cta__inner {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+    padding: 64px 24px;
+    text-align: center;
+  }
+  .satoA .hk-cta h2 {
+    font-size: clamp(22px, 6.8vw, 30px) !important;
+    letter-spacing: 0.04em;
+    line-height: 1.55;
+  }
+  .satoA .hk-cta p {
+    font-size: var(--t-sm);
+    line-height: 1.95;
+    margin: 16px auto 0;
+  }
+  .satoA .hk-cta__inner > div:last-child {
+    width: 100%;
+    margin-top: var(--s-4);
+  }
+  .satoA .hk-cta .hk-btn {
+    width: 100%;
+    padding: 14px 18px;
+    justify-content: center;
+    text-align: center;
+  }
 
   /* Footer */
   .satoA .hk-footer__inner { padding: var(--s-9) 20px var(--s-7); }
@@ -377,58 +439,120 @@
 
 /* Very small phones */
 @media (max-width: 420px) {
-  .satoA .hk-gallery { grid-template-columns: 1fr; grid-auto-rows: 200px; }
+  .satoA .hk-byobu { height: 280px; }
+  .satoA .hk-byobu__panel { flex-basis: 44px; }
   .satoA .hk-menu__cats { grid-template-columns: 1fr; }
   .satoA .hk-footer__cols { grid-template-columns: 1fr; }
 }
 
-/* Gallery */
+/* Gallery — byōbu (folding screen) accordion */
 .satoA .hk-gallery-wrap { background: var(--kinari); }
-.satoA .hk-gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 220px;
-  gap: var(--s-3);
+.satoA .hk-byobu {
+  display: flex;
+  height: 540px;
   margin-top: var(--s-6);
+  background: var(--sumi);
+  border: 1px solid var(--sumi);
+  overflow: hidden;
+  user-select: none;
 }
-.satoA .hk-gallery__cell {
-  overflow: hidden; cursor: pointer; position: relative;
-  background: var(--washi);
+.satoA .hk-byobu__panel {
+  position: relative;
+  flex: 0 0 88px;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--sumi);
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  overflow: hidden;
+  outline: 0;
+  border-right: 1px solid rgba(20,17,14,.65);
+  transition:
+    flex 720ms cubic-bezier(.22,.61,.36,1),
+    filter 480ms var(--ease);
+  filter: brightness(.62) saturate(.85);
 }
-.satoA .hk-gallery__cell img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform var(--dur-lg) var(--ease);
+.satoA .hk-byobu__panel:last-child { border-right: 0; }
+.satoA .hk-byobu__panel:hover:not(.is-open) { filter: brightness(.74) saturate(.95); }
+.satoA .hk-byobu__panel.is-open {
+  flex: 1 1 auto;
+  filter: none;
+  cursor: zoom-in;
 }
-.satoA .hk-gallery__cell:hover img { transform: scale(1.04); }
-.satoA .hk-gallery__cell.is-wide { grid-column: span 2; }
-.satoA .hk-gallery__cell.is-tall { grid-row: span 2; }
-.satoA .hk-gallery__cell::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 60%, rgba(20,17,14,.35));
-  opacity: 0; transition: opacity var(--dur-sm) var(--ease);
+.satoA .hk-byobu__panel.is-open::after {
+  content: ''; position: absolute; inset: auto 0 0 0; height: 45%;
+  background: linear-gradient(180deg, transparent 0%, rgba(20,17,14,.55) 100%);
+  pointer-events: none;
 }
-.satoA .hk-gallery__cell:hover::after { opacity: 1; }
-.satoA .hk-gallery__cap {
-  position: absolute; left: 12px; bottom: 10px;
-  font-family: var(--font-display-jp); font-size: var(--t-sm);
-  color: rgba(255,255,255,.9); letter-spacing: 0.10em;
-  opacity: 0; transition: opacity var(--dur-sm) var(--ease);
-  z-index: 1;
+.satoA .hk-byobu__no {
+  position: absolute; top: 14px; left: 14px;
+  font-family: var(--font-display-en); font-style: italic;
+  font-size: 12px; letter-spacing: 0.20em;
+  color: var(--shoji);
+  z-index: 2;
+  text-shadow: 0 1px 2px rgba(20,17,14,.5);
 }
-.satoA .hk-gallery__cell:hover .hk-gallery__cap { opacity: 1; }
+.satoA .hk-byobu__label {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  writing-mode: vertical-rl;
+  font-family: var(--font-display-jp); font-weight: 500;
+  font-size: 17px;
+  letter-spacing: 0.32em;
+  color: var(--shoji);
+  text-shadow: 0 1px 4px rgba(20,17,14,.6);
+  white-space: nowrap;
+  z-index: 2;
+  transition: opacity 320ms var(--ease);
+}
+.satoA .hk-byobu__panel.is-open .hk-byobu__label { opacity: 0; }
+.satoA .hk-byobu__open-cap {
+  position: absolute;
+  left: 24px; bottom: 22px; right: 24px;
+  z-index: 2;
+  font-family: var(--font-display-jp); font-weight: 500;
+  font-size: 22px; letter-spacing: 0.14em;
+  color: var(--shoji);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 380ms var(--ease) 280ms, transform 380ms var(--ease) 280ms;
+}
+.satoA .hk-byobu__open-cap em {
+  display: block;
+  font-family: var(--font-display-en); font-style: italic;
+  font-size: 11px; letter-spacing: 0.20em;
+  color: rgba(251,247,239,.72);
+  margin-top: 6px;
+  text-transform: lowercase;
+}
+.satoA .hk-byobu__panel.is-open .hk-byobu__open-cap {
+  opacity: 1; transform: none;
+}
+.satoA .hk-byobu__panel.is-open::before {
+  content: '＋'; position: absolute;
+  top: 14px; right: 18px; z-index: 2;
+  color: var(--shoji);
+  font-size: 22px; font-weight: 300;
+  opacity: 0.65;
+  transition: opacity 200ms;
+}
+.satoA .hk-byobu__panel.is-open:hover::before { opacity: 1; }
 
 /* Access */
 .satoA .hk-access { background: var(--kinari); }
-.satoA .hk-access__grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--s-9); align-items: start; }
-.satoA .hk-access__image { aspect-ratio: 4/3; overflow: hidden; border: 1px solid var(--hairline-soft); position: relative; background: var(--kinari); }
-.satoA .hk-access__image img,
-.satoA .hk-access__image svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+.satoA .hk-access__grid { display: grid; grid-template-columns: 1fr; gap: var(--s-9); align-items: start; max-width: 720px; }
 .satoA .hk-access__map-link {
-  display: inline-flex; align-items: center; gap: var(--s-2);
-  margin-top: var(--s-3);
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-top: 4px;
   font-family: var(--font-display-en); font-style: italic;
   font-size: var(--t-sm); color: var(--matcha-deep);
   letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: color 180ms var(--ease);
 }
 .satoA .hk-access__map-link:hover { color: var(--sumi); }
 .satoA .hk-access__info { margin: 0; display: grid; gap: 0; padding-top: var(--s-2); }
@@ -467,10 +591,97 @@
   align-items: center;
 }
 .satoA .hk-cta h2 { color: var(--shoji); font-family: var(--font-display-jp);
-  font-weight: 500; font-size: var(--t-3xl); letter-spacing: 0.10em; line-height: 1.3; margin: 0;}
-.satoA .hk-cta p { color: var(--sumi-4); margin: var(--s-3) 0 0; max-width: 56ch; line-height: 1.95; }
+  font-weight: 500; font-size: var(--t-3xl); letter-spacing: 0.10em; line-height: 1.4; margin: 0;
+  text-wrap: pretty; }
+.satoA .hk-cta p { color: var(--sumi-4); margin: var(--s-3) 0 0; max-width: 56ch; line-height: 1.95; text-wrap: pretty; }
+/* Keep each phrase unbreakable; only wrap between phrases. */
+.satoA .hk-cta .cta-phrase { display: inline-block; }
 .satoA .hk-cta .hk-btn { background: var(--shoji); color: var(--sumi); border-color: var(--shoji); }
 .satoA .hk-cta .hk-btn:hover { background: var(--washi); }
+
+/* ==================== HAMBURGER + MOBILE MENU ==================== */
+.satoA .hk-menu-btn {
+  display: none;
+  width: 44px; height: 44px;
+  background: transparent; border: 0; padding: 10px;
+  cursor: pointer; position: relative; z-index: 1002;
+  margin-left: var(--s-3);
+}
+.satoA .hk-menu-btn span {
+  display: block; width: 24px; height: 1.5px;
+  background: var(--sumi); margin: 4px auto;
+  transition: transform 280ms cubic-bezier(.22,.61,.36,1), opacity 220ms;
+  transform-origin: center;
+}
+.satoA .hk-menu-btn.is-open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.satoA .hk-menu-btn.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.satoA .hk-menu-btn.is-open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+
+.satoA .hk-mobile-menu {
+  position: fixed; inset: 0; z-index: 1001;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 320ms cubic-bezier(.22,.61,.36,1);
+}
+.satoA .hk-mobile-menu.is-open { opacity: 1; pointer-events: auto; }
+.satoA .hk-mobile-menu__bg {
+  position: absolute; inset: 0;
+  background: var(--kinari);
+  background-image: url('assets/pattern-asanoha.svg');
+  background-size: 220px;
+  background-blend-mode: multiply;
+}
+.satoA .hk-mobile-menu__bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(245,239,228,.92) 0%, rgba(245,239,228,.98) 100%);
+}
+.satoA .hk-mobile-menu__nav {
+  position: relative; z-index: 1;
+  height: 100%; padding: 96px var(--gutter, 24px) var(--s-7);
+  display: flex; flex-direction: column;
+  gap: 2px;
+  justify-content: center;
+}
+.satoA .hk-mobile-menu__link {
+  display: block;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(42,38,34,.10);
+  color: var(--sumi); text-decoration: none;
+  transform: translateY(12px); opacity: 0;
+  transition: opacity 260ms var(--ease), transform 320ms cubic-bezier(.22,.61,.36,1), color 200ms;
+}
+.satoA .hk-mobile-menu.is-open .hk-mobile-menu__link { transform: none; opacity: 1; }
+.satoA .hk-mobile-menu.is-open .hk-mobile-menu__link:nth-child(1) { transition-delay: 100ms; }
+.satoA .hk-mobile-menu.is-open .hk-mobile-menu__link:nth-child(2) { transition-delay: 160ms; }
+.satoA .hk-mobile-menu.is-open .hk-mobile-menu__link:nth-child(3) { transition-delay: 220ms; }
+.satoA .hk-mobile-menu.is-open .hk-mobile-menu__link:nth-child(4) { transition-delay: 280ms; }
+.satoA .hk-mobile-menu.is-open .hk-mobile-menu__link:nth-child(5) { transition-delay: 340ms; }
+.satoA .hk-mobile-menu.is-open .hk-mobile-menu__link:nth-child(6) { transition-delay: 400ms; }
+.satoA .hk-mobile-menu__link em {
+  display: block;
+  font-family: var(--font-display-en); font-style: italic;
+  font-size: 11px; letter-spacing: 0.18em; color: var(--matcha-deep);
+  margin-bottom: 4px;
+}
+.satoA .hk-mobile-menu__link span {
+  font-family: var(--font-display-jp); font-weight: 500;
+  font-size: 24px; letter-spacing: 0.10em;
+}
+.satoA .hk-mobile-menu__link:hover,
+.satoA .hk-mobile-menu__link:active { color: var(--matcha-deep); }
+.satoA .hk-mobile-menu__foot {
+  position: absolute; left: 0; right: 0; bottom: 32px;
+  padding: 0 var(--gutter, 24px); z-index: 1;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--font-display-en); font-style: italic;
+  font-size: 11px; letter-spacing: 0.18em; color: var(--sumi-3);
+}
+.satoA .hk-mobile-menu__hours.is-open  { color: var(--matcha-deep); }
+.satoA .hk-mobile-menu__hours.is-closed { color: var(--sumi-3); }
+.satoA .hk-mobile-menu__tag { font-family: var(--font-display-jp); font-size: 12px; }
+
+/* Lock body scroll when menu open */
+body.has-mobile-menu-open { overflow: hidden; }
 </style>
 </head>
 <body>
@@ -494,9 +705,30 @@
       <a href="#dog">ドッグラン</a>
       <a href="#gallery">ギャラリー</a>
       <a href="#access">アクセス</a>
+      <a href="#news">お知らせ</a>
     </nav>
     <span class="hk-hours-pill" id="hoursPill">読み込み中</span>
+    <button class="hk-menu-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
   </header>
+
+  <!-- ================================================ MOBILE MENU -->
+  <div class="hk-mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="hk-mobile-menu__bg"></div>
+    <nav class="hk-mobile-menu__nav">
+      <a href="#concept" class="hk-mobile-menu__link"><em>— concept —</em><span>店舗のこと</span></a>
+      <a href="#menu"    class="hk-mobile-menu__link"><em>— café —</em><span>カフェ</span></a>
+      <a href="#dog"     class="hk-mobile-menu__link"><em>— dog garden —</em><span>ドッグラン</span></a>
+      <a href="#gallery" class="hk-mobile-menu__link"><em>— gallery —</em><span>ギャラリー</span></a>
+      <a href="#access"  class="hk-mobile-menu__link"><em>— access —</em><span>アクセス</span></a>
+      <a href="#news"    class="hk-mobile-menu__link"><em>— news —</em><span>お知らせ</span></a>
+    </nav>
+    <div class="hk-mobile-menu__foot">
+      <span class="hk-mobile-menu__hours" id="hoursPillMobile">読み込み中</span>
+      <span class="hk-mobile-menu__tag">— 京都・亀岡 —</span>
+    </div>
+  </div>
 
   <!-- ==================================================== HERO -->
   <section class="hk-hero" id="top">
@@ -507,12 +739,313 @@
 
     <div class="hk-hero__inner">
       <h1 class="hk-hero__title"><span style="color: rgb(37, 42, 34);">自然とともに、<br><span style="color: rgb(46, 85, 22);">特別な時間</span>を。</span></h1>
-      <p class="hk-hero__lede">京都・亀岡、古民家を開いた和カフェ。 
-広い庭にはドッグランを併設。</p>
+      <p class="hk-hero__lede">京都・亀岡にある和カフェ。  広い庭にはドッグランを併設。</p>
 
     </div>
 
-    <div class="hk-hero__scroll">scroll</div>
+  </section>
+
+
+  <!-- ================================================ CONCEPT -->
+  <section class="hk-about" id="concept">
+    <div class="hk-section">
+      <div class="hk-about__grid">
+        <header class="hk-about__head">
+          <span class="hk-eyebrow">— About —</span>
+          <h2 class="hk-h2">花かごの<br>こと</h2>
+        </header>
+        <div class="hk-about__body">
+          <p class="p-lg">京都の街なかから、車でおおよそ三十分。 
+カフェとドッグランが楽しめる複合施設です。</p>
+          <div class="hk-about__sign">
+            <em>
+</em>
+            摘みたての花のように、ひと束にしてお届けする。<br>
+            その想いで、店名を「花かご」といたしました。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================== MENU -->
+  <section class="hk-menu" id="menu">
+    <div class="hk-section">
+      <span class="hk-eyebrow">— Cafe —</span>
+      <h2 class="hk-h2">カフェについて</h2>
+      <p class="hk-sub">お茶・上生菓子・和パフェ・ケーキ・季節のひと品をご用意しています。お庭を眺めながら、お楽しみください。</p>
+
+      <div class="hk-menu__carousel" data-carousel>
+        <ul class="hk-menu__featured" id="menuTrack">
+          <li class="hk-menu__item" data-idx="0">
+            <div class="hk-menu__item-img">
+              <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=80&auto=format&fit=crop" alt="">
+            </div>
+            <div class="hk-menu__item-meta">
+              <span class="hk-menu__item-no">No. 01</span>
+              <h4 class="hk-menu__item-name">花かごの和パフェ</h4>
+              <p class="hk-menu__item-desc">
+                葛ゼリーと抹茶のアイス、白玉と粒餡を重ねて。<br>
+                てっぺんには、その日の手しごとをひとつ。
+              </p>
+              <div class="hk-menu__item-foot">
+                <span class="hk-chip hk-chip--matcha">看板</span>
+                <span class="hk-menu__item-price">¥1,580</span>
+              </div>
+            </div>
+          </li>
+          <li class="hk-menu__item" data-idx="1">
+            <div class="hk-menu__item-img">
+              <img src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=900&q=80&auto=format&fit=crop" alt="">
+            </div>
+            <div class="hk-menu__item-meta">
+              <span class="hk-menu__item-no">No. 02</span>
+              <h4 class="hk-menu__item-name">玉露 三煎</h4>
+              <p class="hk-menu__item-desc">
+                和束の玉露を、ぬるめのお湯でゆっくりと。<br>
+                一煎目、二煎目、出汁のような最後の一口まで。
+              </p>
+              <div class="hk-menu__item-foot">
+                <span class="hk-chip hk-chip--matcha">通年</span>
+                <span class="hk-menu__item-price">¥980</span>
+              </div>
+            </div>
+          </li>
+          <li class="hk-menu__item" data-idx="2">
+            <div class="hk-menu__item-img">
+              <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=80&auto=format&fit=crop" alt="">
+            </div>
+            <div class="hk-menu__item-meta">
+              <span class="hk-menu__item-no">No. 03</span>
+              <h4 class="hk-menu__item-name">上生菓子 三種盛り</h4>
+              <p class="hk-menu__item-desc">
+                季節の上生菓子を、その日の手しごとから三種。<br>
+                お抹茶のお点前付き。
+              </p>
+              <div class="hk-menu__item-foot">
+                <span class="hk-chip">お点前付</span>
+                <span class="hk-menu__item-price">¥1,800</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <button class="hk-menu__arrow hk-menu__arrow--prev" id="menuPrev" aria-label="前のメニュー" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 L8 12 L15 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <button class="hk-menu__arrow hk-menu__arrow--next" id="menuNext" aria-label="次のメニュー" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5 L16 12 L9 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+
+        <div class="hk-menu__dots" id="menuDots" role="tablist" aria-label="メニュー切替">
+          <button class="hk-menu__dot is-active" data-idx="0" aria-label="No.01 花かごの和パフェ" type="button"></button>
+          <button class="hk-menu__dot" data-idx="1" aria-label="No.02 玉露 三煎" type="button"></button>
+          <button class="hk-menu__dot" data-idx="2" aria-label="No.03 上生菓子 三種盛り" type="button"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================ DOG RUN -->
+  <section class="hk-dog" id="dog">
+    <div class="hk-dog__pattern" aria-hidden="true"></div>
+    <div class="hk-section">
+      <div class="hk-dog__inner">
+        <header class="hk-dog__head">
+          <span class="hk-eyebrow">— Dog Garden —</span>
+          <h2 class="hk-h2">ドッグランについて</h2>
+        </header>
+
+        <div class="hk-dog__body">
+          <div class="hk-dog__hero-img">
+            <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?w=1600&q=80&auto=format&fit=crop" alt="">
+          </div>
+          <p class="hk-dog__copy">天然芝・約二百坪。木立と土塀に囲まれた静かなお庭です。
+カフェのご利用の有無に関わらずご利用いただけます。
+完全予約制ではありませんが、混雑時はお待ちいただく場合がございます。</p>
+
+          <div class="hk-pricing" role="table" aria-label="ドッグラン 料金表">
+            <div class="hk-pricing__col">
+              <div class="hk-pricing__plan">— 1 hour</div>
+              <div class="hk-pricing__jp">1時間券</div>
+              <div class="hk-pricing__price"><span class="yen">¥</span>1,000<span class="unit">/ 匹</span></div>
+              <div class="hk-pricing__note">2匹目以降は ¥500 / 匹。<br>飼い主の同伴人数に上限はございません。</div>
+            </div>
+            <div class="hk-pricing__col">
+              <div class="hk-pricing__plan">— Half day</div>
+              <div class="hk-pricing__jp">半日券</div>
+              <div class="hk-pricing__price"><span class="yen">¥</span>1,800<span class="unit">/ 匹</span></div>
+              <div class="hk-pricing__note">12:00–15:00 もしくは 15:00–閉店。<br>カフェのご利用 ¥500 以上で ¥200 引。</div>
+            </div>
+            <div class="hk-pricing__col">
+              <div class="hk-pricing__plan">— Members</div>
+              <div class="hk-pricing__jp">月会員</div>
+              <div class="hk-pricing__price"><span class="yen">¥</span>4,800<span class="unit">/ 月</span></div>
+              <div class="hk-pricing__note">月内 何度でも 1時間券。<br>初回時に予防接種証明書のご提示をお願いいたします。</div>
+            </div>
+          </div>
+
+          <div class="hk-dog__rules">
+            <div class="hk-rules">
+              <div class="hk-rule">
+                <span class="hk-rule__no">01</span>
+                <div class="hk-rule__body">
+                  <strong>予防接種について</strong>
+                  一年以内の狂犬病・混合ワクチン接種証明書を初回時にご提示ください。
+                </div>
+              </div>
+              <div class="hk-rule">
+                <span class="hk-rule__no">02</span>
+                <div class="hk-rule__body">
+                  <strong>発情期・体調について</strong>
+                  メス犬の発情期および体調のすぐれない子はご遠慮いただいております。
+                </div>
+              </div>
+              <div class="hk-rule">
+                <span class="hk-rule__no">03</span>
+                <div class="hk-rule__body">
+                  <strong>リードについて</strong>
+                  ドッグラン内はノーリードで結構ですが、出入口の前後では必ずお付けください。
+                </div>
+              </div>
+              <div class="hk-rule">
+                <span class="hk-rule__no">04</span>
+                <div class="hk-rule__body">
+                  <strong>排泄物の処理</strong>
+                  排泄物は必ずお持ち帰りください。マナーポーチをご準備しております。
+                </div>
+              </div>
+              <div class="hk-rule">
+                <span class="hk-rule__no">05</span>
+                <div class="hk-rule__body">
+                  <strong>カフェ店内へのご同伴</strong>
+                  縁側席・テラス席はワンちゃん同伴可。土間席はご同伴をお控えください。
+                </div>
+              </div>
+              <div class="hk-rule">
+                <span class="hk-rule__no">06</span>
+                <div class="hk-rule__body">
+                  <strong>事故・怪我について</strong>
+                  ワンちゃん同士の事故等につきましては、当店は責任を負いかねます。
+                </div>
+              </div>
+            </div>
+
+            <p class="hk-dog__notes">
+              ※ お子様連れの方、初めての方は、入場前にスタッフへお声がけください。<br>
+              ※ 雨天時はお庭の状態により、ご利用をお断りする場合がございます。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================ GALLERY -->
+  <section class="hk-gallery-wrap" id="gallery">
+    <div class="hk-section">
+      <span class="hk-eyebrow">— Gallery —</span>
+      <h2 class="hk-h2">花かごの様子</h2>
+      <!-- 屏風 (byōbu) style accordion gallery — closed panels show vertical kanji labels,
+           clicking opens them. Click the already-open panel to lightbox. -->
+      <div class="hk-byobu" id="byobu" role="tablist" aria-label="花かごの様子">
+        <button class="hk-byobu__panel is-open" type="button" role="tab" aria-selected="true"
+                data-cap="木漏れ日の庭"
+                data-src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=2000&q=80&auto=format&fit=crop"
+                style="background-image:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&q=80&auto=format&fit=crop')">
+          <span class="hk-byobu__no">01</span>
+          <span class="hk-byobu__label">木漏れ日の庭</span>
+          <span class="hk-byobu__open-cap">木漏れ日の庭<em>— komorebi —</em></span>
+        </button>
+        <button class="hk-byobu__panel" type="button" role="tab" aria-selected="false"
+                data-cap="縁側の席"
+                data-src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=2000&q=80&auto=format&fit=crop"
+                style="background-image:url('https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1600&q=80&auto=format&fit=crop')">
+          <span class="hk-byobu__no">02</span>
+          <span class="hk-byobu__label">縁側の席</span>
+          <span class="hk-byobu__open-cap">縁側の席<em>— engawa —</em></span>
+        </button>
+        <button class="hk-byobu__panel" type="button" role="tab" aria-selected="false"
+                data-cap="芝のドッグラン"
+                data-src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=2000&q=80&auto=format&fit=crop"
+                style="background-image:url('https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=1600&q=80&auto=format&fit=crop')">
+          <span class="hk-byobu__no">03</span>
+          <span class="hk-byobu__label">芝のドッグラン</span>
+          <span class="hk-byobu__open-cap">芝のドッグラン<em>— dog garden —</em></span>
+        </button>
+        <button class="hk-byobu__panel" type="button" role="tab" aria-selected="false"
+                data-cap="玉露の一服"
+                data-src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=2000&q=80&auto=format&fit=crop"
+                style="background-image:url('https://images.unsplash.com/photo-1545048702-79362596cdc9?w=1600&q=80&auto=format&fit=crop')">
+          <span class="hk-byobu__no">04</span>
+          <span class="hk-byobu__label">玉露の一服</span>
+          <span class="hk-byobu__open-cap">玉露の一服<em>— gyokuro —</em></span>
+        </button>
+        <button class="hk-byobu__panel" type="button" role="tab" aria-selected="false"
+                data-cap="上生菓子"
+                data-src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=2000&q=80&auto=format&fit=crop"
+                style="background-image:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1600&q=80&auto=format&fit=crop')">
+          <span class="hk-byobu__no">05</span>
+          <span class="hk-byobu__label">上生菓子</span>
+          <span class="hk-byobu__open-cap">上生菓子<em>— wagashi —</em></span>
+        </button>
+        <button class="hk-byobu__panel" type="button" role="tab" aria-selected="false"
+                data-cap="お庭で寛ぐ"
+                data-src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=2000&q=80&auto=format&fit=crop"
+                style="background-image:url('https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=1600&q=80&auto=format&fit=crop')">
+          <span class="hk-byobu__no">06</span>
+          <span class="hk-byobu__label">お庭で寛ぐ</span>
+          <span class="hk-byobu__open-cap">お庭で寛ぐ<em>— resting —</em></span>
+        </button>
+        <button class="hk-byobu__panel" type="button" role="tab" aria-selected="false"
+                data-cap="土間の店内"
+                data-src="https://images.unsplash.com/photo-1583416750470-965b2707b355?w=2000&q=80&auto=format&fit=crop"
+                style="background-image:url('https://images.unsplash.com/photo-1583416750470-965b2707b355?w=1600&q=80&auto=format&fit=crop')">
+          <span class="hk-byobu__no">07</span>
+          <span class="hk-byobu__label">土間の店内</span>
+          <span class="hk-byobu__open-cap">土間の店内<em>— doma —</em></span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================= ACCESS -->
+  <section class="hk-access" id="access">
+    <div class="hk-section">
+      <div class="hk-access__grid">
+        
+        <div>
+          <span class="hk-eyebrow">— Access —</span>
+          <h2 class="hk-h2">店舗情報</h2>
+          <dl class="hk-access__info">
+            <div class="hk-access__row">
+              <dt>📍 住所</dt>
+              <dd>〒621-0028<br>京都府亀岡市曽我部町西条中檀ノ上 1-1<br>
+                <a class="hk-access__map-link"
+                   href="https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E9%83%BD%E5%BA%9C%E4%BA%80%E5%B2%A1%E5%B8%82%E6%9B%BD%E6%88%91%E9%83%A8%E7%94%BA%E8%A5%BF%E6%9D%A1%E4%B8%AD%E6%AA%80%E3%83%8E%E4%B8%8A1-1"
+                   target="_blank" rel="noopener noreferrer">Google マップで開く →</a>
+              </dd>
+            </div>
+            <div class="hk-access__row">
+              <dt>☎ 電話</dt>
+              <dd><span class="hk-access__phone" style="font-family: &quot;Noto Sans JP&quot;; font-size: 17px; line-height: 1.4">0771-22-0123</span></dd>
+            </div>
+            <div class="hk-access__row">
+              <dt>🕐 営業</dt>
+              <dd>11:00 — 17:30 (L.O. 17:00)<br>金・土・日のみ営業</dd>
+            </div>
+            <div class="hk-access__row">
+              <dt>🚗 駐車場</dt>
+              <dd>8台 (無料)</dd>
+            </div>
+            <div class="hk-access__row">
+              <dt>＠ SNS</dt>
+              <dd><a href="https://www.instagram.com/hanakago.kameoka/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer">@hanakago.kameoka</a></dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- =================================================== NEWS
@@ -520,7 +1053,7 @@
        コピーして一番上に貼り付け、4 箇所（日付・タグ・見出し・本文）を
        書き換えてください。クリックで本文が展開します。
   -->
-  <section class="hk-news">
+  <section class="hk-news" id="news">
     <div class="hk-section">
       <span class="hk-eyebrow">— News —</span>
       <h2 class="hk-h2">花かごからのお知らせ</h2>
@@ -595,463 +1128,13 @@
     </div>
   </section>
 
-  <!-- ================================================ CONCEPT -->
-  <section class="hk-about" id="concept">
-    <div class="hk-section">
-      <div class="hk-about__grid">
-        <header class="hk-about__head">
-          <span class="hk-eyebrow">— About —</span>
-          <h2 class="hk-h2">花かごの<br>こと</h2>
-        </header>
-        <div class="hk-about__body">
-          <p class="p-lg">京都の街なかから、車でおおよそ三十分。 
-カフェとドッグランが楽しめる複合施設です。</p>
-          <div class="hk-about__sign">
-            <em>
-</em>
-            摘みたての花のように、ひと束にしてお届けする。<br>
-            その想いで、店名を「花かご」といたしました。
-          </div>
-        </div>
-      </div>
-
-      <div class="hk-about__pillars">
-        <article class="hk-pillar">
-          <div class="hk-pillar__img">
-            <img src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=1200&q=80&auto=format&fit=crop" alt="">
-          </div>
-          <div class="hk-pillar__meta">
-            <span class="hk-pillar__no">01 — Café</span>
-            <h3 class="hk-pillar__name">土間の和カフェ</h3>
-            <p class="hk-pillar__desc">
-              宇治のお茶、その季節の上生菓子、和パフェ。<br>
-              昼下がりの一服を、土間の席で。
-            </p>
-          </div>
-        </article>
-        <article class="hk-pillar">
-          <div class="hk-pillar__img">
-            <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=1200&q=80&auto=format&fit=crop" alt="">
-          </div>
-          <div class="hk-pillar__meta">
-            <span class="hk-pillar__no">02 — Dog Garden</span>
-            <h3 class="hk-pillar__name">芝のドッグラン</h3>
-            <p class="hk-pillar__desc">
-              天然芝、約二百坪。<br>
-              木立に囲まれた静かな庭で、ゆっくり過ごしていただけます。
-            </p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- =================================================== MENU -->
-  <section class="hk-menu" id="menu">
-    <div class="hk-section">
-      <span class="hk-eyebrow">— Menu —</span>
-      <h2 class="hk-h2">カフェのお品書き</h2>
-      <p class="hk-sub">お茶・上生菓子・和パフェ・ケーキ・季節のひと品。お庭を眺めながら、お楽しみください。</p>
-
-      <ul class="hk-menu__cats">
-        <li class="hk-menu__cat">
-          <div class="hk-menu__cat-img"><img src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=600&q=80&auto=format&fit=crop" alt=""></div>
-          <div class="hk-menu__cat-meta">
-            <span class="hk-menu__cat-en">Tea</span>
-            <span class="hk-menu__cat-jp">宇治茶</span>
-          </div>
-        </li>
-        <li class="hk-menu__cat">
-          <div class="hk-menu__cat-img"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80&auto=format&fit=crop" alt=""></div>
-          <div class="hk-menu__cat-meta">
-            <span class="hk-menu__cat-en">Wagashi</span>
-            <span class="hk-menu__cat-jp">和甘味</span>
-          </div>
-        </li>
-        <li class="hk-menu__cat">
-          <div class="hk-menu__cat-img"><img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80&auto=format&fit=crop" alt=""></div>
-          <div class="hk-menu__cat-meta">
-            <span class="hk-menu__cat-en">Parfait</span>
-            <span class="hk-menu__cat-jp">和パフェ</span>
-          </div>
-        </li>
-        <li class="hk-menu__cat">
-          <div class="hk-menu__cat-img"><img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&q=80&auto=format&fit=crop" alt=""></div>
-          <div class="hk-menu__cat-meta">
-            <span class="hk-menu__cat-en">Light Meal</span>
-            <span class="hk-menu__cat-jp">お食事</span>
-          </div>
-        </li>
-        <li class="hk-menu__cat">
-          <div class="hk-menu__cat-img"><img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80&auto=format&fit=crop" alt=""></div>
-          <div class="hk-menu__cat-meta">
-            <span class="hk-menu__cat-en">Seasonal</span>
-            <span class="hk-menu__cat-jp">季のひと品</span>
-          </div>
-        </li>
-      </ul>
-
-      <h3 class="hk-menu__sub-title">
-        <em>— Featured —</em>
-        <span>花かごのお品書き</span>
-      </h3>
-
-      <ul class="hk-menu__featured">
-        <li class="hk-menu__item">
-          <div class="hk-menu__item-img">
-            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=80&auto=format&fit=crop" alt="">
-          </div>
-          <div class="hk-menu__item-meta">
-            <span class="hk-menu__item-no">No. 01</span>
-            <h4 class="hk-menu__item-name">花かごの和パフェ</h4>
-            <p class="hk-menu__item-desc">
-              葛ゼリーと抹茶のアイス、白玉と粒餡を重ねて。<br>
-              てっぺんには、その日の手しごとをひとつ。
-            </p>
-            <div class="hk-menu__item-foot">
-              <span class="hk-chip hk-chip--matcha">看板</span>
-              <span class="hk-menu__item-price">¥1,580</span>
-            </div>
-          </div>
-        </li>
-        <li class="hk-menu__item">
-          <div class="hk-menu__item-img">
-            <img src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=900&q=80&auto=format&fit=crop" alt="">
-          </div>
-          <div class="hk-menu__item-meta">
-            <span class="hk-menu__item-no">No. 02</span>
-            <h4 class="hk-menu__item-name">玉露 三煎</h4>
-            <p class="hk-menu__item-desc">
-              和束の玉露を、ぬるめのお湯でゆっくりと。<br>
-              一煎目、二煎目、出汁のような最後の一口まで。
-            </p>
-            <div class="hk-menu__item-foot">
-              <span class="hk-chip hk-chip--matcha">通年</span>
-              <span class="hk-menu__item-price">¥980</span>
-            </div>
-          </div>
-        </li>
-        <li class="hk-menu__item">
-          <div class="hk-menu__item-img">
-            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=80&auto=format&fit=crop" alt="">
-          </div>
-          <div class="hk-menu__item-meta">
-            <span class="hk-menu__item-no">No. 03</span>
-            <h4 class="hk-menu__item-name">上生菓子 三種盛り</h4>
-            <p class="hk-menu__item-desc">
-              季節の上生菓子を、その日の手しごとから三種。<br>
-              お抹茶のお点前付き。
-            </p>
-            <div class="hk-menu__item-foot">
-              <span class="hk-chip">お点前付</span>
-              <span class="hk-menu__item-price">¥1,800</span>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ================================================ DOG RUN -->
-  <section class="hk-dog" id="dog">
-    <div class="hk-dog__pattern" aria-hidden="true"></div>
-    <div class="hk-section">
-      <div class="hk-dog__inner">
-        <header class="hk-dog__head">
-          <span class="hk-eyebrow">— Dog Garden —</span>
-          <h2 class="hk-h2">ドッグランについて</h2>
-          <p class="hk-sub" style="font-size: var(--t-sm); color: rgb(138, 127, 115)">
-            天然芝・約二百坪。<br>
-            木立と土塀に囲まれた静かなお庭です。
-          </p>
-        </header>
-
-        <div class="hk-dog__body">
-          <div class="hk-dog__hero-img">
-            <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?w=1600&q=80&auto=format&fit=crop" alt="">
-          </div>
-          <p class="hk-dog__copy">
-            縁側に犬を連れて、人はお茶を一服。<br>
-            お庭のドッグランは、カフェのご利用の有無に関わらずご利用いただけます。<br>
-            完全予約制ではありませんが、混雑時はお待ちいただく場合がございます。
-          </p>
-
-          <div class="hk-pricing" role="table" aria-label="ドッグラン 料金表">
-            <div class="hk-pricing__col">
-              <div class="hk-pricing__plan">— 1 hour</div>
-              <div class="hk-pricing__jp">1時間券</div>
-              <div class="hk-pricing__price"><span class="yen">¥</span>1,000<span class="unit">/ 頭</span></div>
-              <div class="hk-pricing__note">2頭目以降は ¥500 / 頭。<br>飼い主の同伴人数に上限はございません。</div>
-            </div>
-            <div class="hk-pricing__col">
-              <div class="hk-pricing__plan">— Half day</div>
-              <div class="hk-pricing__jp">半日券</div>
-              <div class="hk-pricing__price"><span class="yen">¥</span>1,800<span class="unit">/ 頭</span></div>
-              <div class="hk-pricing__note">12:00–15:00 もしくは 15:00–閉店。<br>カフェのご利用 ¥500 以上で ¥200 引。</div>
-            </div>
-            <div class="hk-pricing__col">
-              <div class="hk-pricing__plan">— Members</div>
-              <div class="hk-pricing__jp">月会員</div>
-              <div class="hk-pricing__price"><span class="yen">¥</span>4,800<span class="unit">/ 月</span></div>
-              <div class="hk-pricing__note">月内 何度でも 1時間券。<br>初回時に予防接種証明書のご提示をお願いいたします。</div>
-            </div>
-          </div>
-
-          <p style="margin:var(--s-4) 0 0; font-size:var(--t-sm); color:var(--sumi-3);">
-            ※ お子様連れの方、初めての方は、入場前にスタッフへお声がけください。<br>
-            ※ 雨天時はお庭の状態により、ご利用をお断りする場合がございます。
-          </p>
-
-          <div class="hk-dog__rules" style="border-width: 2px 0px 0px">
-            <div class="hk-dog__rules-header">
-              <header class="hk-dog__rules-title">
-                <em>— Etiquette —</em>
-                <span>ご利用のお約束</span>
-              </header>
-              <p class="hk-dog__rules-sub">皆様の大事なワンちゃんの安全のために</p>
-            </div>
-
-            <div class="hk-rules">
-              <div class="hk-rule">
-                <span class="hk-rule__no">01</span>
-                <div class="hk-rule__body">
-                  <strong>予防接種について</strong>
-                  一年以内の狂犬病・混合ワクチン接種証明書を初回時にご提示ください。
-                </div>
-              </div>
-              <div class="hk-rule">
-                <span class="hk-rule__no">02</span>
-                <div class="hk-rule__body">
-                  <strong>発情期・体調について</strong>
-                  メス犬の発情期および体調のすぐれない子はご遠慮いただいております。
-                </div>
-              </div>
-              <div class="hk-rule">
-                <span class="hk-rule__no">03</span>
-                <div class="hk-rule__body">
-                  <strong>リードについて</strong>
-                  ドッグラン内はノーリードで結構ですが、出入口の前後では必ずお付けください。
-                </div>
-              </div>
-              <div class="hk-rule">
-                <span class="hk-rule__no">04</span>
-                <div class="hk-rule__body">
-                  <strong>排泄物の処理</strong>
-                  排泄物は必ずお持ち帰りください。マナーポーチをご準備しております。
-                </div>
-              </div>
-              <div class="hk-rule">
-                <span class="hk-rule__no">05</span>
-                <div class="hk-rule__body">
-                  <strong>カフェ店内へのご同伴</strong>
-                  縁側席・テラス席はワンちゃん同伴可。土間席はご同伴をお控えください。
-                </div>
-              </div>
-              <div class="hk-rule">
-                <span class="hk-rule__no">06</span>
-                <div class="hk-rule__body">
-                  <strong>事故・怪我について</strong>
-                  ワンちゃん同士の事故等につきましては、当店は責任を負いかねます。
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================================================ GALLERY -->
-  <section class="hk-gallery-wrap" id="gallery">
-    <div class="hk-section">
-      <span class="hk-eyebrow">— Gallery —</span>
-      <h2 class="hk-h2">花かごの様子</h2>
-      <div class="hk-gallery" id="gallery">
-        <div class="hk-gallery__cell is-wide is-tall" data-cap="木漏れ日の庭" data-src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=2000&q=80&auto=format&fit=crop">
-          <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200&q=80&auto=format&fit=crop" alt="">
-          <span class="hk-gallery__cap">木漏れ日の庭</span>
-        </div>
-        <div class="hk-gallery__cell" data-cap="縁側の席" data-src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1600&q=80&auto=format&fit=crop">
-          <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=900&q=80&auto=format&fit=crop" alt="">
-          <span class="hk-gallery__cap">縁側の席</span>
-        </div>
-        <div class="hk-gallery__cell" data-cap="芝のドッグラン" data-src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=1600&q=80&auto=format&fit=crop">
-          <img src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=900&q=80&auto=format&fit=crop" alt="">
-          <span class="hk-gallery__cap">芝のドッグラン</span>
-        </div>
-        <div class="hk-gallery__cell" data-cap="玉露の一服" data-src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=1600&q=80&auto=format&fit=crop">
-          <img src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=900&q=80&auto=format&fit=crop" alt="">
-          <span class="hk-gallery__cap">玉露の一服</span>
-        </div>
-        <div class="hk-gallery__cell is-wide" data-cap="上生菓子" data-src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=2000&q=80&auto=format&fit=crop">
-          <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1200&q=80&auto=format&fit=crop" alt="">
-          <span class="hk-gallery__cap">上生菓子</span>
-        </div>
-        <div class="hk-gallery__cell" data-cap="お庭で寛ぐ" data-src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=1600&q=80&auto=format&fit=crop">
-          <img src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=900&q=80&auto=format&fit=crop" alt="">
-          <span class="hk-gallery__cap">お庭で寛ぐ</span>
-        </div>
-        <div class="hk-gallery__cell" data-cap="土間の店内" data-src="https://images.unsplash.com/photo-1583416750470-965b2707b355?w=1600&q=80&auto=format&fit=crop">
-          <img src="https://images.unsplash.com/photo-1583416750470-965b2707b355?w=900&q=80&auto=format&fit=crop" alt="">
-          <span class="hk-gallery__cap">土間の店内</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================================================= ACCESS -->
-  <section class="hk-access" id="access">
-    <div class="hk-section">
-      <div class="hk-access__grid">
-        <div>
-          <div class="hk-access__image" role="img" aria-label="花かご位置図 — 京都府亀岡市曽我部町西条中檀ノ上1-1">
-            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-              <!-- Paper background -->
-              <rect width="800" height="600" fill="#f5efe4"/>
-
-              <!-- Faint grid (washi feel) -->
-              <g stroke="#8a7f73" stroke-width="0.5" opacity="0.08">
-                <path d="M0 100h800M0 200h800M0 300h800M0 400h800M0 500h800M100 0v600M200 0v600M300 0v600M400 0v600M500 0v600M600 0v600M700 0v600"/>
-              </g>
-
-              <!-- Rice paddies (soft matcha rectangles, west side) -->
-              <g fill="#c5d099" opacity="0.45">
-                <rect x="60"  y="230" width="110" height="50"/>
-                <rect x="60"  y="300" width="110" height="40"/>
-                <rect x="190" y="260" width="90"  height="60"/>
-                <rect x="60"  y="410" width="160" height="50"/>
-                <rect x="240" y="430" width="110" height="40"/>
-              </g>
-              <g stroke="#7c8a55" stroke-width="0.6" fill="none" opacity="0.5">
-                <rect x="60"  y="230" width="110" height="50"/>
-                <rect x="60"  y="300" width="110" height="40"/>
-                <rect x="190" y="260" width="90"  height="60"/>
-                <rect x="60"  y="410" width="160" height="50"/>
-                <rect x="240" y="430" width="110" height="40"/>
-              </g>
-
-              <!-- Mountains (silhouettes on the west) -->
-              <path d="M 0 540 L 60 470 L 110 510 L 170 460 L 230 500 L 0 600 Z"
-                    fill="#5a5048" opacity="0.10"/>
-
-              <!-- River (桂川) curving down the east side -->
-              <path d="M 760 0 C 700 130, 740 280, 640 420 C 590 500, 620 560, 600 600"
-                    stroke="#b0c3d2" stroke-width="34" fill="none" stroke-linecap="round" opacity="0.65"/>
-              <path d="M 760 0 C 700 130, 740 280, 640 420 C 590 500, 620 560, 600 600"
-                    stroke="#7c95a8" stroke-width="1" fill="none" stroke-dasharray="4 5" opacity="0.6"/>
-              <text x="686" y="258" font-family="serif" font-size="13" fill="#5a5048"
-                    letter-spacing="2" transform="rotate(78 686 258)" opacity="0.8">桂川</text>
-
-              <!-- JR Sagano line (railway) running E-W near top -->
-              <line x1="0" y1="110" x2="800" y2="95" stroke="#2a2622" stroke-width="3"/>
-              <line x1="0" y1="110" x2="800" y2="95" stroke="#fbf7ef" stroke-width="1" stroke-dasharray="8 8"/>
-              <text x="60" y="86" font-family="serif" font-style="italic" font-size="11" fill="#5a5048"
-                    letter-spacing="2">JR Sagano Line</text>
-
-              <!-- Station marker -->
-              <g transform="translate(560 102)">
-                <rect x="-10" y="-10" width="20" height="20" fill="#fbf7ef" stroke="#2a2622" stroke-width="1.5"/>
-                <circle r="3.5" fill="#2a2622"/>
-                <text x="18" y="6" font-family="serif" font-size="14" fill="#2a2622" letter-spacing="2">JR 亀岡駅</text>
-              </g>
-
-              <!-- Roads -->
-              <g stroke="#2a2622" stroke-width="2.2" fill="none" opacity="0.85">
-                <path d="M 0 360 C 200 350, 400 380, 800 350"/>
-                <path d="M 380 110 C 360 220, 410 320, 380 600"/>
-                <path d="M 200 600 C 280 500, 360 420, 540 380 S 720 360, 800 380"/>
-              </g>
-              <g stroke="#8a7f73" stroke-width="1" fill="none" opacity="0.55">
-                <path d="M 0 220 C 150 240, 280 200, 480 230 S 700 240, 800 220"/>
-                <path d="M 0 480 C 140 460, 260 500, 400 470 S 600 490, 800 470"/>
-                <path d="M 150 0 C 160 100, 140 200, 170 600"/>
-                <path d="M 620 0 C 600 80, 640 180, 600 280"/>
-              </g>
-
-              <!-- Hanakago pin -->
-              <g transform="translate(380 370)">
-                <circle r="36" fill="#56603b" opacity="0.12"/>
-                <circle r="22" fill="none" stroke="#56603b" stroke-width="1.5" opacity="0.55"/>
-                <circle r="13" fill="#56603b"/>
-                <circle r="4.5" fill="#fbf7ef"/>
-                <text x="0" y="60" text-anchor="middle" font-family="serif" font-weight="500"
-                      font-size="22" fill="#2a2622" letter-spacing="6">花かご</text>
-                <text x="0" y="82" text-anchor="middle" font-family="serif" font-style="italic"
-                      font-size="11" fill="#56603b" letter-spacing="3">— Hanakago —</text>
-              </g>
-
-              <!-- North arrow -->
-              <g transform="translate(740 530)">
-                <circle r="22" fill="#fbf7ef" stroke="#2a2622" stroke-width="1"/>
-                <path d="M 0 -13 L 6 9 L 0 5 L -6 9 Z" fill="#2a2622"/>
-                <text y="-3" text-anchor="middle" font-family="serif" font-size="10"
-                      font-weight="500" fill="#2a2622">N</text>
-              </g>
-
-              <!-- Scale bar -->
-              <g transform="translate(40 560)">
-                <line x1="0" y1="0" x2="90" y2="0" stroke="#2a2622" stroke-width="2"/>
-                <line x1="0" y1="-4" x2="0" y2="4" stroke="#2a2622" stroke-width="1.5"/>
-                <line x1="45" y1="-3" x2="45" y2="3" stroke="#2a2622" stroke-width="1"/>
-                <line x1="90" y1="-4" x2="90" y2="4" stroke="#2a2622" stroke-width="1.5"/>
-                <text x="0"  y="20" font-family="serif" font-style="italic" font-size="10" fill="#5a5048">0</text>
-                <text x="45" y="20" text-anchor="middle" font-family="serif" font-style="italic" font-size="10" fill="#5a5048">250</text>
-                <text x="90" y="20" text-anchor="middle" font-family="serif" font-style="italic" font-size="10" fill="#5a5048">500 m</text>
-              </g>
-
-              <!-- Map label -->
-              <g transform="translate(40 44)">
-                <text font-family="serif" font-style="italic" font-size="11" fill="#56603b"
-                      letter-spacing="4">— MAP —</text>
-                <text y="22" font-family="serif" font-weight="500" font-size="15" fill="#2a2622"
-                      letter-spacing="3">京都府 亀岡市 曽我部町</text>
-              </g>
-            </svg>
-          </div>
-          <a class="hk-access__map-link"
-             href="https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E9%83%BD%E5%BA%9C%E4%BA%80%E5%B2%A1%E5%B8%82%E6%9B%BD%E6%88%91%E9%83%A8%E7%94%BA%E8%A5%BF%E6%9D%A1%E4%B8%AD%E6%AA%80%E3%83%8E%E4%B8%8A1-1"
-             target="_blank" rel="noopener noreferrer">Google マップで開く →</a>
-        </div>
-        <div>
-          <span class="hk-eyebrow">— Access —</span>
-          <h2 class="hk-h2">店舗情報</h2>
-          <dl class="hk-access__info">
-            <div class="hk-access__row">
-              <dt>📍 住所</dt>
-              <dd>〒621-0028<br>京都府亀岡市曽我部町西条中檀ノ上 1-1</dd>
-            </div>
-            <div class="hk-access__row">
-              <dt>☎ 電話</dt>
-              <dd><span class="hk-access__phone" style="font-family: &quot;Noto Sans JP&quot;; font-size: 17px; line-height: 1.4">0771-22-0123</span></dd>
-            </div>
-            <div class="hk-access__row">
-              <dt>🕐 営業</dt>
-              <dd>11:00 — 17:30 (L.O. 17:00)<br>金・土・日のみ営業</dd>
-            </div>
-            <div class="hk-access__row">
-              <dt>🚗 駐車場</dt>
-              <dd>8台 (無料)</dd>
-            </div>
-            <div class="hk-access__row">
-              <dt>＠ SNS</dt>
-              <dd><a href="https://www.instagram.com/hanakago.kameoka/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer">@hanakago.kameoka</a></dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ===================================================== CTA -->
   <section class="hk-cta" id="contact">
     <div class="hk-cta__pattern"></div>
     <div class="hk-cta__inner">
       <div>
-        <h2>ご来店、<br>心よりお待ちしております。</h2>
-        <p>
-          お席のご予約はカフェのみ承っております。<br>
-          ドッグランは予約制ではございませんが、混雑時はお待ちいただく場合がございます。
-        </p>
+        <h2><span class="cta-phrase">ご来店、</span><span class="cta-phrase">心よりお待ちしております。</span></h2>
+        <p><span class="cta-phrase">お席のご予約はカフェのみ承っております。</span><span class="cta-phrase">ドッグランは予約制ではございませんが、混雑時はお待ちいただく場合がございます。</span></p>
       </div>
       <div style="display:flex; gap:var(--s-3); flex-direction:column;">
         <a href="#" class="hk-btn">カフェ席を予約する →</a>
@@ -1063,38 +1146,8 @@
   <!-- =================================================== FOOTER -->
   <footer class="hk-footer">
     <div class="hk-footer__pattern" aria-hidden="true"></div>
-    <div class="hk-footer__inner">
-      <div class="hk-footer__brand">
-        <span class="hk-brand__jp">花かご</span>
-        <span class="hk-brand__en">Hanakago café and dog garden</span>
-        <p class="hk-footer__tag">
-</p>
-      </div>
-      <div class="hk-footer__cols">
-        <nav class="hk-footer__col">
-          <span class="hk-label">Sitemap</span>
-          <a href="#concept">店舗のこと</a>
-          <a href="#menu">カフェのお品書き</a>
-          <a href="#dog">ドッグラン</a>
-          <a href="#gallery">ギャラリー</a>
-          <a href="#access">アクセス</a>
-        </nav>
-        <div class="hk-footer__col">
-          <span class="hk-label">Visit</span>
-          <span>京都府亀岡市曽我部町</span>
-          <span>0771-22-0123</span>
-          <span>11:00 – 17:30<br>金・土・日のみ営業</span>
-        </div>
-        <div class="hk-footer__col">
-          <span class="hk-label">Follow</span>
-          <a href="https://www.instagram.com/hanakago.kameoka/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer">Instagram @hanakago.kameoka</a>
-          <a href="#">Mail からのお問い合わせ</a>
-        </div>
-      </div>
-    </div>
     <div class="hk-footer__legal">
-      <span>© 2026 花かご Hanakago café and dog garden</span>
-      <span>プライバシーポリシー</span>
+      <span>© 2026 花かご Hanakago café and dog garden</span>
     </div>
   </footer>
 </div>
@@ -1144,21 +1197,87 @@ function updateHours() {
     pill.textContent = '本日の営業を終了';
     pill.className = 'hk-hours-pill is-closed';
   }
+  // mirror into mobile menu
+  const mob = document.getElementById('hoursPillMobile');
+  if (mob) {
+    mob.textContent = pill.textContent;
+    mob.className = 'hk-mobile-menu__hours ' + (pill.classList.contains('is-open') ? 'is-open' : 'is-closed');
+  }
 }
 updateHours();
 setInterval(updateHours, 60_000);
+
+/* ────────────────── MOBILE MENU ───────────────── */
+(() => {
+  const btn  = document.getElementById('menuBtn');
+  const menu = document.getElementById('mobileMenu');
+  if (!btn || !menu) return;
+  const open = () => {
+    btn.classList.add('is-open');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'メニューを閉じる');
+    menu.classList.add('is-open');
+    menu.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('has-mobile-menu-open');
+  };
+  const close = () => {
+    btn.classList.remove('is-open');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'メニューを開く');
+    menu.classList.remove('is-open');
+    menu.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('has-mobile-menu-open');
+  };
+  btn.addEventListener('click', () => {
+    btn.classList.contains('is-open') ? close() : open();
+  });
+  // close on link tap so anchor navigation works
+  menu.querySelectorAll('.hk-mobile-menu__link').forEach(a => {
+    a.addEventListener('click', close);
+  });
+  // close on Escape
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && btn.classList.contains('is-open')) close();
+  });
+  // close if the viewport grows past mobile (e.g. rotate to landscape on tablet)
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 720 && btn.classList.contains('is-open')) close();
+  });
+})();
 
 /* ────────────────── LIGHTBOX ─────────────────────── */
 const lb = document.getElementById('lb');
 const lbImg = document.getElementById('lbImg');
 const lbCap = document.getElementById('lbCap');
-document.querySelectorAll('.hk-gallery__cell').forEach(cell => {
-  cell.addEventListener('click', () => {
-    lbImg.src = cell.dataset.src;
-    lbCap.textContent = cell.dataset.cap || '';
-    lb.classList.add('is-open');
+
+/* ────────────────── BYOBU GALLERY ─────────────── */
+(() => {
+  const byobu = document.getElementById('byobu');
+  if (!byobu) return;
+  const panels = [...byobu.querySelectorAll('.hk-byobu__panel')];
+
+  panels.forEach(panel => {
+    panel.addEventListener('click', () => {
+      if (panel.classList.contains('is-open')) {
+        // Already open → open lightbox
+        if (lb && lbImg) {
+          lbImg.src = panel.dataset.src;
+          if (lbCap) lbCap.textContent = panel.dataset.cap || '';
+          lb.classList.add('is-open');
+        }
+      } else {
+        // Expand this panel
+        panels.forEach(p => {
+          p.classList.remove('is-open');
+          p.setAttribute('aria-selected', 'false');
+        });
+        panel.classList.add('is-open');
+        panel.setAttribute('aria-selected', 'true');
+      }
+    });
   });
-});
+})();
+
 const closeLb = () => lb.classList.remove('is-open');
 lb.addEventListener('click', (e) => { if (e.target === lb || e.target.classList.contains('hk-lightbox__close')) closeLb(); });
 window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
@@ -1170,6 +1289,61 @@ document.querySelectorAll('.hk-news__head').forEach(btn => {
     btn.setAttribute('aria-expanded', open ? 'false' : 'true');
   });
 });
+
+/* ────────────────── MENU CAROUSEL ─────────────── */
+(() => {
+  const track = document.getElementById('menuTrack');
+  if (!track) return;
+  const cards = [...track.querySelectorAll('.hk-menu__item')];
+  const dots  = [...document.querySelectorAll('#menuDots .hk-menu__dot')];
+  const prev  = document.getElementById('menuPrev');
+  const next  = document.getElementById('menuNext');
+  let active = 0;
+
+  function update(idx) {
+    active = Math.max(0, Math.min(cards.length - 1, idx));
+    cards.forEach((c, i) => c.classList.toggle('is-active', i === active));
+    dots.forEach((d, i)  => d.classList.toggle('is-active', i === active));
+    if (prev) prev.disabled = (active === 0);
+    if (next) next.disabled = (active === cards.length - 1);
+  }
+
+  function goTo(idx, smooth = true) {
+    const i = Math.max(0, Math.min(cards.length - 1, idx));
+    const card = cards[i];
+    const target = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
+    track.scrollTo({ left: target, behavior: smooth ? 'smooth' : 'auto' });
+    update(i);
+  }
+
+  // Detect which card is closest to the center after a scroll settles.
+  let scrollTimer = null;
+  track.addEventListener('scroll', () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      const center = track.scrollLeft + track.clientWidth / 2;
+      let best = 0, bestDist = Infinity;
+      cards.forEach((c, i) => {
+        const cc = c.offsetLeft + c.offsetWidth / 2;
+        const d = Math.abs(cc - center);
+        if (d < bestDist) { bestDist = d; best = i; }
+      });
+      if (best !== active) update(best);
+    }, 90);
+  }, { passive: true });
+
+  dots.forEach(dot => dot.addEventListener('click', () => goTo(+dot.dataset.idx)));
+  cards.forEach(card => card.addEventListener('click', (e) => {
+    // only navigate if a non-active card is clicked; active card stays inert
+    if (card.classList.contains('is-active')) return;
+    goTo(+card.dataset.idx);
+  }));
+  prev && prev.addEventListener('click', () => goTo(active - 1));
+  next && next.addEventListener('click', () => goTo(active + 1));
+
+  // Init on first paint
+  requestAnimationFrame(() => goTo(0, false));
+})();
 
 /* ────────────────── REVEAL on scroll ────────────── */
 const io = new IntersectionObserver((entries) => {
