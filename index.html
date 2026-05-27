@@ -389,18 +389,53 @@
   .satoA .hk-pricing { grid-template-columns: 1fr; gap: var(--s-3); }
   .satoA .hk-dog__rules .hk-rules { grid-template-columns: 1fr; }
 
-  /* Gallery (byōbu) */
-  .satoA .hk-byobu { height: 320px; }
-  .satoA .hk-byobu__panel { flex-basis: 52px; }
-  .satoA .hk-byobu__label { font-size: 14px; letter-spacing: 0.24em; }
-  .satoA .hk-byobu__open-cap { font-size: 16px; left: 16px; right: 16px; bottom: 16px; }
-  .satoA .hk-byobu__no { font-size: 10px; top: 10px; left: 10px; }
+  /* Gallery (byōbu) — vertical accordion on mobile (horizontal would crush the active panel) */
+  .satoA .hk-byobu {
+    flex-direction: column;
+    height: auto;
+    min-height: 360px;
+  }
+  .satoA .hk-byobu__panel {
+    flex: 0 0 56px;
+    width: 100%;
+    height: auto;
+    min-height: 56px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(20,17,14,.65);
+    transition: flex-basis 520ms cubic-bezier(.22,.61,.36,1), filter 360ms var(--ease);
+  }
+  .satoA .hk-byobu__panel:last-child { border-bottom: 0; }
+  .satoA .hk-byobu__panel.is-open {
+    flex: 0 0 280px;
+  }
+  .satoA .hk-byobu__label {
+    /* horizontal label, left-aligned */
+    writing-mode: horizontal-tb;
+    top: 50%; left: 56px; transform: translateY(-50%);
+    font-size: 17px; letter-spacing: 0.18em;
+    text-align: left;
+  }
+  .satoA .hk-byobu__no {
+    /* keep the number to the left of the label */
+    top: 50%; left: 18px; transform: translateY(-50%);
+    font-size: 11px;
+  }
+  .satoA .hk-byobu__open-cap {
+    font-size: 18px; left: 18px; right: 18px; bottom: 16px;
+  }
+  .satoA .hk-byobu__panel.is-open .hk-byobu__no {
+    top: 14px; left: 16px; transform: none;
+  }
+  .satoA .hk-byobu__panel.is-open .hk-byobu__label {
+    /* hidden when open (the bottom caption shows it instead) */
+    opacity: 0;
+  }
+  .satoA .hk-byobu__panel.is-open::before { top: 14px; right: 16px; }
 
   /* Access */
   .satoA .hk-access__grid { grid-template-columns: 1fr; gap: var(--s-5); }
   .satoA .hk-access__row { grid-template-columns: 1fr; gap: 4px; padding: var(--s-3) 0; }
   .satoA .hk-access__row dt { font-size: var(--t-xs); }
-  .satoA .hk-access__phone { font-size: var(--t-lg) !important; }
   .satoA .hk-access__map-link { font-size: var(--t-xs); }
 
   /* CTA — centered, full-width buttons, wrap naturally */
@@ -439,8 +474,8 @@
 
 /* Very small phones */
 @media (max-width: 420px) {
-  .satoA .hk-byobu { height: 280px; }
-  .satoA .hk-byobu__panel { flex-basis: 44px; }
+  .satoA .hk-byobu__panel { flex: 0 0 52px; }
+  .satoA .hk-byobu__panel.is-open { flex: 0 0 240px; }
   .satoA .hk-menu__cats { grid-template-columns: 1fr; }
   .satoA .hk-footer__cols { grid-template-columns: 1fr; }
 }
@@ -569,7 +604,7 @@
   margin: 0; font-family: var(--font-body-jp); font-size: var(--t-base);
   line-height: 1.85; color: var(--sumi);
 }
-.satoA .hk-access__phone { font-family: var(--font-display-en); font-style: normal; font-size: var(--t-xl); color: var(--sumi); }
+.satoA .hk-access__phone { font-family: var(--font-body-jp); font-style: normal; font-size: var(--t-md); color: var(--sumi); letter-spacing: 0.04em; }
 
 /* CTA band */
 .satoA .hk-cta {
@@ -604,8 +639,11 @@
   display: none;
   width: 44px; height: 44px;
   background: transparent; border: 0; padding: 10px;
-  cursor: pointer; position: relative; z-index: 1002;
+  cursor: pointer; position: relative; z-index: 1100;
   margin-left: var(--s-3);
+}
+.satoA .hk-menu-btn--fixed {
+  position: fixed; top: 14px; right: 16px; z-index: 1100;
 }
 .satoA .hk-menu-btn span {
   display: block; width: 24px; height: 1.5px;
@@ -708,10 +746,12 @@ body.has-mobile-menu-open { overflow: hidden; }
       <a href="#news">お知らせ</a>
     </nav>
     <span class="hk-hours-pill" id="hoursPill">読み込み中</span>
-    <button class="hk-menu-btn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
-      <span></span><span></span><span></span>
-    </button>
   </header>
+
+  <!-- Mobile hamburger lives outside the header so its stacking context is global -->
+  <button class="hk-menu-btn hk-menu-btn--fixed" id="menuBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
+    <span></span><span></span><span></span>
+  </button>
 
   <!-- ================================================ MOBILE MENU -->
   <div class="hk-mobile-menu" id="mobileMenu" aria-hidden="true">
@@ -1028,7 +1068,7 @@ body.has-mobile-menu-open { overflow: hidden; }
             </div>
             <div class="hk-access__row">
               <dt>☎ 電話</dt>
-              <dd><span class="hk-access__phone" style="font-family: &quot;Noto Sans JP&quot;; font-size: 17px; line-height: 1.4">0771-22-0123</span></dd>
+              <dd><span class="hk-access__phone">0771-22-0123</span></dd>
             </div>
             <div class="hk-access__row">
               <dt>🕐 営業</dt>
@@ -1231,6 +1271,9 @@ setInterval(updateHours, 60_000);
   btn.addEventListener('click', () => {
     btn.classList.contains('is-open') ? close() : open();
   });
+  // tap on the dimmed background closes the menu
+  const bg = menu.querySelector('.hk-mobile-menu__bg');
+  if (bg) bg.addEventListener('click', close);
   // close on link tap so anchor navigation works
   menu.querySelectorAll('.hk-mobile-menu__link').forEach(a => {
     a.addEventListener('click', close);
