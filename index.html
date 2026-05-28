@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>花かご Hanakago — 里の家</title>
+<title>花かご Hanakago — 和カフェ＆ドッグラン</title>
 <link rel="icon" type="image/svg+xml" href="assets/mark.svg">
 <link rel="stylesheet" href="styles/kit.css">
 
@@ -56,8 +56,8 @@
 }
 .satoA .hk-hero__title {
   font-family: var(--font-display-jp); font-weight: 500;
-  font-size: clamp(40px, 5.6vw, 72px);
-  line-height: 1.2; letter-spacing: 0.10em;
+  font-size: clamp(48px, 6.8vw, 88px);
+  line-height: 1.18; letter-spacing: 0.12em;
   margin: var(--s-5) 0 var(--s-6);
   color: var(--sumi);
 }
@@ -161,6 +161,15 @@
 .satoA .hk-news__body-text p + p { margin-top: var(--s-3); }
 
 /* About — kakejiku grid */
+.satoA .hk-about { background: var(--kinari); position: relative; overflow: hidden; }
+.satoA .hk-about__pattern {
+  position: absolute; top: 0; left: -120px; bottom: 0; width: 420px;
+  background: url('assets/pattern-kagome.svg'); background-size: 110px;
+  opacity: 0.05; pointer-events: none;
+  /* Fade out softly toward top/bottom so the section boundary isn't abrupt */
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 80%, transparent 100%);
+          mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 80%, transparent 100%);
+}
 .satoA .hk-about__grid {
   display: grid; grid-template-columns: 360px 1fr;
   gap: var(--s-9); align-items: start;
@@ -178,7 +187,7 @@
 }
 .satoA .hk-about__sign em { font-family: var(--font-display-en); font-style: italic; color: var(--matcha-deep); font-size: var(--t-xs); letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: var(--s-1); }
 /* Menu */
-.satoA .hk-menu { background: var(--kinari); }
+.satoA .hk-menu { background: var(--kinari-2); }
 .satoA .hk-menu__cats {
   list-style: none; padding: 0; margin: var(--s-6) 0 var(--s-9);
   display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--s-4);
@@ -287,7 +296,7 @@
 .satoA .hk-menu__item-price { font-family: var(--font-display-jp); font-size: var(--t-md); color: var(--sumi); }
 
 /* Dog run */
-.satoA .hk-dog { background: var(--kinari-2); position: relative; overflow: hidden; }
+.satoA .hk-dog { background: var(--kinari); position: relative; overflow: hidden; }
 .satoA .hk-dog__inner { display: grid; gap: var(--s-7); }
 .satoA .hk-dog__head {
   padding-bottom: var(--s-5);
@@ -309,11 +318,6 @@
   padding-left: var(--s-6);
   border-left: 1px solid var(--hairline-soft);
   max-width: none;
-}
-.satoA .hk-dog__pattern {
-  position: absolute; top: 0; right: -120px; bottom: 0; width: 480px;
-  background: url('assets/pattern-asanoha.svg'); background-size: 120px;
-  opacity: 0.05; pointer-events: none;
 }
 .satoA .hk-dog__hero-img {
   aspect-ratio: 3 / 2;
@@ -365,13 +369,13 @@
   .satoA .hk-header.is-scrolled { padding: 10px 20px; }
   .satoA .hk-nav { display: none; }
   .satoA .hk-hours-pill { display: none; }
-  .satoA .hk-menu-btn { display: block; }
+  .satoA .hk-menu-btn { display: flex; }
   .satoA .hk-brand__name { display: none; }
 
   /* Hero — tighter on mobile */
   .satoA .hk-hero { min-height: 0; }
   .satoA .hk-hero__inner { padding: 96px 20px var(--s-6); min-height: 62svh; }
-  .satoA .hk-hero__title { font-size: clamp(28px, 7.2vw, 40px) !important; letter-spacing: 0.04em; }
+  .satoA .hk-hero__title { font-size: clamp(32px, 8.4vw, 48px) !important; letter-spacing: 0.05em; }
   .satoA .hk-hero__lede { font-size: var(--t-sm); }
   .satoA .hk-hero__scroll { right: 20px; }
 
@@ -466,11 +470,12 @@
     flex-basis: 233px;
   }
   .satoA .hk-byobu__label {
-    /* horizontal label, left-aligned */
-    writing-mode: horizontal-tb;
+    /* horizontal label, left-aligned (override default vertical-rl that comes later in source) */
+    writing-mode: horizontal-tb !important;
     top: 50%; left: 56px; transform: translateY(-50%);
     font-size: 17px; letter-spacing: 0.18em;
     text-align: left;
+    white-space: nowrap;
   }
   .satoA .hk-byobu__open-cap {
     font-size: 18px; left: 18px; right: 18px; bottom: 16px;
@@ -529,7 +534,7 @@
 }
 
 /* Gallery — byōbu (folding screen) accordion */
-.satoA .hk-gallery-wrap { background: var(--kinari); }
+.satoA .hk-gallery-wrap { background: var(--kinari-2); }
 .satoA .hk-byobu {
   display: flex;
   height: 440px;
@@ -618,7 +623,14 @@
 .satoA .hk-byobu__panel.is-open:hover::before { opacity: 1; }
 
 /* Access */
-.satoA .hk-access { background: var(--kinari); }
+.satoA .hk-access { background: var(--kinari); position: relative; overflow: hidden; }
+.satoA .hk-access__pattern {
+  position: absolute; top: 0; right: -80px; bottom: 0; width: 360px;
+  background: url('assets/pattern-kagome.svg'); background-size: 100px;
+  opacity: 0.05; pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 80%, transparent 100%);
+          mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 80%, transparent 100%);
+}
 .satoA .hk-access__grid { display: grid; grid-template-columns: 1fr; gap: var(--s-9); align-items: start; max-width: 720px; }
 .satoA .hk-access__map-link {
   display: inline-flex; align-items: center; gap: 6px;
@@ -656,7 +668,9 @@
 .satoA .hk-cta__pattern {
   position: absolute; inset: 0;
   background: url('assets/pattern-asanoha.svg');
-  background-size: 200px; opacity: .05;
+  background-size: 200px;
+  filter: invert(1);
+  opacity: 0.10;
 }
 .satoA .hk-cta__inner {
   position: relative;
@@ -671,6 +685,13 @@
   display: flex; gap: var(--s-3);
   flex-wrap: wrap; justify-content: center;
 }
+.satoA .hk-cta__note {
+  margin: var(--s-2) 0 0;
+  font-size: var(--t-xs);
+  color: var(--sumi-4);
+  letter-spacing: 0.04em;
+  opacity: 0.8;
+}
 .satoA .hk-cta h2 { color: var(--shoji); font-family: var(--font-display-jp);
   font-weight: 500; font-size: var(--t-2xl); letter-spacing: 0.06em; line-height: 1.5; margin: 0;
   text-wrap: pretty; }
@@ -683,82 +704,140 @@
 .satoA .hk-cta .hk-btn { background: var(--shoji); color: var(--sumi); border-color: var(--shoji); }
 .satoA .hk-cta .hk-btn:hover { background: var(--washi); }
 
-/* ==================== HAMBURGER + MOBILE MENU ==================== */
+/* ==================== HAMBURGER + MOBILE MENU (kinone-style) ==================== */
 .satoA .hk-menu-btn {
   display: none;
-  width: 44px; height: 44px;
-  background: transparent; border: 0; padding: 10px;
-  cursor: pointer; position: relative; z-index: 1100;
-  margin-left: var(--s-3);
+  align-items: center;
+  gap: 10px;
+  background: var(--shoji);
+  border: 1px solid rgba(42,38,34,.10);
+  padding: 8px 12px 8px 14px;
+  cursor: pointer;
+  z-index: 1100;
+  font-family: var(--font-display-jp);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  color: var(--sumi);
+  box-shadow: 0 8px 22px -16px rgba(42,38,34,.45);
 }
 .satoA .hk-menu-btn--fixed {
-  position: fixed; top: 14px; right: 16px; z-index: 1100;
+  position: fixed; top: 14px; right: 14px; z-index: 1100;
 }
-.satoA .hk-menu-btn span {
-  display: block; width: 24px; height: 1.5px;
-  background: var(--sumi); margin: 4px auto;
+.satoA .hk-menu-btn__label {
+  display: inline-block;
+  line-height: 1;
+}
+.satoA .hk-menu-btn__icon {
+  display: inline-flex; flex-direction: column; justify-content: center;
+  width: 18px; height: 14px;
+  gap: 4px;
+}
+.satoA .hk-menu-btn__icon span {
+  display: block; width: 100%; height: 1.5px;
+  background: var(--sumi);
   transition: transform 280ms cubic-bezier(.22,.61,.36,1), opacity 220ms;
   transform-origin: center;
 }
-.satoA .hk-menu-btn.is-open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
-.satoA .hk-menu-btn.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.satoA .hk-menu-btn.is-open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+.satoA .hk-menu-btn.is-open .hk-menu-btn__icon span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+.satoA .hk-menu-btn.is-open .hk-menu-btn__icon span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.satoA .hk-menu-btn.is-open .hk-menu-btn__icon span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
 
+/* Overlay container */
 .satoA .hk-mobile-menu {
-  position: fixed; inset: 0; z-index: 1001;
+  position: fixed; inset: 0; z-index: 1050;
   pointer-events: none;
+  visibility: hidden;
+}
+.satoA .hk-mobile-menu.is-open { pointer-events: auto; visibility: visible; }
+.satoA .hk-mobile-menu__overlay {
+  position: absolute; inset: 0;
+  background: rgba(20,17,14,.40);
   opacity: 0;
   transition: opacity 320ms cubic-bezier(.22,.61,.36,1);
 }
-.satoA .hk-mobile-menu.is-open { opacity: 1; pointer-events: auto; }
-.satoA .hk-mobile-menu__bg {
-  position: absolute; inset: 0;
+.satoA .hk-mobile-menu.is-open .hk-mobile-menu__overlay { opacity: 1; }
+
+/* Right-slide panel */
+.satoA .hk-mobile-menu__panel {
+  position: absolute; top: 0; right: 0; bottom: 0;
+  width: min(86vw, 360px);
   background: var(--kinari);
-  background-image: url('assets/pattern-asanoha.svg');
-  background-size: 220px;
-  background-blend-mode: multiply;
-}
-.satoA .hk-mobile-menu__bg::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(245,239,228,.92) 0%, rgba(245,239,228,.98) 100%);
-}
-.satoA .hk-mobile-menu__nav {
-  position: relative; z-index: 1;
-  height: 100%; padding: 96px var(--gutter, 24px) var(--s-7);
   display: flex; flex-direction: column;
-  gap: 2px;
-  justify-content: center;
+  transform: translateX(100%);
+  transition: transform 380ms cubic-bezier(.22,.61,.36,1);
+  box-shadow: -16px 0 40px -28px rgba(20,17,14,.5);
 }
-.satoA .hk-mobile-menu__link {
-  display: block;
-  padding: 18px 0;
+.satoA .hk-mobile-menu.is-open .hk-mobile-menu__panel { transform: none; }
+
+.satoA .hk-mobile-menu__head {
+  padding: 20px 24px 16px;
   border-bottom: 1px solid rgba(42,38,34,.10);
-  color: var(--sumi); text-decoration: none;
-  transform: translateY(12px); opacity: 0;
-  transition: opacity 260ms var(--ease), transform 320ms cubic-bezier(.22,.61,.36,1), color 200ms;
 }
-.satoA .hk-mobile-menu.is-open .hk-mobile-menu__link { transform: none; opacity: 1; }
-.satoA .hk-mobile-menu.is-open .hk-mobile-menu__link:nth-child(1) { transition-delay: 100ms; }
-.satoA .hk-mobile-menu.is-open .hk-mobile-menu__link:nth-child(2) { transition-delay: 160ms; }
-.satoA .hk-mobile-menu.is-open .hk-mobile-menu__link:nth-child(3) { transition-delay: 220ms; }
-.satoA .hk-mobile-menu.is-open .hk-mobile-menu__link:nth-child(4) { transition-delay: 280ms; }
-.satoA .hk-mobile-menu.is-open .hk-mobile-menu__link:nth-child(5) { transition-delay: 340ms; }
-.satoA .hk-mobile-menu.is-open .hk-mobile-menu__link:nth-child(6) { transition-delay: 400ms; }
-.satoA .hk-mobile-menu__link em {
-  display: block;
-  font-family: var(--font-display-en); font-style: italic;
-  font-size: 11px; letter-spacing: 0.18em; color: var(--matcha-deep);
-  margin-bottom: 4px;
+.satoA .hk-mobile-menu__brand {
+  display: flex; align-items: baseline; gap: 10px;
 }
-.satoA .hk-mobile-menu__link span {
+.satoA .hk-mobile-menu__brand-jp {
   font-family: var(--font-display-jp); font-weight: 500;
-  font-size: 24px; letter-spacing: 0.10em;
+  font-size: 20px; letter-spacing: 0.16em; color: var(--sumi);
 }
-.satoA .hk-mobile-menu__link:hover,
-.satoA .hk-mobile-menu__link:active { color: var(--matcha-deep); }
+.satoA .hk-mobile-menu__brand-en {
+  font-family: var(--font-display-en); font-style: italic;
+  font-size: 13px; letter-spacing: 0.18em; color: var(--matcha-deep);
+}
+
+.satoA .hk-mobile-menu__nav {
+  flex: 1; overflow-y: auto;
+  padding: 14px 0;
+}
+
+/* Tree */
+.satoA .hk-tree { list-style: none; padding: 0; margin: 0; }
+.satoA .hk-tree__item {
+  border-bottom: 1px solid rgba(42,38,34,.08);
+}
+.satoA .hk-tree__link {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 24px;
+  font-family: var(--font-display-jp); font-weight: 500;
+  font-size: 16px; letter-spacing: 0.10em;
+  color: var(--sumi);
+  text-decoration: none;
+}
+.satoA .hk-tree__link:active,
+.satoA .hk-tree__link:hover { background: rgba(86,96,59,.08); color: var(--matcha-deep); }
+.satoA .hk-tree__mark {
+  width: 14px; height: 14px; flex: 0 0 14px;
+  background: var(--matcha-deep);
+  /* Hanakago small leaf-style marker — diamond shape */
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0 50%);
+  opacity: 0.85;
+}
+.satoA .hk-tree__sub {
+  list-style: none;
+  padding: 0 24px 12px 52px;
+  margin: 0;
+}
+.satoA .hk-tree__sub li { padding: 0; }
+.satoA .hk-tree__sub a {
+  display: block;
+  padding: 8px 0;
+  font-family: var(--font-body-jp);
+  font-size: 14px; letter-spacing: 0.06em;
+  color: var(--sumi-3);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(42,38,34,.10);
+}
+.satoA .hk-tree__sub li:last-child a { border-bottom: 0; }
+.satoA .hk-tree__sub a::before {
+  content: '— '; color: var(--matcha-deep); margin-right: 4px;
+}
+.satoA .hk-tree__sub a:hover,
+.satoA .hk-tree__sub a:active { color: var(--matcha-deep); }
+
 .satoA .hk-mobile-menu__foot {
-  position: absolute; left: 0; right: 0; bottom: 32px;
-  padding: 0 var(--gutter, 24px); z-index: 1;
+  padding: 16px 24px;
+  border-top: 1px solid rgba(42,38,34,.10);
   display: flex; justify-content: space-between; align-items: center;
   font-family: var(--font-display-en); font-style: italic;
   font-size: 11px; letter-spacing: 0.18em; color: var(--sumi-3);
@@ -799,24 +878,55 @@ body.has-mobile-menu-open { overflow: hidden; }
 
   <!-- Mobile hamburger lives outside the header so its stacking context is global -->
   <button class="hk-menu-btn hk-menu-btn--fixed" id="menuBtn" aria-label="メニューを開く" aria-expanded="false" aria-controls="mobileMenu">
-    <span></span><span></span><span></span>
+    <span class="hk-menu-btn__label">メニュー</span>
+    <span class="hk-menu-btn__icon" aria-hidden="true"><span></span><span></span><span></span></span>
   </button>
 
   <!-- ================================================ MOBILE MENU -->
   <div class="hk-mobile-menu" id="mobileMenu" aria-hidden="true">
-    <div class="hk-mobile-menu__bg"></div>
-    <nav class="hk-mobile-menu__nav">
-      <a href="#concept" class="hk-mobile-menu__link"><em>— concept —</em><span>店舗のこと</span></a>
-      <a href="#menu"    class="hk-mobile-menu__link"><em>— café —</em><span>カフェ</span></a>
-      <a href="#dog"     class="hk-mobile-menu__link"><em>— dog garden —</em><span>ドッグラン</span></a>
-      <a href="#gallery" class="hk-mobile-menu__link"><em>— gallery —</em><span>ギャラリー</span></a>
-      <a href="#access"  class="hk-mobile-menu__link"><em>— access —</em><span>アクセス</span></a>
-      <a href="#news"    class="hk-mobile-menu__link"><em>— news —</em><span>お知らせ</span></a>
-    </nav>
-    <div class="hk-mobile-menu__foot">
-      <span class="hk-mobile-menu__hours" id="hoursPillMobile">読み込み中</span>
-      <span class="hk-mobile-menu__tag">— 京都・亀岡 —</span>
-    </div>
+    <div class="hk-mobile-menu__overlay"></div>
+    <aside class="hk-mobile-menu__panel">
+      <div class="hk-mobile-menu__head">
+        <span class="hk-mobile-menu__brand">
+          <span class="hk-mobile-menu__brand-jp">花かご</span>
+          <span class="hk-mobile-menu__brand-en">Hanakago</span>
+        </span>
+      </div>
+      <nav class="hk-mobile-menu__nav" aria-label="サイトメニュー">
+        <ul class="hk-tree">
+          <li class="hk-tree__item">
+            <a href="#top"     class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>ホーム</a>
+          </li>
+          <li class="hk-tree__item">
+            <a href="#menu"    class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>カフェのお品書き</a>
+            <ul class="hk-tree__sub">
+              <li><a href="#menu" data-idx="0">花かごの和パフェ</a></li>
+              <li><a href="#menu" data-idx="1">玉露の三煎</a></li>
+              <li><a href="#menu" data-idx="2">上生菓子三種盛り</a></li>
+            </ul>
+          </li>
+          <li class="hk-tree__item">
+            <a href="#dog"     class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>ドッグラン</a>
+          </li>
+          <li class="hk-tree__item">
+            <a href="#gallery" class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>花かごの様子</a>
+          </li>
+          <li class="hk-tree__item">
+            <a href="#access"  class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>店舗情報</a>
+          </li>
+          <li class="hk-tree__item">
+            <a href="#news"    class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>お知らせ</a>
+          </li>
+          <li class="hk-tree__item">
+            <a href="https://www.instagram.com/hanakago.kameoka/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer" class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>Instagram</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="hk-mobile-menu__foot">
+        <span class="hk-mobile-menu__hours" id="hoursPillMobile">読み込み中</span>
+        <span class="hk-mobile-menu__tag">— 京都・亀岡 —</span>
+      </div>
+    </aside>
   </div>
 
   <!-- ==================================================== HERO -->
@@ -837,6 +947,7 @@ body.has-mobile-menu-open { overflow: hidden; }
 
   <!-- ================================================ CONCEPT -->
   <section class="hk-about" id="concept">
+    <div class="hk-about__pattern" aria-hidden="true"></div>
     <div class="hk-section">
       <div class="hk-about__grid">
         <header class="hk-about__head">
@@ -874,8 +985,8 @@ body.has-mobile-menu-open { overflow: hidden; }
               <span class="hk-menu__item-no">No. 01</span>
               <h4 class="hk-menu__item-name">花かごの和パフェ</h4>
               <p class="hk-menu__item-desc">
-                葛ゼリーと抹茶のアイス、白玉と粒餡を重ねて。<br>
-                てっぺんには、その日の手しごとをひとつ。
+                葛ゼリーと抹茶アイス、白玉と粒餡を重ねて。<br>
+                てっぺんには、その日の手しごとを一品。
               </p>
               <div class="hk-menu__item-foot">
                 <span class="hk-chip hk-chip--matcha">看板</span>
@@ -889,10 +1000,10 @@ body.has-mobile-menu-open { overflow: hidden; }
             </div>
             <div class="hk-menu__item-meta">
               <span class="hk-menu__item-no">No. 02</span>
-              <h4 class="hk-menu__item-name">玉露 三煎</h4>
+              <h4 class="hk-menu__item-name">玉露の三煎</h4>
               <p class="hk-menu__item-desc">
                 和束の玉露を、ぬるめのお湯でゆっくりと。<br>
-                一煎目、二煎目、出汁のような最後の一口まで。
+                二煎目まで、丁寧にお添えいたします。
               </p>
               <div class="hk-menu__item-foot">
                 <span class="hk-chip hk-chip--matcha">通年</span>
@@ -906,10 +1017,10 @@ body.has-mobile-menu-open { overflow: hidden; }
             </div>
             <div class="hk-menu__item-meta">
               <span class="hk-menu__item-no">No. 03</span>
-              <h4 class="hk-menu__item-name">上生菓子 三種盛り</h4>
+              <h4 class="hk-menu__item-name">上生菓子三種盛り</h4>
               <p class="hk-menu__item-desc">
-                季節の上生菓子を、その日の手しごとから三種。<br>
-                お抹茶のお点前付き。
+                季節の上生菓子から、その日の手しごとを三種。<br>
+                お抹茶のお点前を添えてお出しします。
               </p>
               <div class="hk-menu__item-foot">
                 <span class="hk-chip">お点前付</span>
@@ -940,7 +1051,6 @@ body.has-mobile-menu-open { overflow: hidden; }
 
   <!-- ================================================ DOG RUN -->
   <section class="hk-dog" id="dog">
-    <div class="hk-dog__pattern" aria-hidden="true"></div>
     <div class="hk-section">
       <div class="hk-dog__inner">
         <header class="hk-dog__head">
@@ -1098,6 +1208,7 @@ body.has-mobile-menu-open { overflow: hidden; }
 
   <!-- ================================================= ACCESS -->
   <section class="hk-access" id="access">
+    <div class="hk-access__pattern" aria-hidden="true"></div>
     <div class="hk-section">
       <div class="hk-access__grid">
         
@@ -1227,6 +1338,7 @@ body.has-mobile-menu-open { overflow: hidden; }
         <a href="#" class="hk-btn">カフェ席を予約する →</a>
         <a href="#" class="hk-btn hk-btn--ghost" style="color: rgb(42, 38, 34); border-color: var(--shoji)">お問い合わせ →</a>
       </div>
+      <p class="hk-cta__note">※ お電話でのご予約は承っておりません。</p>
     </div>
   </section>
 
@@ -1318,11 +1430,11 @@ setInterval(updateHours, 60_000);
   btn.addEventListener('click', () => {
     btn.classList.contains('is-open') ? close() : open();
   });
-  // tap on the dimmed background closes the menu
-  const bg = menu.querySelector('.hk-mobile-menu__bg');
+  // tap on the dimmed overlay closes the menu
+  const bg = menu.querySelector('.hk-mobile-menu__overlay');
   if (bg) bg.addEventListener('click', close);
   // close on link tap so anchor navigation works
-  menu.querySelectorAll('.hk-mobile-menu__link').forEach(a => {
+  menu.querySelectorAll('.hk-tree__link, .hk-tree__sub a').forEach(a => {
     a.addEventListener('click', close);
   });
   // close on Escape
