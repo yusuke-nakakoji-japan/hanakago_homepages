@@ -56,8 +56,8 @@
 }
 .satoA .hk-hero__title {
   font-family: var(--font-display-jp); font-weight: 500;
-  font-size: clamp(58px, 8.4vw, 112px);
-  line-height: 1.08; letter-spacing: 0.14em;
+  font-size: clamp(40px, 5.6vw, 72px);
+  line-height: 1.2; letter-spacing: 0.10em;
   margin: var(--s-5) 0 var(--s-6);
   color: var(--sumi);
 }
@@ -218,13 +218,15 @@
 .satoA .hk-menu__item {
   flex: 0 0 calc(100% - var(--s-9) - var(--s-7));
   scroll-snap-align: center;
-  display: grid; grid-template-columns: 280px 1fr;
+  display: grid; grid-template-columns: 360px 1fr;
   gap: var(--s-7); align-items: stretch;
   background: var(--washi);
   cursor: pointer;
   opacity: 0.45;
   transform: scale(0.965);
   transition: opacity 380ms cubic-bezier(.22,.61,.36,1), transform 380ms cubic-bezier(.22,.61,.36,1);
+  height: 240px;
+  overflow: hidden;
 }
 .satoA .hk-menu__item.is-active {
   opacity: 1;
@@ -234,6 +236,10 @@
 .satoA .hk-menu__carousel {
   position: relative;
   margin-top: var(--s-6);
+}
+.satoA .hk-menu__nav {
+  margin-top: var(--s-5);
+  display: contents;
 }
 .satoA .hk-menu__arrow {
   position: absolute; top: 50%;
@@ -266,10 +272,10 @@
 }
 .satoA .hk-menu__dot.is-active { background: var(--matcha-deep); width: 44px; }
 .satoA .hk-menu__dot:focus-visible { outline: 2px solid var(--matcha-deep); outline-offset: 4px; }
-.satoA .hk-menu__item-img { aspect-ratio: 1 / 1; }
-.satoA .hk-menu__item-img img { width: 100%; height: 100%; object-fit: cover; }
-.satoA .hk-menu__item-meta { padding: var(--s-5) var(--s-6) var(--s-5) 0;
-  display: grid; align-content: center; gap: var(--s-3); }
+.satoA .hk-menu__item-img { width: 360px; height: 240px; overflow: hidden; }
+.satoA .hk-menu__item-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.satoA .hk-menu__item-meta { padding: var(--s-4) var(--s-6) var(--s-4) 0;
+  display: grid; align-content: center; gap: var(--s-2); overflow: hidden; }
 .satoA .hk-menu__item-no { font-family: var(--font-display-en); font-style: italic; font-size: var(--t-sm); color: var(--matcha-deep); letter-spacing: 0.18em; }
 .satoA .hk-menu__item-name { font-family: var(--font-display-jp); font-weight: 500; font-size: var(--t-xl); letter-spacing: 0.08em; color: var(--sumi); margin: 0; }
 .satoA .hk-menu__item-desc { color: var(--sumi-2); line-height: 1.95; font-size: var(--t-sm); margin: 0; }
@@ -293,13 +299,26 @@
 .satoA .hk-dog__head .hk-h2     { grid-column: 1 / 2; grid-row: 2; }
 .satoA .hk-dog__head .hk-sub    { grid-column: 2 / 3; grid-row: 1 / 3; align-self: end; text-align: right; }
 .satoA .hk-dog__body { display: grid; gap: var(--s-7); }
-.satoA .hk-dog__copy { color: var(--sumi-2); line-height: 2.05; max-width: 64ch; }
+.satoA .hk-dog__copy { color: var(--sumi-2); line-height: 2.05; max-width: 64ch; margin: 0; }
+.satoA .hk-dog__lead {
+  display: grid; grid-template-columns: 1.15fr 1fr;
+  gap: var(--s-7);
+  align-items: center;
+}
+.satoA .hk-dog__lead .hk-dog__copy {
+  padding-left: var(--s-6);
+  border-left: 1px solid var(--hairline-soft);
+  max-width: none;
+}
 .satoA .hk-dog__pattern {
   position: absolute; top: 0; right: -120px; bottom: 0; width: 480px;
   background: url('assets/pattern-asanoha.svg'); background-size: 120px;
   opacity: 0.05; pointer-events: none;
 }
-.satoA .hk-dog__hero-img { aspect-ratio: 5/2; overflow: hidden; margin-bottom: var(--s-6); }
+.satoA .hk-dog__hero-img {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
 .satoA .hk-dog__hero-img img { width: 100%; height: 100%; object-fit: cover; }
 
 /* Rules (continuation of Dog Garden section) */
@@ -329,8 +348,8 @@
 @media (max-width: 1080px) {
   .satoA { --gutter: 40px; }
   .satoA .hk-menu__cats { grid-template-columns: repeat(3, 1fr); }
-  .satoA .hk-byobu { height: 460px; }
-  .satoA .hk-byobu__panel { flex-basis: 76px; }
+  .satoA .hk-byobu { height: 380px; }
+  .satoA .hk-byobu__panel { flex-basis: 72px; }
   .satoA .hk-footer__inner { grid-template-columns: 1fr; gap: var(--s-7); }
   .satoA .hk-dog__head { grid-template-columns: 1fr; }
   .satoA .hk-dog__head .hk-sub { grid-column: 1; grid-row: auto; text-align: left; align-self: start; }
@@ -352,7 +371,7 @@
   /* Hero — tighter on mobile */
   .satoA .hk-hero { min-height: 0; }
   .satoA .hk-hero__inner { padding: 96px 20px var(--s-6); min-height: 62svh; }
-  .satoA .hk-hero__title { font-size: clamp(36px, 9.5vw, 56px) !important; letter-spacing: 0.04em; }
+  .satoA .hk-hero__title { font-size: clamp(28px, 7.2vw, 40px) !important; letter-spacing: 0.04em; }
   .satoA .hk-hero__lede { font-size: var(--t-sm); }
   .satoA .hk-hero__scroll { right: 20px; }
 
@@ -379,13 +398,51 @@
   .satoA .hk-menu__cats { grid-template-columns: 1fr 1fr; gap: var(--s-3); }
   .satoA .hk-menu__cat-img { aspect-ratio: 4 / 3; }
   .satoA .hk-menu__featured { gap: var(--s-3); padding: 6px 20px; margin: 0 -20px; }
-  .satoA .hk-menu__item { flex-basis: calc(100% - 56px); grid-template-columns: 1fr; gap: 0; }
-  .satoA .hk-menu__item-img { aspect-ratio: 5 / 3; }
+  .satoA .hk-menu__item { flex-basis: calc(100% - 56px); grid-template-columns: 1fr; gap: 0; height: auto; }
+  .satoA .hk-menu__item-img { width: 100%; height: auto; aspect-ratio: 3 / 2; }
   .satoA .hk-menu__item-meta { padding: var(--s-4) var(--s-5) var(--s-5); }
-  .satoA .hk-menu__arrow { display: none; }
 
-  /* Dog */
-  .satoA .hk-dog__hero-img { aspect-ratio: 16 / 9; }
+  /* Mobile carousel controls — switch nav from display:contents to a flex row */
+  .satoA .hk-menu__nav {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: var(--s-5);
+  }
+  .satoA .hk-menu__arrow {
+    position: static;
+    transform: none;
+    width: 36px; height: 36px;
+    box-shadow: none;
+    background: transparent;
+    border: 1px solid var(--hairline-soft);
+  }
+  .satoA .hk-menu__arrow:hover { background: var(--sumi); color: var(--shoji); }
+  .satoA .hk-menu__arrow svg { width: 16px; height: 16px; }
+  .satoA .hk-menu__dots {
+    margin-top: 0;
+    gap: 10px;
+  }
+  .satoA .hk-menu__dots .hk-menu__dot { width: 20px; }
+  .satoA .hk-menu__dots .hk-menu__dot.is-active { width: 32px; }
+
+  /* Dog — image kept similar in size to one opened byōbu panel (~220px tall) */
+  .satoA .hk-dog__lead {
+    grid-template-columns: 1fr;
+    gap: var(--s-5);
+  }
+  .satoA .hk-dog__lead .hk-dog__copy {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .satoA .hk-dog__hero-img {
+    aspect-ratio: 3 / 2;
+    max-height: 220px;
+    width: auto;
+    max-width: 100%;
+    margin-left: auto; margin-right: auto;
+  }
   .satoA .hk-pricing { grid-template-columns: 1fr; gap: var(--s-3); }
   .satoA .hk-dog__rules .hk-rules { grid-template-columns: 1fr; }
 
@@ -393,7 +450,7 @@
   .satoA .hk-byobu {
     flex-direction: column;
     height: auto;
-    min-height: 360px;
+    min-height: 0;
   }
   .satoA .hk-byobu__panel {
     flex: 0 0 56px;
@@ -406,7 +463,7 @@
   }
   .satoA .hk-byobu__panel:last-child { border-bottom: 0; }
   .satoA .hk-byobu__panel.is-open {
-    flex: 0 0 280px;
+    flex-basis: 233px;
   }
   .satoA .hk-byobu__label {
     /* horizontal label, left-aligned */
@@ -415,16 +472,8 @@
     font-size: 17px; letter-spacing: 0.18em;
     text-align: left;
   }
-  .satoA .hk-byobu__no {
-    /* keep the number to the left of the label */
-    top: 50%; left: 18px; transform: translateY(-50%);
-    font-size: 11px;
-  }
   .satoA .hk-byobu__open-cap {
     font-size: 18px; left: 18px; right: 18px; bottom: 16px;
-  }
-  .satoA .hk-byobu__panel.is-open .hk-byobu__no {
-    top: 14px; left: 16px; transform: none;
   }
   .satoA .hk-byobu__panel.is-open .hk-byobu__label {
     /* hidden when open (the bottom caption shows it instead) */
@@ -438,26 +487,25 @@
   .satoA .hk-access__row dt { font-size: var(--t-xs); }
   .satoA .hk-access__map-link { font-size: var(--t-xs); }
 
-  /* CTA — centered, full-width buttons, wrap naturally */
+  /* CTA — centered, full-width buttons on mobile */
   .satoA .hk-cta__inner {
-    grid-template-columns: 1fr;
-    gap: var(--s-5);
-    padding: 64px 24px;
-    text-align: center;
+    gap: var(--s-4);
+    padding: 48px 24px;
   }
   .satoA .hk-cta h2 {
-    font-size: clamp(22px, 6.8vw, 30px) !important;
+    font-size: clamp(20px, 5.6vw, 24px) !important;
     letter-spacing: 0.04em;
     line-height: 1.55;
   }
   .satoA .hk-cta p {
     font-size: var(--t-sm);
-    line-height: 1.95;
-    margin: 16px auto 0;
+    line-height: 1.85;
+    margin: 8px 0 0;
   }
-  .satoA .hk-cta__inner > div:last-child {
+  .satoA .hk-cta__actions {
+    flex-direction: column;
     width: 100%;
-    margin-top: var(--s-4);
+    gap: var(--s-3);
   }
   .satoA .hk-cta .hk-btn {
     width: 100%;
@@ -475,7 +523,7 @@
 /* Very small phones */
 @media (max-width: 420px) {
   .satoA .hk-byobu__panel { flex: 0 0 52px; }
-  .satoA .hk-byobu__panel.is-open { flex: 0 0 240px; }
+  .satoA .hk-byobu__panel.is-open { flex-basis: 220px; }
   .satoA .hk-menu__cats { grid-template-columns: 1fr; }
   .satoA .hk-footer__cols { grid-template-columns: 1fr; }
 }
@@ -484,7 +532,7 @@
 .satoA .hk-gallery-wrap { background: var(--kinari); }
 .satoA .hk-byobu {
   display: flex;
-  height: 540px;
+  height: 440px;
   margin-top: var(--s-6);
   background: var(--sumi);
   border: 1px solid var(--sumi);
@@ -493,7 +541,7 @@
 }
 .satoA .hk-byobu__panel {
   position: relative;
-  flex: 0 0 88px;
+  flex: 0 1 88px;
   height: 100%;
   background-size: cover;
   background-position: center;
@@ -506,14 +554,14 @@
   outline: 0;
   border-right: 1px solid rgba(20,17,14,.65);
   transition:
-    flex 720ms cubic-bezier(.22,.61,.36,1),
+    flex-grow 720ms cubic-bezier(.22,.61,.36,1),
     filter 480ms var(--ease);
   filter: brightness(.62) saturate(.85);
 }
 .satoA .hk-byobu__panel:last-child { border-right: 0; }
 .satoA .hk-byobu__panel:hover:not(.is-open) { filter: brightness(.74) saturate(.95); }
 .satoA .hk-byobu__panel.is-open {
-  flex: 1 1 auto;
+  flex-grow: 1;
   filter: none;
   cursor: zoom-in;
 }
@@ -521,14 +569,6 @@
   content: ''; position: absolute; inset: auto 0 0 0; height: 45%;
   background: linear-gradient(180deg, transparent 0%, rgba(20,17,14,.55) 100%);
   pointer-events: none;
-}
-.satoA .hk-byobu__no {
-  position: absolute; top: 14px; left: 14px;
-  font-family: var(--font-display-en); font-style: italic;
-  font-size: 12px; letter-spacing: 0.20em;
-  color: var(--shoji);
-  z-index: 2;
-  text-shadow: 0 1px 2px rgba(20,17,14,.5);
 }
 .satoA .hk-byobu__label {
   position: absolute;
@@ -604,7 +644,7 @@
   margin: 0; font-family: var(--font-body-jp); font-size: var(--t-base);
   line-height: 1.85; color: var(--sumi);
 }
-.satoA .hk-access__phone { font-family: var(--font-body-jp); font-style: normal; font-size: var(--t-md); color: var(--sumi); letter-spacing: 0.04em; }
+.satoA .hk-access__phone { font-family: var(--font-body-jp); font-style: normal; font-size: var(--t-base); color: var(--sumi); letter-spacing: 0.04em; }
 
 /* CTA band */
 .satoA .hk-cta {
@@ -620,17 +660,26 @@
 }
 .satoA .hk-cta__inner {
   position: relative;
-  padding: var(--s-11) var(--gutter);
+  padding: var(--s-9) var(--gutter);
   max-width: var(--container); margin: 0 auto;
-  display: grid; grid-template-columns: 1fr auto; gap: var(--s-7);
-  align-items: center;
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-4);
+  text-align: center;
+  justify-items: center;
+}
+.satoA .hk-cta__inner > div { width: 100%; }
+.satoA .hk-cta__actions {
+  display: flex; gap: var(--s-3);
+  flex-wrap: wrap; justify-content: center;
 }
 .satoA .hk-cta h2 { color: var(--shoji); font-family: var(--font-display-jp);
-  font-weight: 500; font-size: var(--t-3xl); letter-spacing: 0.10em; line-height: 1.4; margin: 0;
+  font-weight: 500; font-size: var(--t-2xl); letter-spacing: 0.06em; line-height: 1.5; margin: 0;
   text-wrap: pretty; }
-.satoA .hk-cta p { color: var(--sumi-4); margin: var(--s-3) 0 0; max-width: 56ch; line-height: 1.95; text-wrap: pretty; }
-/* Keep each phrase unbreakable; only wrap between phrases. */
-.satoA .hk-cta .cta-phrase { display: inline-block; }
+.satoA .hk-cta p {
+  color: var(--sumi-4);
+  margin: var(--s-2) 0 0;
+  line-height: 1.95;
+  text-wrap: pretty;
+}
 .satoA .hk-cta .hk-btn { background: var(--shoji); color: var(--sumi); border-color: var(--shoji); }
 .satoA .hk-cta .hk-btn:hover { background: var(--washi); }
 
@@ -792,7 +841,7 @@ body.has-mobile-menu-open { overflow: hidden; }
       <div class="hk-about__grid">
         <header class="hk-about__head">
           <span class="hk-eyebrow">— About —</span>
-          <h2 class="hk-h2">花かごの<br>こと</h2>
+          <h2 class="hk-h2">花かご</h2>
         </header>
         <div class="hk-about__body">
           <p class="p-lg">京都の街なかから、車でおおよそ三十分。 
@@ -812,7 +861,7 @@ body.has-mobile-menu-open { overflow: hidden; }
   <section class="hk-menu" id="menu">
     <div class="hk-section">
       <span class="hk-eyebrow">— Cafe —</span>
-      <h2 class="hk-h2">カフェについて</h2>
+      <h2 class="hk-h2">カフェ</h2>
       <p class="hk-sub">お茶・上生菓子・和パフェ・ケーキ・季節のひと品をご用意しています。お庭を眺めながら、お楽しみください。</p>
 
       <div class="hk-menu__carousel" data-carousel>
@@ -870,17 +919,20 @@ body.has-mobile-menu-open { overflow: hidden; }
           </li>
         </ul>
 
-        <button class="hk-menu__arrow hk-menu__arrow--prev" id="menuPrev" aria-label="前のメニュー" type="button">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 L8 12 L15 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <button class="hk-menu__arrow hk-menu__arrow--next" id="menuNext" aria-label="次のメニュー" type="button">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5 L16 12 L9 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
+        <div class="hk-menu__nav">
+          <button class="hk-menu__arrow hk-menu__arrow--prev" id="menuPrev" aria-label="前のメニュー" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 L8 12 L15 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
 
-        <div class="hk-menu__dots" id="menuDots" role="tablist" aria-label="メニュー切替">
-          <button class="hk-menu__dot is-active" data-idx="0" aria-label="No.01 花かごの和パフェ" type="button"></button>
-          <button class="hk-menu__dot" data-idx="1" aria-label="No.02 玉露 三煎" type="button"></button>
-          <button class="hk-menu__dot" data-idx="2" aria-label="No.03 上生菓子 三種盛り" type="button"></button>
+          <div class="hk-menu__dots" id="menuDots" role="tablist" aria-label="メニュー切替">
+            <button class="hk-menu__dot is-active" data-idx="0" aria-label="No.01 花かごの和パフェ" type="button"></button>
+            <button class="hk-menu__dot" data-idx="1" aria-label="No.02 玉露 三煎" type="button"></button>
+            <button class="hk-menu__dot" data-idx="2" aria-label="No.03 上生菓子 三種盛り" type="button"></button>
+          </div>
+
+          <button class="hk-menu__arrow hk-menu__arrow--next" id="menuNext" aria-label="次のメニュー" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5 L16 12 L9 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -893,16 +945,18 @@ body.has-mobile-menu-open { overflow: hidden; }
       <div class="hk-dog__inner">
         <header class="hk-dog__head">
           <span class="hk-eyebrow">— Dog Garden —</span>
-          <h2 class="hk-h2">ドッグランについて</h2>
+          <h2 class="hk-h2">ドッグラン</h2>
         </header>
 
         <div class="hk-dog__body">
-          <div class="hk-dog__hero-img">
-            <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?w=1600&q=80&auto=format&fit=crop" alt="">
-          </div>
-          <p class="hk-dog__copy">天然芝・約二百坪。木立と土塀に囲まれた静かなお庭です。
+          <div class="hk-dog__lead">
+            <div class="hk-dog__hero-img">
+              <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?w=1600&q=80&auto=format&fit=crop" alt="">
+            </div>
+            <p class="hk-dog__copy">天然芝・約二百坪。木立と土塀に囲まれた静かなお庭です。
 カフェのご利用の有無に関わらずご利用いただけます。
 完全予約制ではありませんが、混雑時はお待ちいただく場合がございます。</p>
+          </div>
 
           <div class="hk-pricing" role="table" aria-label="ドッグラン 料金表">
             <div class="hk-pricing__col">
@@ -993,7 +1047,6 @@ body.has-mobile-menu-open { overflow: hidden; }
                 data-cap="木漏れ日の庭"
                 data-src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=2000&q=80&auto=format&fit=crop"
                 style="background-image:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&q=80&auto=format&fit=crop')">
-          <span class="hk-byobu__no">01</span>
           <span class="hk-byobu__label">木漏れ日の庭</span>
           <span class="hk-byobu__open-cap">木漏れ日の庭<em>— komorebi —</em></span>
         </button>
@@ -1001,7 +1054,6 @@ body.has-mobile-menu-open { overflow: hidden; }
                 data-cap="縁側の席"
                 data-src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=2000&q=80&auto=format&fit=crop"
                 style="background-image:url('https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1600&q=80&auto=format&fit=crop')">
-          <span class="hk-byobu__no">02</span>
           <span class="hk-byobu__label">縁側の席</span>
           <span class="hk-byobu__open-cap">縁側の席<em>— engawa —</em></span>
         </button>
@@ -1009,7 +1061,6 @@ body.has-mobile-menu-open { overflow: hidden; }
                 data-cap="芝のドッグラン"
                 data-src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=2000&q=80&auto=format&fit=crop"
                 style="background-image:url('https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=1600&q=80&auto=format&fit=crop')">
-          <span class="hk-byobu__no">03</span>
           <span class="hk-byobu__label">芝のドッグラン</span>
           <span class="hk-byobu__open-cap">芝のドッグラン<em>— dog garden —</em></span>
         </button>
@@ -1017,7 +1068,6 @@ body.has-mobile-menu-open { overflow: hidden; }
                 data-cap="玉露の一服"
                 data-src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=2000&q=80&auto=format&fit=crop"
                 style="background-image:url('https://images.unsplash.com/photo-1545048702-79362596cdc9?w=1600&q=80&auto=format&fit=crop')">
-          <span class="hk-byobu__no">04</span>
           <span class="hk-byobu__label">玉露の一服</span>
           <span class="hk-byobu__open-cap">玉露の一服<em>— gyokuro —</em></span>
         </button>
@@ -1025,7 +1075,6 @@ body.has-mobile-menu-open { overflow: hidden; }
                 data-cap="上生菓子"
                 data-src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=2000&q=80&auto=format&fit=crop"
                 style="background-image:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1600&q=80&auto=format&fit=crop')">
-          <span class="hk-byobu__no">05</span>
           <span class="hk-byobu__label">上生菓子</span>
           <span class="hk-byobu__open-cap">上生菓子<em>— wagashi —</em></span>
         </button>
@@ -1033,7 +1082,6 @@ body.has-mobile-menu-open { overflow: hidden; }
                 data-cap="お庭で寛ぐ"
                 data-src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=2000&q=80&auto=format&fit=crop"
                 style="background-image:url('https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=1600&q=80&auto=format&fit=crop')">
-          <span class="hk-byobu__no">06</span>
           <span class="hk-byobu__label">お庭で寛ぐ</span>
           <span class="hk-byobu__open-cap">お庭で寛ぐ<em>— resting —</em></span>
         </button>
@@ -1041,7 +1089,6 @@ body.has-mobile-menu-open { overflow: hidden; }
                 data-cap="土間の店内"
                 data-src="https://images.unsplash.com/photo-1583416750470-965b2707b355?w=2000&q=80&auto=format&fit=crop"
                 style="background-image:url('https://images.unsplash.com/photo-1583416750470-965b2707b355?w=1600&q=80&auto=format&fit=crop')">
-          <span class="hk-byobu__no">07</span>
           <span class="hk-byobu__label">土間の店内</span>
           <span class="hk-byobu__open-cap">土間の店内<em>— doma —</em></span>
         </button>
@@ -1067,7 +1114,7 @@ body.has-mobile-menu-open { overflow: hidden; }
               </dd>
             </div>
             <div class="hk-access__row">
-              <dt>☎ 電話</dt>
+              <dt>📞 電話</dt>
               <dd><span class="hk-access__phone">0771-22-0123</span></dd>
             </div>
             <div class="hk-access__row">
@@ -1079,7 +1126,7 @@ body.has-mobile-menu-open { overflow: hidden; }
               <dd>8台 (無料)</dd>
             </div>
             <div class="hk-access__row">
-              <dt>＠ SNS</dt>
+              <dt>📷 SNS</dt>
               <dd><a href="https://www.instagram.com/hanakago.kameoka/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer">@hanakago.kameoka</a></dd>
             </div>
           </dl>
@@ -1096,7 +1143,7 @@ body.has-mobile-menu-open { overflow: hidden; }
   <section class="hk-news" id="news">
     <div class="hk-section">
       <span class="hk-eyebrow">— News —</span>
-      <h2 class="hk-h2">花かごからのお知らせ</h2>
+      <h2 class="hk-h2">お知らせ</h2>
       <ul class="hk-news__list">
 
         <li class="hk-news__item">
@@ -1173,10 +1220,10 @@ body.has-mobile-menu-open { overflow: hidden; }
     <div class="hk-cta__pattern"></div>
     <div class="hk-cta__inner">
       <div>
-        <h2><span class="cta-phrase">ご来店、</span><span class="cta-phrase">心よりお待ちしております。</span></h2>
-        <p><span class="cta-phrase">お席のご予約はカフェのみ承っております。</span><span class="cta-phrase">ドッグランは予約制ではございませんが、混雑時はお待ちいただく場合がございます。</span></p>
+        <h2>ご来店お待ちしております。</h2>
+        <p>お席のご予約はカフェのみ承っております。</p>
       </div>
-      <div style="display:flex; gap:var(--s-3); flex-direction:column;">
+      <div class="hk-cta__actions">
         <a href="#" class="hk-btn">カフェ席を予約する →</a>
         <a href="#" class="hk-btn hk-btn--ghost" style="color: rgb(42, 38, 34); border-color: var(--shoji)">お問い合わせ →</a>
       </div>
