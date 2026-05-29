@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>花かご Hanakago — 和カフェ＆ドッグラン</title>
+<title>花かご Hanakago｜和カフェ＆ドッグラン</title>
 <link rel="icon" type="image/svg+xml" href="assets/mark.svg">
 <link rel="stylesheet" href="styles/kit.css">
 
@@ -41,8 +41,8 @@
 .satoA .hk-hero__veil {
   position: absolute; inset: 0; z-index: 1;
   background:
-    linear-gradient(180deg, rgba(245,239,228,.50) 0%, rgba(245,239,228,.05) 38%, rgba(0,0,0,0) 100%),
-    linear-gradient(110deg, rgba(245,239,228,.85) 0%, rgba(245,239,228,.30) 50%, rgba(0,0,0,.10) 100%);
+    linear-gradient(180deg, rgba(245,239,228,.55) 0%, rgba(245,239,228,.10) 45%, rgba(0,0,0,0) 100%),
+    linear-gradient(105deg, rgba(245,239,228,.96) 0%, rgba(245,239,228,.80) 32%, rgba(245,239,228,.35) 60%, rgba(245,239,228,.05) 100%);
 }
 .satoA .hk-hero__inner {
   position: relative; z-index: 2;
@@ -66,6 +66,44 @@
   font-family: var(--font-body-jp);
   font-size: var(--t-md); line-height: 2.1; letter-spacing: 0.06em;
   color: var(--sumi-2);
+}
+
+.satoA .hk-hero__status {
+  display: inline-flex; align-items: center; gap: 16px;
+  margin-top: var(--s-7);
+  padding: 11px 20px;
+  background: rgba(42,38,34,.62);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1); backdrop-filter: blur(10px) saturate(1.1);
+  position: relative;
+}
+.satoA .hk-hero__status-pill {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-display-jp); font-weight: 500;
+  font-size: var(--t-base); letter-spacing: 0.10em;
+  color: var(--shoji); white-space: nowrap;
+}
+.satoA .hk-hero__status-pill::before {
+  content: ""; width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(251,247,239,.45);
+}
+.satoA .hk-hero__status-pill.is-open::before {
+  background: #a9c267;
+  box-shadow: 0 0 0 4px rgba(169,194,103,.22);
+  animation: hkPulse 2.4s ease-in-out infinite;
+}
+.satoA .hk-hero__status-pill.is-closed::before { background: rgba(251,247,239,.45); }
+@keyframes hkPulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(169,194,103,.22); }
+  50%      { box-shadow: 0 0 0 6px rgba(169,194,103,.08); }
+}
+.satoA .hk-hero__status-meta {
+  font-family: var(--font-body-jp);
+  font-size: var(--t-sm); letter-spacing: 0.06em;
+  color: rgba(251,247,239,.78);
+  padding-left: 16px;
+  border-left: 1px solid rgba(251,247,239,.22);
+  white-space: nowrap;
 }
 .satoA .hk-hero__meta {
   display: flex; align-items: center; gap: var(--s-5);
@@ -281,37 +319,44 @@
 }
 .satoA .hk-menu__dot.is-active { background: var(--matcha-deep); width: 44px; }
 .satoA .hk-menu__dot:focus-visible { outline: 2px solid var(--matcha-deep); outline-offset: 4px; }
+.satoA .hk-menu__featured-label {
+  text-align: center;
+  font-family: var(--font-display-jp); font-style: normal;
+  font-size: var(--t-sm); color: var(--matcha-deep);
+  letter-spacing: 0.14em;
+  margin: var(--s-6) 0 calc(var(--s-6) * -1);
+}
 .satoA .hk-menu__item-img { width: 360px; height: 240px; overflow: hidden; }
 .satoA .hk-menu__item-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .satoA .hk-menu__item-meta { padding: var(--s-4) var(--s-6) var(--s-4) 0;
   display: grid; align-content: center; gap: var(--s-2); overflow: hidden; }
-.satoA .hk-menu__item-no { font-family: var(--font-display-en); font-style: italic; font-size: var(--t-sm); color: var(--matcha-deep); letter-spacing: 0.18em; }
-.satoA .hk-menu__item-name { font-family: var(--font-display-jp); font-weight: 500; font-size: var(--t-xl); letter-spacing: 0.08em; color: var(--sumi); margin: 0; }
-.satoA .hk-menu__item-desc { color: var(--sumi-2); line-height: 1.95; font-size: var(--t-sm); margin: 0; }
+.satoA .hk-menu__item-name { font-family: var(--font-display-jp); font-weight: 500; font-size: var(--t-lg); letter-spacing: 0.08em; color: var(--sumi); margin: 0; }
+.satoA .hk-menu__item-desc { color: var(--sumi-2); line-height: 1.9; font-size: var(--t-xs); margin: 0; }
 .satoA .hk-menu__item-foot {
-  display: flex; justify-content: space-between; align-items: baseline;
-  margin-top: var(--s-3); padding-top: var(--s-4);
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: var(--s-2); padding-top: var(--s-3);
   border-top: 1px solid var(--hairline-soft);
 }
-.satoA .hk-menu__item-price { font-family: var(--font-display-jp); font-size: var(--t-md); color: var(--sumi); }
+.satoA .hk-menu__item-price { font-family: var(--font-display-jp); font-size: var(--t-base); color: var(--sumi); }
+.satoA .hk-menu__item-foot .hk-chip { font-size: var(--t-xs); padding: 3px 10px; }
 
 /* Dog run */
 .satoA .hk-dog { background: var(--kinari); position: relative; overflow: hidden; }
-.satoA .hk-dog__inner { display: grid; gap: var(--s-7); }
+.satoA .hk-dog__inner { display: grid; gap: var(--s-6); }
 .satoA .hk-dog__head {
-  padding-bottom: var(--s-5);
+  padding-bottom: var(--s-4);
   border-bottom: 1px solid var(--hairline-soft);
   display: grid; grid-template-columns: minmax(0, 1fr) 360px;
-  gap: var(--s-7); align-items: end;
+  gap: 0 var(--s-7); align-items: end;
 }
 .satoA .hk-dog__head .hk-eyebrow { grid-column: 1 / 2; grid-row: 1; }
 .satoA .hk-dog__head .hk-h2     { grid-column: 1 / 2; grid-row: 2; }
 .satoA .hk-dog__head .hk-sub    { grid-column: 2 / 3; grid-row: 1 / 3; align-self: end; text-align: right; }
-.satoA .hk-dog__body { display: grid; gap: var(--s-7); }
+.satoA .hk-dog__body { display: grid; gap: var(--s-6); }
 .satoA .hk-dog__copy { color: var(--sumi-2); line-height: 2.05; max-width: 64ch; margin: 0; }
 .satoA .hk-dog__lead {
-  display: grid; grid-template-columns: 1.15fr 1fr;
-  gap: var(--s-7);
+  display: grid; grid-template-columns: 440px 1fr;
+  gap: var(--s-6);
   align-items: center;
 }
 .satoA .hk-dog__lead .hk-dog__copy {
@@ -322,12 +367,22 @@
 .satoA .hk-dog__hero-img {
   aspect-ratio: 3 / 2;
   overflow: hidden;
+  max-width: 440px;
 }
 .satoA .hk-dog__hero-img img { width: 100%; height: 100%; object-fit: cover; }
 
+/* Pricing — tighter scale for the dog section */
+.satoA .hk-pricing__col { padding: var(--s-5) var(--s-4); }
+.satoA .hk-pricing__plan { font-size: var(--t-sm); margin-bottom: var(--s-2); }
+.satoA .hk-pricing__jp { font-size: var(--t-lg); margin-bottom: var(--s-3); }
+.satoA .hk-pricing__price { font-size: var(--t-xl); margin-bottom: var(--s-2); }
+.satoA .hk-pricing__price .yen { font-size: var(--t-sm); }
+.satoA .hk-pricing__price .unit { font-size: var(--t-xs); }
+.satoA .hk-pricing__note { font-size: var(--t-xs); line-height: 1.8; }
+
 /* Rules (continuation of Dog Garden section) */
 .satoA .hk-dog__rules {
-  margin-top: var(--s-6);
+  margin-top: var(--s-4);
   padding-top: var(--s-5);
   border-top: 1px solid var(--hairline-soft);
 }
@@ -367,9 +422,6 @@
   /* Header */
   .satoA .hk-header { padding: 14px 20px; }
   .satoA .hk-header.is-scrolled { padding: 10px 20px; }
-  .satoA .hk-nav { display: none; }
-  .satoA .hk-hours-pill { display: none; }
-  .satoA .hk-menu-btn { display: flex; }
   .satoA .hk-brand__name { display: none; }
 
   /* Hero — tighter on mobile */
@@ -377,6 +429,9 @@
   .satoA .hk-hero__inner { padding: 96px 20px var(--s-6); min-height: 62svh; }
   .satoA .hk-hero__title { font-size: clamp(32px, 8.4vw, 48px) !important; letter-spacing: 0.05em; }
   .satoA .hk-hero__lede { font-size: var(--t-sm); }
+  .satoA .hk-hero__status { gap: 12px; padding: 0; margin-top: var(--s-5); flex-wrap: wrap; }
+  .satoA .hk-hero__status-pill { font-size: var(--t-sm); }
+  .satoA .hk-hero__status-meta { font-size: var(--t-xs); padding-left: 12px; }
   .satoA .hk-hero__scroll { right: 20px; }
 
   /* Section titles */
@@ -467,7 +522,11 @@
   }
   .satoA .hk-byobu__panel:last-child { border-bottom: 0; }
   .satoA .hk-byobu__panel.is-open {
-    flex-basis: 233px;
+    flex-basis: 66vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--sumi);
   }
   .satoA .hk-byobu__label {
     /* horizontal label, left-aligned (override default vertical-rl that comes later in source) */
@@ -528,7 +587,7 @@
 /* Very small phones */
 @media (max-width: 420px) {
   .satoA .hk-byobu__panel { flex: 0 0 52px; }
-  .satoA .hk-byobu__panel.is-open { flex-basis: 220px; }
+  .satoA .hk-byobu__panel.is-open { flex-basis: 64vw; }
   .satoA .hk-menu__cats { grid-template-columns: 1fr; }
   .satoA .hk-footer__cols { grid-template-columns: 1fr; }
 }
@@ -705,8 +764,10 @@
 .satoA .hk-cta .hk-btn:hover { background: var(--washi); }
 
 /* ==================== HAMBURGER + MOBILE MENU (kinone-style) ==================== */
+.satoA .hk-nav { display: none; }
+.satoA .hk-hours-pill { display: none; }
 .satoA .hk-menu-btn {
-  display: none;
+  display: flex;
   align-items: center;
   gap: 10px;
   background: var(--shoji);
@@ -813,27 +874,6 @@
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0 50%);
   opacity: 0.85;
 }
-.satoA .hk-tree__sub {
-  list-style: none;
-  padding: 0 24px 12px 52px;
-  margin: 0;
-}
-.satoA .hk-tree__sub li { padding: 0; }
-.satoA .hk-tree__sub a {
-  display: block;
-  padding: 8px 0;
-  font-family: var(--font-body-jp);
-  font-size: 14px; letter-spacing: 0.06em;
-  color: var(--sumi-3);
-  text-decoration: none;
-  border-bottom: 1px dashed rgba(42,38,34,.10);
-}
-.satoA .hk-tree__sub li:last-child a { border-bottom: 0; }
-.satoA .hk-tree__sub a::before {
-  content: '— '; color: var(--matcha-deep); margin-right: 4px;
-}
-.satoA .hk-tree__sub a:hover,
-.satoA .hk-tree__sub a:active { color: var(--matcha-deep); }
 
 .satoA .hk-mobile-menu__foot {
   padding: 16px 24px;
@@ -873,7 +913,6 @@ body.has-mobile-menu-open { overflow: hidden; }
       <a href="#access">アクセス</a>
       <a href="#news">お知らせ</a>
     </nav>
-    <span class="hk-hours-pill" id="hoursPill">読み込み中</span>
   </header>
 
   <!-- Mobile hamburger lives outside the header so its stacking context is global -->
@@ -895,30 +934,22 @@ body.has-mobile-menu-open { overflow: hidden; }
       <nav class="hk-mobile-menu__nav" aria-label="サイトメニュー">
         <ul class="hk-tree">
           <li class="hk-tree__item">
-            <a href="#top"     class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>ホーム</a>
+            <a href="#concept" class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>店舗のこと</a>
           </li>
           <li class="hk-tree__item">
-            <a href="#menu"    class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>カフェのお品書き</a>
-            <ul class="hk-tree__sub">
-              <li><a href="#menu" data-idx="0">花かごの和パフェ</a></li>
-              <li><a href="#menu" data-idx="1">玉露の三煎</a></li>
-              <li><a href="#menu" data-idx="2">上生菓子三種盛り</a></li>
-            </ul>
+            <a href="#menu"    class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>カフェ</a>
           </li>
           <li class="hk-tree__item">
             <a href="#dog"     class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>ドッグラン</a>
           </li>
           <li class="hk-tree__item">
-            <a href="#gallery" class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>花かごの様子</a>
+            <a href="#gallery" class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>ギャラリー</a>
           </li>
           <li class="hk-tree__item">
             <a href="#access"  class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>店舗情報</a>
           </li>
           <li class="hk-tree__item">
             <a href="#news"    class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>お知らせ</a>
-          </li>
-          <li class="hk-tree__item">
-            <a href="https://www.instagram.com/hanakago.kameoka/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer" class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>Instagram</a>
           </li>
         </ul>
       </nav>
@@ -939,7 +970,10 @@ body.has-mobile-menu-open { overflow: hidden; }
     <div class="hk-hero__inner">
       <h1 class="hk-hero__title"><span style="color: rgb(37, 42, 34);">自然とともに、<br><span style="color: rgb(46, 85, 22);">特別な時間</span>を。</span></h1>
       <p class="hk-hero__lede">京都・亀岡にある和カフェ。  広い庭にはドッグランを併設。</p>
-
+      <div class="hk-hero__status">
+        <span class="hk-hero__status-pill" id="hoursPill">読み込み中</span>
+        <span class="hk-hero__status-meta">金・土・日のみ営業　11:00 – 17:30</span>
+      </div>
     </div>
 
   </section>
@@ -975,6 +1009,8 @@ body.has-mobile-menu-open { overflow: hidden; }
       <h2 class="hk-h2">カフェ</h2>
       <p class="hk-sub">お茶・上生菓子・和パフェ・ケーキ・季節のひと品をご用意しています。お庭を眺めながら、お楽しみください。</p>
 
+      <p class="hk-menu__featured-label">— お品書き（一部） —</p>
+
       <div class="hk-menu__carousel" data-carousel>
         <ul class="hk-menu__featured" id="menuTrack">
           <li class="hk-menu__item" data-idx="0">
@@ -982,14 +1018,13 @@ body.has-mobile-menu-open { overflow: hidden; }
               <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=80&auto=format&fit=crop" alt="">
             </div>
             <div class="hk-menu__item-meta">
-              <span class="hk-menu__item-no">No. 01</span>
               <h4 class="hk-menu__item-name">花かごの和パフェ</h4>
               <p class="hk-menu__item-desc">
                 葛ゼリーと抹茶アイス、白玉と粒餡を重ねて。<br>
                 てっぺんには、その日の手しごとを一品。
               </p>
               <div class="hk-menu__item-foot">
-                <span class="hk-chip hk-chip--matcha">看板</span>
+                <span class="hk-chip">看板</span>
                 <span class="hk-menu__item-price">¥1,580</span>
               </div>
             </div>
@@ -999,14 +1034,13 @@ body.has-mobile-menu-open { overflow: hidden; }
               <img src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=900&q=80&auto=format&fit=crop" alt="">
             </div>
             <div class="hk-menu__item-meta">
-              <span class="hk-menu__item-no">No. 02</span>
               <h4 class="hk-menu__item-name">玉露の三煎</h4>
               <p class="hk-menu__item-desc">
                 和束の玉露を、ぬるめのお湯でゆっくりと。<br>
                 二煎目まで、丁寧にお添えいたします。
               </p>
               <div class="hk-menu__item-foot">
-                <span class="hk-chip hk-chip--matcha">通年</span>
+                <span class="hk-chip">通年</span>
                 <span class="hk-menu__item-price">¥980</span>
               </div>
             </div>
@@ -1016,7 +1050,6 @@ body.has-mobile-menu-open { overflow: hidden; }
               <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=80&auto=format&fit=crop" alt="">
             </div>
             <div class="hk-menu__item-meta">
-              <span class="hk-menu__item-no">No. 03</span>
               <h4 class="hk-menu__item-name">上生菓子三種盛り</h4>
               <p class="hk-menu__item-desc">
                 季節の上生菓子から、その日の手しごとを三種。<br>
@@ -1385,16 +1418,16 @@ function updateHours() {
   const inHours = tMin >= openMin && tMin < closeMin;
   if (isClosed) {
     pill.textContent = '本日は定休日';
-    pill.className = 'hk-hours-pill is-closed';
+    pill.className = 'hk-hero__status-pill is-closed';
   } else if (inHours) {
     pill.textContent = `営業中 — ${17}:30 まで`;
-    pill.className = 'hk-hours-pill is-open';
+    pill.className = 'hk-hero__status-pill is-open';
   } else if (tMin < openMin) {
     pill.textContent = '本日 11:00 開店';
-    pill.className = 'hk-hours-pill is-closed';
+    pill.className = 'hk-hero__status-pill is-closed';
   } else {
     pill.textContent = '本日の営業を終了';
-    pill.className = 'hk-hours-pill is-closed';
+    pill.className = 'hk-hero__status-pill is-closed';
   }
   // mirror into mobile menu
   const mob = document.getElementById('hoursPillMobile');
@@ -1434,7 +1467,7 @@ setInterval(updateHours, 60_000);
   const bg = menu.querySelector('.hk-mobile-menu__overlay');
   if (bg) bg.addEventListener('click', close);
   // close on link tap so anchor navigation works
-  menu.querySelectorAll('.hk-tree__link, .hk-tree__sub a').forEach(a => {
+  menu.querySelectorAll('.hk-tree__link').forEach(a => {
     a.addEventListener('click', close);
   });
   // close on Escape
