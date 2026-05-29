@@ -68,43 +68,6 @@
   color: var(--sumi-2);
 }
 
-.satoA .hk-hero__status {
-  display: inline-flex; align-items: center; gap: 16px;
-  margin-top: var(--s-7);
-  padding: 11px 20px;
-  background: rgba(42,38,34,.62);
-  -webkit-backdrop-filter: blur(10px) saturate(1.1); backdrop-filter: blur(10px) saturate(1.1);
-  position: relative;
-}
-.satoA .hk-hero__status-pill {
-  position: relative;
-  display: inline-flex; align-items: center; gap: 10px;
-  font-family: var(--font-display-jp); font-weight: 500;
-  font-size: var(--t-base); letter-spacing: 0.10em;
-  color: var(--shoji); white-space: nowrap;
-}
-.satoA .hk-hero__status-pill::before {
-  content: ""; width: 8px; height: 8px; border-radius: 50%;
-  background: rgba(251,247,239,.45);
-}
-.satoA .hk-hero__status-pill.is-open::before {
-  background: #a9c267;
-  box-shadow: 0 0 0 4px rgba(169,194,103,.22);
-  animation: hkPulse 2.4s ease-in-out infinite;
-}
-.satoA .hk-hero__status-pill.is-closed::before { background: rgba(251,247,239,.45); }
-@keyframes hkPulse {
-  0%, 100% { box-shadow: 0 0 0 4px rgba(169,194,103,.22); }
-  50%      { box-shadow: 0 0 0 6px rgba(169,194,103,.08); }
-}
-.satoA .hk-hero__status-meta {
-  font-family: var(--font-body-jp);
-  font-size: var(--t-sm); letter-spacing: 0.06em;
-  color: rgba(251,247,239,.78);
-  padding-left: 16px;
-  border-left: 1px solid rgba(251,247,239,.22);
-  white-space: nowrap;
-}
 .satoA .hk-hero__meta {
   display: flex; align-items: center; gap: var(--s-5);
   margin-top: var(--s-8);
@@ -423,15 +386,13 @@
   .satoA .hk-header { padding: 14px 20px; }
   .satoA .hk-header.is-scrolled { padding: 10px 20px; }
   .satoA .hk-brand__name { display: none; }
+  .satoA .hk-header-hours { display: none; }
 
   /* Hero — tighter on mobile */
   .satoA .hk-hero { min-height: 0; }
   .satoA .hk-hero__inner { padding: 96px 20px var(--s-6); min-height: 62svh; }
   .satoA .hk-hero__title { font-size: clamp(32px, 8.4vw, 48px) !important; letter-spacing: 0.05em; }
   .satoA .hk-hero__lede { font-size: var(--t-sm); }
-  .satoA .hk-hero__status { gap: 12px; padding: 0; margin-top: var(--s-5); flex-wrap: wrap; }
-  .satoA .hk-hero__status-pill { font-size: var(--t-sm); }
-  .satoA .hk-hero__status-meta { font-size: var(--t-xs); padding-left: 12px; }
   .satoA .hk-hero__scroll { right: 20px; }
 
   /* Section titles */
@@ -522,8 +483,9 @@
   }
   .satoA .hk-byobu__panel:last-child { border-bottom: 0; }
   .satoA .hk-byobu__panel.is-open {
-    flex-basis: 66vw;
-    background-size: contain;
+    flex: none;
+    aspect-ratio: 3 / 2;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-color: var(--sumi);
@@ -587,7 +549,7 @@
 /* Very small phones */
 @media (max-width: 420px) {
   .satoA .hk-byobu__panel { flex: 0 0 52px; }
-  .satoA .hk-byobu__panel.is-open { flex-basis: 64vw; }
+  .satoA .hk-byobu__panel.is-open { flex: none; aspect-ratio: 3 / 2; }
   .satoA .hk-menu__cats { grid-template-columns: 1fr; }
   .satoA .hk-footer__cols { grid-template-columns: 1fr; }
 }
@@ -785,6 +747,10 @@
 .satoA .hk-menu-btn--fixed {
   position: fixed; top: 14px; right: 14px; z-index: 1100;
 }
+@keyframes hkPulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(124,138,85,.18); }
+  50%      { box-shadow: 0 0 0 6px rgba(124,138,85,.07); }
+}
 .satoA .hk-menu-btn__label {
   display: inline-block;
   line-height: 1;
@@ -954,7 +920,6 @@ body.has-mobile-menu-open { overflow: hidden; }
         </ul>
       </nav>
       <div class="hk-mobile-menu__foot">
-        <span class="hk-mobile-menu__hours" id="hoursPillMobile">読み込み中</span>
         <span class="hk-mobile-menu__tag">— 京都・亀岡 —</span>
       </div>
     </aside>
@@ -970,10 +935,6 @@ body.has-mobile-menu-open { overflow: hidden; }
     <div class="hk-hero__inner">
       <h1 class="hk-hero__title"><span style="color: rgb(37, 42, 34);">自然とともに、<br><span style="color: rgb(46, 85, 22);">特別な時間</span>を。</span></h1>
       <p class="hk-hero__lede">京都・亀岡にある和カフェ。  広い庭にはドッグランを併設。</p>
-      <div class="hk-hero__status">
-        <span class="hk-hero__status-pill" id="hoursPill">読み込み中</span>
-        <span class="hk-hero__status-meta">金・土・日のみ営業　11:00 – 17:30</span>
-      </div>
     </div>
 
   </section>
@@ -1402,42 +1363,8 @@ window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
 /* ────────────────── LIVE HOURS ─────────────────────
-   Open: Fri / Sat / Sun  11:00 — 17:30  (L.O. 17:00)
+   Removed — operating status no longer displayed in UI.
    ─────────────────────────────────────────────────── */
-function updateHours() {
-  const pill = document.getElementById('hoursPill');
-  const now = new Date();
-  const day = now.getDay(); // 0=Sun
-  const hour = now.getHours();
-  const min = now.getMinutes();
-  const tMin = hour * 60 + min;
-  // Open only Fri (5), Sat (6), Sun (0).
-  const isClosed = !(day === 0 || day === 5 || day === 6);
-  const openMin = 11 * 60;
-  const closeMin = 17 * 60 + 30;
-  const inHours = tMin >= openMin && tMin < closeMin;
-  if (isClosed) {
-    pill.textContent = '本日は定休日';
-    pill.className = 'hk-hero__status-pill is-closed';
-  } else if (inHours) {
-    pill.textContent = `営業中 — ${17}:30 まで`;
-    pill.className = 'hk-hero__status-pill is-open';
-  } else if (tMin < openMin) {
-    pill.textContent = '本日 11:00 開店';
-    pill.className = 'hk-hero__status-pill is-closed';
-  } else {
-    pill.textContent = '本日の営業を終了';
-    pill.className = 'hk-hero__status-pill is-closed';
-  }
-  // mirror into mobile menu
-  const mob = document.getElementById('hoursPillMobile');
-  if (mob) {
-    mob.textContent = pill.textContent;
-    mob.className = 'hk-mobile-menu__hours ' + (pill.classList.contains('is-open') ? 'is-open' : 'is-closed');
-  }
-}
-updateHours();
-setInterval(updateHours, 60_000);
 
 /* ────────────────── MOBILE MENU ───────────────── */
 (() => {
