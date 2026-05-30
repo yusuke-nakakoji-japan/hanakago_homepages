@@ -29,26 +29,53 @@
 <style>
 /* ─────── Variant A · 里の家 (Sato no Ie / Quiet House) overrides ─────── */
 
+.satoA .hk-brand { align-items: center; gap: 12px; }
+.satoA .hk-header { padding-block: 10px; }
+.satoA .hk-header.is-scrolled { padding-block: 8px; }
+.satoA .hk-brand__logo { width: 44px; height: 44px; display: block; flex: 0 0 auto; }
+.satoA .hk-brand__name { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; line-height: 1; align-self: center; }
+.satoA .hk-brand__jp { font-family: var(--font-display-jp); font-weight: 500; font-size: 14px; letter-spacing: 0.12em; color: var(--sumi); }
+.satoA .hk-brand__en { font-family: var(--font-display-en); font-style: italic; font-size: 12px; letter-spacing: 0.08em; color: var(--sumi-3); }
+
 .satoA .hk-hero {
   position: relative;
   min-height: 82vh;
+  margin-top: 10px;
   display: grid;
   align-items: stretch;
   overflow: hidden;
+  background: var(--kinari);
 }
-.satoA .hk-hero__image { position: absolute; inset: 0; z-index: 0; }
-.satoA .hk-hero__image img { width: 100%; height: 100%; object-fit: cover; }
+.satoA .hk-hero__image { position: absolute; inset: 62px 0 0 0; z-index: 0; }
+.satoA .hk-hero__image img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: blur(6px); transform: scale(1.06); }
 .satoA .hk-hero__veil {
   position: absolute; inset: 0; z-index: 1;
   background:
-    linear-gradient(180deg, rgba(245,239,228,.55) 0%, rgba(245,239,228,.10) 45%, rgba(0,0,0,0) 100%),
-    linear-gradient(105deg, rgba(245,239,228,.96) 0%, rgba(245,239,228,.80) 32%, rgba(245,239,228,.35) 60%, rgba(245,239,228,.05) 100%);
+    linear-gradient(180deg, rgba(245,239,228,.40) 0%, rgba(245,239,228,.20) 50%, rgba(245,239,228,.45) 100%),
+    radial-gradient(ellipse at center, rgba(245,239,228,.30) 0%, rgba(245,239,228,.62) 70%, rgba(245,239,228,.78) 100%);
 }
 .satoA .hk-hero__inner {
   position: relative; z-index: 2;
   max-width: var(--container); width: 100%; margin: 0 auto;
-  padding: 16vh var(--gutter) var(--s-8);
-  display: grid; align-content: center;
+  padding: 12vh var(--gutter) var(--s-8);
+  display: grid; align-content: center; justify-items: center;
+}
+.satoA .hk-hero__brand {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0;
+  width: min(54%, 560px);
+}
+.satoA .hk-hero__logo {
+  width: 100%; height: auto; display: block;
+}
+.satoA .hk-hero__copy {
+  margin: -20px 0 0;
+  font-family: var(--font-display-jp); font-weight: 500;
+  font-size: clamp(22px, 2.7vw, 34px);
+  letter-spacing: 0.24em;
+  color: var(--sumi);
+  text-align: center;
+  text-indent: 0.24em;
 }
 .satoA .hk-hero__eyebrow .en-d {
   font-family: var(--font-display-en); font-style: italic;
@@ -370,8 +397,6 @@
 @media (max-width: 1080px) {
   .satoA { --gutter: 40px; }
   .satoA .hk-menu__cats { grid-template-columns: repeat(3, 1fr); }
-  .satoA .hk-byobu { height: 380px; }
-  .satoA .hk-byobu__panel { flex-basis: 72px; }
   .satoA .hk-footer__inner { grid-template-columns: 1fr; gap: var(--s-7); }
   .satoA .hk-dog__head { grid-template-columns: 1fr; }
   .satoA .hk-dog__head .hk-sub { grid-column: 1; grid-row: auto; text-align: left; align-self: start; }
@@ -385,13 +410,22 @@
   /* Header */
   .satoA .hk-header { padding: 14px 20px; }
   .satoA .hk-header.is-scrolled { padding: 10px 20px; }
-  .satoA .hk-brand__name { display: none; }
   .satoA .hk-header-hours { display: none; }
+  .satoA .hk-brand__logo { width: 40px; height: 40px; }
+  .satoA .hk-brand__en { font-size: 12px; letter-spacing: 0.06em; white-space: normal; }
 
   /* Hero — tighter on mobile */
   .satoA .hk-hero { min-height: 0; }
   .satoA .hk-hero__inner { padding: 96px 20px var(--s-6); min-height: 62svh; }
   .satoA .hk-hero__title { font-size: clamp(32px, 8.4vw, 48px) !important; letter-spacing: 0.05em; }
+  .satoA .hk-hero__image { width: 100%; inset: 60px 0 0 0; }
+  .satoA .hk-hero__image img { object-position: center; filter: blur(5px); transform: scale(1.08); }
+  .satoA .hk-hero__brand { width: min(80%, 400px); }
+  .satoA .hk-hero__veil {
+    background:
+      linear-gradient(180deg, rgba(245,239,228,.40) 0%, rgba(245,239,228,.22) 50%, rgba(245,239,228,.48) 100%),
+      radial-gradient(ellipse at center, rgba(245,239,228,.32) 0%, rgba(245,239,228,.64) 72%, rgba(245,239,228,.80) 100%);
+  }
   .satoA .hk-hero__lede { font-size: var(--t-sm); }
   .satoA .hk-hero__scroll { right: 20px; }
 
@@ -467,45 +501,11 @@
   .satoA .hk-dog__rules .hk-rules { grid-template-columns: 1fr; }
 
   /* Gallery (byōbu) — vertical accordion on mobile (horizontal would crush the active panel) */
-  .satoA .hk-byobu {
-    flex-direction: column;
-    height: auto;
-    min-height: 0;
-  }
-  .satoA .hk-byobu__panel {
-    flex: 0 0 56px;
-    width: 100%;
-    height: auto;
-    min-height: 56px;
-    border-right: 0;
-    border-bottom: 1px solid rgba(20,17,14,.65);
-    transition: flex-basis 520ms cubic-bezier(.22,.61,.36,1), filter 360ms var(--ease);
-  }
-  .satoA .hk-byobu__panel:last-child { border-bottom: 0; }
-  .satoA .hk-byobu__panel.is-open {
-    flex: none;
-    aspect-ratio: 3 / 2;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: var(--sumi);
-  }
-  .satoA .hk-byobu__label {
-    /* horizontal label, left-aligned (override default vertical-rl that comes later in source) */
-    writing-mode: horizontal-tb !important;
-    top: 50%; left: 56px; transform: translateY(-50%);
-    font-size: 17px; letter-spacing: 0.18em;
-    text-align: left;
-    white-space: nowrap;
-  }
-  .satoA .hk-byobu__open-cap {
-    font-size: 18px; left: 18px; right: 18px; bottom: 16px;
-  }
-  .satoA .hk-byobu__panel.is-open .hk-byobu__label {
-    /* hidden when open (the bottom caption shows it instead) */
-    opacity: 0;
-  }
-  .satoA .hk-byobu__panel.is-open::before { top: 14px; right: 16px; }
+  /* Gallery — keep 2 columns + the staggered look on mobile too */
+  .satoA .hk-gallery-wrap .hk-gallery { grid-template-columns: repeat(2, 1fr); gap: var(--s-3); }
+  .satoA .hk-gallery-wrap .hk-gphoto:nth-child(even) { transform: translateY(var(--s-6)); }
+  .satoA .hk-gphoto__plate { font-size: var(--t-sm); margin-top: var(--s-2); gap: 8px; }
+  .satoA .hk-gphoto__no { font-size: var(--t-xs); }
 
   /* Access */
   .satoA .hk-access__grid { grid-template-columns: 1fr; gap: var(--s-5); }
@@ -548,100 +548,62 @@
 
 /* Very small phones */
 @media (max-width: 420px) {
-  .satoA .hk-byobu__panel { flex: 0 0 52px; }
-  .satoA .hk-byobu__panel.is-open { flex: none; aspect-ratio: 3 / 2; }
   .satoA .hk-menu__cats { grid-template-columns: 1fr; }
   .satoA .hk-footer__cols { grid-template-columns: 1fr; }
 }
 
 /* Gallery — byōbu (folding screen) accordion */
 .satoA .hk-gallery-wrap { background: var(--kinari-2); }
-.satoA .hk-byobu {
-  display: flex;
-  height: 440px;
-  margin-top: var(--s-6);
-  background: var(--sumi);
-  border: 1px solid var(--sumi);
-  overflow: hidden;
-  user-select: none;
+.satoA .hk-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-7) var(--s-6);
+  margin-top: var(--s-7);
 }
-.satoA .hk-byobu__panel {
-  position: relative;
-  flex: 0 1 88px;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-color: var(--sumi);
-  border: 0;
-  padding: 0;
-  margin: 0;
+.satoA .hk-gphoto {
+  display: block;
+  width: 100%;
+  border: 0; padding: 0; margin: 0;
+  background: transparent;
   cursor: pointer;
-  overflow: hidden;
   outline: 0;
-  border-right: 1px solid rgba(20,17,14,.65);
-  transition:
-    flex-grow 720ms cubic-bezier(.22,.61,.36,1),
-    filter 480ms var(--ease);
-  filter: brightness(.62) saturate(.85);
+  text-align: left;
 }
-.satoA .hk-byobu__panel:last-child { border-right: 0; }
-.satoA .hk-byobu__panel:hover:not(.is-open) { filter: brightness(.74) saturate(.95); }
-.satoA .hk-byobu__panel.is-open {
-  flex-grow: 1;
-  filter: none;
-  cursor: zoom-in;
+.satoA .hk-gphoto:nth-child(even) { transform: translateY(var(--s-8)); }
+.satoA .hk-gphoto__frame {
+  display: block; position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: var(--kinari);
 }
-.satoA .hk-byobu__panel.is-open::after {
-  content: ''; position: absolute; inset: auto 0 0 0; height: 45%;
-  background: linear-gradient(180deg, transparent 0%, rgba(20,17,14,.55) 100%);
+.satoA .hk-gphoto__frame::after {
+  content: ''; position: absolute; inset: 0;
+  border: 1px solid rgba(42,38,34,.10);
   pointer-events: none;
 }
-.satoA .hk-byobu__label {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  writing-mode: vertical-rl;
-  font-family: var(--font-display-jp); font-weight: 500;
-  font-size: 17px;
-  letter-spacing: 0.32em;
-  color: var(--shoji);
-  text-shadow: 0 1px 4px rgba(20,17,14,.6);
-  white-space: nowrap;
-  z-index: 2;
-  transition: opacity 320ms var(--ease);
-}
-.satoA .hk-byobu__panel.is-open .hk-byobu__label { opacity: 0; }
-.satoA .hk-byobu__open-cap {
-  position: absolute;
-  left: 24px; bottom: 22px; right: 24px;
-  z-index: 2;
-  font-family: var(--font-display-jp); font-weight: 500;
-  font-size: 22px; letter-spacing: 0.14em;
-  color: var(--shoji);
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 380ms var(--ease) 280ms, transform 380ms var(--ease) 280ms;
-}
-.satoA .hk-byobu__open-cap em {
+.satoA .hk-gphoto__frame img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
   display: block;
+  transition: transform 700ms cubic-bezier(.22,.61,.36,1), filter 500ms var(--ease);
+  filter: saturate(.96);
+}
+.satoA .hk-gphoto:hover .hk-gphoto__frame img { transform: scale(1.04); filter: saturate(1.05); }
+.satoA .hk-gphoto__plate {
+  display: flex; align-items: baseline; gap: 12px;
+  margin-top: var(--s-3);
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--hairline);
+  font-family: var(--font-display-jp); font-weight: 500;
+  font-size: var(--t-base); letter-spacing: 0.10em; color: var(--sumi);
+  transition: border-color 300ms var(--ease);
+}
+.satoA .hk-gphoto:hover .hk-gphoto__plate { border-bottom-color: var(--matcha-deep); }
+.satoA .hk-gphoto__no {
   font-family: var(--font-display-en); font-style: italic;
-  font-size: 11px; letter-spacing: 0.20em;
-  color: rgba(251,247,239,.72);
-  margin-top: 6px;
-  text-transform: lowercase;
+  font-size: var(--t-sm); color: var(--matcha-deep); letter-spacing: 0.12em;
 }
-.satoA .hk-byobu__panel.is-open .hk-byobu__open-cap {
-  opacity: 1; transform: none;
-}
-.satoA .hk-byobu__panel.is-open::before {
-  content: '＋'; position: absolute;
-  top: 14px; right: 18px; z-index: 2;
-  color: var(--shoji);
-  font-size: 22px; font-weight: 300;
-  opacity: 0.65;
-  transition: opacity 200ms;
-}
-.satoA .hk-byobu__panel.is-open:hover::before { opacity: 1; }
 
 /* Access */
 .satoA .hk-access { background: var(--kinari); position: relative; overflow: hidden; }
@@ -723,7 +685,28 @@
   text-wrap: pretty;
 }
 .satoA .hk-cta .hk-btn { background: var(--shoji); color: var(--sumi); border-color: var(--shoji); }
-.satoA .hk-cta .hk-btn:hover { background: var(--washi); }
+.satoA .hk-lightbox__close {
+  position: absolute; top: 20px; right: 20px;
+  width: 44px; height: 44px;
+  padding: 0;
+  background: rgba(251,247,239,.92);
+  color: var(--sumi);
+  border: 0; border-radius: 50%;
+  font-size: 22px; line-height: 1;
+  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center;
+  z-index: 2;
+}
+.satoA .hk-lightbox__close:hover { background: #fff; }
+/* Lightbox image forced to 3:2 */
+.satoA .hk-lightbox__img {
+  width: min(92vw, 1080px);
+  height: auto; max-height: 86vh;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+/* Hide the floating メニュー button while the lightbox is open */
+body.has-lightbox-open .hk-menu-btn--fixed { display: none !important; }
 
 /* ==================== HAMBURGER + MOBILE MENU (kinone-style) ==================== */
 .satoA .hk-nav { display: none; }
@@ -788,7 +771,7 @@
 /* Right-slide panel */
 .satoA .hk-mobile-menu__panel {
   position: absolute; top: 0; right: 0; bottom: 0;
-  width: min(86vw, 360px);
+  width: min(62vw, 256px);
   background: var(--kinari);
   display: flex; flex-direction: column;
   transform: translateX(100%);
@@ -798,19 +781,12 @@
 .satoA .hk-mobile-menu.is-open .hk-mobile-menu__panel { transform: none; }
 
 .satoA .hk-mobile-menu__head {
-  padding: 20px 24px 16px;
+  padding: 24px 24px 18px;
   border-bottom: 1px solid rgba(42,38,34,.10);
+  text-align: left;
 }
-.satoA .hk-mobile-menu__brand {
-  display: flex; align-items: baseline; gap: 10px;
-}
-.satoA .hk-mobile-menu__brand-jp {
-  font-family: var(--font-display-jp); font-weight: 500;
-  font-size: 20px; letter-spacing: 0.16em; color: var(--sumi);
-}
-.satoA .hk-mobile-menu__brand-en {
-  font-family: var(--font-display-en); font-style: italic;
-  font-size: 13px; letter-spacing: 0.18em; color: var(--matcha-deep);
+.satoA .hk-mobile-menu__logo {
+  width: 88px; height: auto; display: block; margin: 0;
 }
 
 .satoA .hk-mobile-menu__nav {
@@ -862,12 +838,8 @@ body.has-mobile-menu-open { overflow: hidden; }
   <!-- =================================================== HEADER -->
   <header class="hk-header" id="hdr">
     <a class="hk-brand" href="#top">
-      <svg class="hk-brand__mark" viewBox="0 0 64 64">
-        <use href="assets/mark.svg#root"/>
-      </svg>
-      <img class="hk-brand__mark" src="assets/mark.svg" alt="" aria-hidden="true" style="margin-left:-38px;">
+      <img class="hk-brand__logo" src="assets/photos/logo/logo.png" alt="" aria-hidden="true">
       <span class="hk-brand__name">
-        <span class="hk-brand__jp">花かご</span>
         <span class="hk-brand__en">Hanakago café and dog garden</span>
       </span>
     </a>
@@ -892,10 +864,7 @@ body.has-mobile-menu-open { overflow: hidden; }
     <div class="hk-mobile-menu__overlay"></div>
     <aside class="hk-mobile-menu__panel">
       <div class="hk-mobile-menu__head">
-        <span class="hk-mobile-menu__brand">
-          <span class="hk-mobile-menu__brand-jp">花かご</span>
-          <span class="hk-mobile-menu__brand-en">Hanakago</span>
-        </span>
+        <img class="hk-mobile-menu__logo" src="assets/photos/logo/logo.png" alt="和カフェ・花かご Hana Kago">
       </div>
       <nav class="hk-mobile-menu__nav" aria-label="サイトメニュー">
         <ul class="hk-tree">
@@ -928,13 +897,12 @@ body.has-mobile-menu-open { overflow: hidden; }
   <!-- ==================================================== HERO -->
   <section class="hk-hero" id="top">
     <div class="hk-hero__image">
-      <img id="heroImg" src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=2000&q=80&auto=format&fit=crop" alt="">
+      <img id="heroImg" src="assets/photos/hero/hero.png" alt="花かごの和の盛り合わせ">
     </div>
     <div class="hk-hero__veil"></div>
 
     <div class="hk-hero__inner">
-      <h1 class="hk-hero__title"><span style="color: rgb(37, 42, 34);">自然とともに、<br><span style="color: rgb(46, 85, 22);">特別な時間</span>を。</span></h1>
-      <p class="hk-hero__lede">京都・亀岡にある和カフェ。  広い庭にはドッグランを併設。</p>
+      <div class="hk-hero__brand"><img class="hk-hero__logo" src="assets/logo-hanakago.png" alt="和カフェ・花かご Hana Kago"><p class="hk-hero__copy">心安らぐ、ひとときを</p></div>
     </div>
 
   </section>
@@ -976,7 +944,7 @@ body.has-mobile-menu-open { overflow: hidden; }
         <ul class="hk-menu__featured" id="menuTrack">
           <li class="hk-menu__item" data-idx="0">
             <div class="hk-menu__item-img">
-              <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=80&auto=format&fit=crop" alt="">
+              <img src="assets/photos/menu/01-wa-parfait.jpeg" alt="">
             </div>
             <div class="hk-menu__item-meta">
               <h4 class="hk-menu__item-name">花かごの和パフェ</h4>
@@ -992,7 +960,7 @@ body.has-mobile-menu-open { overflow: hidden; }
           </li>
           <li class="hk-menu__item" data-idx="1">
             <div class="hk-menu__item-img">
-              <img src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=900&q=80&auto=format&fit=crop" alt="">
+              <img src="assets/photos/menu/02-gyokuro.jpeg" alt="">
             </div>
             <div class="hk-menu__item-meta">
               <h4 class="hk-menu__item-name">玉露の三煎</h4>
@@ -1008,7 +976,7 @@ body.has-mobile-menu-open { overflow: hidden; }
           </li>
           <li class="hk-menu__item" data-idx="2">
             <div class="hk-menu__item-img">
-              <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=900&q=80&auto=format&fit=crop" alt="">
+              <img src="assets/photos/menu/03-jonamagashi.jpeg" alt="">
             </div>
             <div class="hk-menu__item-meta">
               <h4 class="hk-menu__item-name">上生菓子三種盛り</h4>
@@ -1055,7 +1023,7 @@ body.has-mobile-menu-open { overflow: hidden; }
         <div class="hk-dog__body">
           <div class="hk-dog__lead">
             <div class="hk-dog__hero-img">
-              <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?w=1600&q=80&auto=format&fit=crop" alt="">
+              <img src="assets/photos/dog/dogran-main.jpeg" alt="">
             </div>
             <p class="hk-dog__copy">天然芝・約二百坪。木立と土塀に囲まれた静かなお庭です。
 カフェのご利用の有無に関わらずご利用いただけます。
@@ -1144,57 +1112,36 @@ body.has-mobile-menu-open { overflow: hidden; }
     <div class="hk-section">
       <span class="hk-eyebrow">— Gallery —</span>
       <h2 class="hk-h2">花かごの様子</h2>
-      <!-- 屏風 (byōbu) style accordion gallery — closed panels show vertical kanji labels,
-           clicking opens them. Click the already-open panel to lightbox. -->
-      <div class="hk-byobu" id="byobu" role="tablist" aria-label="花かごの様子">
-        <button class="hk-byobu__panel is-open" type="button" role="tab" aria-selected="true"
-                data-cap="木漏れ日の庭"
-                data-src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=2000&q=80&auto=format&fit=crop"
-                style="background-image:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&q=80&auto=format&fit=crop')">
-          <span class="hk-byobu__label">木漏れ日の庭</span>
-          <span class="hk-byobu__open-cap">木漏れ日の庭<em>— komorebi —</em></span>
+      <!-- Simple responsive photo grid — every image shows as a 3:2 thumbnail;
+           tap any to open the full image in the lightbox. -->
+      <div class="hk-gallery" id="gallery">
+        <button class="hk-gphoto" type="button" data-cap="木漏れ日の庭" data-src="assets/photos/gallery/01-komorebi.jpeg">
+          <span class="hk-gphoto__frame"><img src="assets/photos/gallery/01-komorebi.jpeg" alt="木漏れ日の庭" loading="lazy"></span>
+          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">01</span>木漏れ日の庭</span>
         </button>
-        <button class="hk-byobu__panel" type="button" role="tab" aria-selected="false"
-                data-cap="縁側の席"
-                data-src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=2000&q=80&auto=format&fit=crop"
-                style="background-image:url('https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=1600&q=80&auto=format&fit=crop')">
-          <span class="hk-byobu__label">縁側の席</span>
-          <span class="hk-byobu__open-cap">縁側の席<em>— engawa —</em></span>
+        <button class="hk-gphoto" type="button" data-cap="縁側の席" data-src="assets/photos/gallery/02-engawa.jpeg">
+          <span class="hk-gphoto__frame"><img src="assets/photos/gallery/02-engawa.jpeg" alt="縁側の席" loading="lazy"></span>
+          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">02</span>縁側の席</span>
         </button>
-        <button class="hk-byobu__panel" type="button" role="tab" aria-selected="false"
-                data-cap="芝のドッグラン"
-                data-src="https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=2000&q=80&auto=format&fit=crop"
-                style="background-image:url('https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=1600&q=80&auto=format&fit=crop')">
-          <span class="hk-byobu__label">芝のドッグラン</span>
-          <span class="hk-byobu__open-cap">芝のドッグラン<em>— dog garden —</em></span>
+        <button class="hk-gphoto" type="button" data-cap="芝のドッグラン" data-src="assets/photos/gallery/03-dogran.jpeg">
+          <span class="hk-gphoto__frame"><img src="assets/photos/gallery/03-dogran.jpeg" alt="芝のドッグラン" loading="lazy"></span>
+          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">03</span>芝のドッグラン</span>
         </button>
-        <button class="hk-byobu__panel" type="button" role="tab" aria-selected="false"
-                data-cap="玉露の一服"
-                data-src="https://images.unsplash.com/photo-1545048702-79362596cdc9?w=2000&q=80&auto=format&fit=crop"
-                style="background-image:url('https://images.unsplash.com/photo-1545048702-79362596cdc9?w=1600&q=80&auto=format&fit=crop')">
-          <span class="hk-byobu__label">玉露の一服</span>
-          <span class="hk-byobu__open-cap">玉露の一服<em>— gyokuro —</em></span>
+        <button class="hk-gphoto" type="button" data-cap="玉露の一服" data-src="assets/photos/gallery/04-gyokuro.jpeg">
+          <span class="hk-gphoto__frame"><img src="assets/photos/gallery/04-gyokuro.jpeg" alt="玉露の一服" loading="lazy"></span>
+          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">04</span>玉露の一服</span>
         </button>
-        <button class="hk-byobu__panel" type="button" role="tab" aria-selected="false"
-                data-cap="上生菓子"
-                data-src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=2000&q=80&auto=format&fit=crop"
-                style="background-image:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?w=1600&q=80&auto=format&fit=crop')">
-          <span class="hk-byobu__label">上生菓子</span>
-          <span class="hk-byobu__open-cap">上生菓子<em>— wagashi —</em></span>
+        <button class="hk-gphoto" type="button" data-cap="上生菓子" data-src="assets/photos/gallery/05-wagashi.jpeg">
+          <span class="hk-gphoto__frame"><img src="assets/photos/gallery/05-wagashi.jpeg" alt="上生菓子" loading="lazy"></span>
+          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">05</span>上生菓子</span>
         </button>
-        <button class="hk-byobu__panel" type="button" role="tab" aria-selected="false"
-                data-cap="お庭で寛ぐ"
-                data-src="https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=2000&q=80&auto=format&fit=crop"
-                style="background-image:url('https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?w=1600&q=80&auto=format&fit=crop')">
-          <span class="hk-byobu__label">お庭で寛ぐ</span>
-          <span class="hk-byobu__open-cap">お庭で寛ぐ<em>— resting —</em></span>
+        <button class="hk-gphoto" type="button" data-cap="お庭で寛ぐ" data-src="assets/photos/gallery/06-niwa.jpeg">
+          <span class="hk-gphoto__frame"><img src="assets/photos/gallery/06-niwa.jpeg" alt="お庭で寛ぐ" loading="lazy"></span>
+          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">06</span>お庭で寛ぐ</span>
         </button>
-        <button class="hk-byobu__panel" type="button" role="tab" aria-selected="false"
-                data-cap="土間の店内"
-                data-src="https://images.unsplash.com/photo-1583416750470-965b2707b355?w=2000&q=80&auto=format&fit=crop"
-                style="background-image:url('https://images.unsplash.com/photo-1583416750470-965b2707b355?w=1600&q=80&auto=format&fit=crop')">
-          <span class="hk-byobu__label">土間の店内</span>
-          <span class="hk-byobu__open-cap">土間の店内<em>— doma —</em></span>
+        <button class="hk-gphoto" type="button" data-cap="土間の店内" data-src="assets/photos/gallery/07-doma.jpeg">
+          <span class="hk-gphoto__frame"><img src="assets/photos/gallery/07-doma.jpeg" alt="土間の店内" loading="lazy"></span>
+          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">07</span>土間の店内</span>
         </button>
       </div>
     </div>
@@ -1351,6 +1298,38 @@ body.has-mobile-menu-open { overflow: hidden; }
   <img class="hk-lightbox__img" id="lbImg" alt="">
   <div class="hk-lightbox__caption" id="lbCap"></div>
 </div>
+<style>
+#lb.hk-lightbox {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 20px;
+}
+#lb .hk-lightbox__img {
+  width: min(92vw, 1080px); height: auto;
+  max-height: 74vh;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+#lb .hk-lightbox__caption {
+  position: static; transform: none;
+  margin: 0;
+  padding: 10px 26px;
+  font-family: var(--font-display-jp); font-weight: 500;
+  font-size: clamp(18px, 2.4vw, 26px);
+  letter-spacing: 0.18em; text-indent: 0.18em;
+  color: #fff;
+  background: rgba(20,17,14,.28);
+  -webkit-backdrop-filter: blur(8px) saturate(120%); backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 2px;
+  text-shadow: 0 1px 10px rgba(20,17,14,.55), 0 0 22px rgba(255,255,255,.25);
+  white-space: nowrap;
+  z-index: 3;
+}
+</style>
+  z-index: 3;
+}
+</style>
 
 <script>
 /* ────────────────── HEADER scroll ────────────────── */
@@ -1412,35 +1391,23 @@ const lb = document.getElementById('lb');
 const lbImg = document.getElementById('lbImg');
 const lbCap = document.getElementById('lbCap');
 
-/* ────────────────── BYOBU GALLERY ─────────────── */
+/* ────────────────── PHOTO GALLERY ─────────────── */
 (() => {
-  const byobu = document.getElementById('byobu');
-  if (!byobu) return;
-  const panels = [...byobu.querySelectorAll('.hk-byobu__panel')];
-
-  panels.forEach(panel => {
-    panel.addEventListener('click', () => {
-      if (panel.classList.contains('is-open')) {
-        // Already open → open lightbox
-        if (lb && lbImg) {
-          lbImg.src = panel.dataset.src;
-          if (lbCap) lbCap.textContent = panel.dataset.cap || '';
-          lb.classList.add('is-open');
-        }
-      } else {
-        // Expand this panel
-        panels.forEach(p => {
-          p.classList.remove('is-open');
-          p.setAttribute('aria-selected', 'false');
-        });
-        panel.classList.add('is-open');
-        panel.setAttribute('aria-selected', 'true');
+  const gal = document.getElementById('gallery');
+  if (!gal) return;
+  gal.querySelectorAll('.hk-gphoto').forEach(photo => {
+    photo.addEventListener('click', () => {
+      if (lb && lbImg) {
+        lbImg.src = photo.dataset.src;
+        if (lbCap) lbCap.textContent = photo.dataset.cap || '';
+        lb.classList.add('is-open');
+        document.body.classList.add('has-lightbox-open');
       }
     });
   });
 })();
 
-const closeLb = () => lb.classList.remove('is-open');
+const closeLb = () => { lb.classList.remove('is-open'); document.body.classList.remove('has-lightbox-open'); };
 lb.addEventListener('click', (e) => { if (e.target === lb || e.target.classList.contains('hk-lightbox__close')) closeLb(); });
 window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
 
