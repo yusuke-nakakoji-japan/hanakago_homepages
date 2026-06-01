@@ -138,12 +138,13 @@
 /* About — kakejiku grid */
 .satoA .hk-about { background: var(--kinari); position: relative; overflow: hidden; }
 .satoA .hk-about__pattern {
-  position: absolute; top: 0; left: -120px; bottom: 0; width: 420px;
+  position: absolute; top: 0; left: -100px; bottom: 0; width: 440px;
   background: url('assets/pattern-kagome.svg'); background-size: 110px;
-  opacity: 0.05; pointer-events: none;
-  /* Fade out softly toward top/bottom so the section boundary isn't abrupt */
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 80%, transparent 100%);
-          mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 80%, transparent 100%);
+  opacity: 0.2; pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 35%, #000 65%, transparent 100%), linear-gradient(90deg, #000 45%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(180deg, transparent 0%, #000 35%, #000 65%, transparent 100%), linear-gradient(90deg, #000 45%, transparent 100%);
+  mask-composite: intersect;
 }
 .satoA .hk-about__grid {
   display: grid; grid-template-columns: 360px 1fr;
@@ -526,13 +527,6 @@
 
 /* Access */
 .satoA .hk-access { background: var(--kinari); position: relative; overflow: hidden; }
-.satoA .hk-access__pattern {
-  position: absolute; top: 0; right: -80px; bottom: 0; width: 360px;
-  background: url('assets/pattern-kagome.svg'); background-size: 100px;
-  opacity: 0.05; pointer-events: none;
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 80%, transparent 100%);
-          mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 80%, transparent 100%);
-}
 .satoA .hk-access__grid { display: grid; grid-template-columns: 1fr; gap: var(--s-9); align-items: start; max-width: 720px; }
 .satoA .hk-access__map-link {
   display: inline-flex; align-items: center; gap: 6px;
@@ -1060,7 +1054,6 @@ body.has-mobile-menu-open { overflow: hidden; }
 
   <!-- ================================================= ACCESS -->
   <section class="hk-access" id="access">
-    <div class="hk-access__pattern" aria-hidden="true"></div>
     <div class="hk-section">
       <div class="hk-access__grid">
         
