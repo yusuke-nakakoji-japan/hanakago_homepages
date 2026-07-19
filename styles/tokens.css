@@ -14,28 +14,28 @@
      plus three rotating seasonal accents (matcha / kuchiba / ai).
      ----------------------------------------------------------------------- */
 
-  /* Surfaces */
-  --kinari:        #f5efe4;   /* page bg, unbleached cream */
-  --kinari-2:      #efe7d8;   /* subtle band */
-  --washi:         #ecdfca;   /* card / panel */
-  --washi-deep:    #ddcfb7;   /* hover / pressed surface */
-  --shoji:         #fbf7ef;   /* lightest highlight, modal */
+  /* Surfaces — warm greige de-yellowed so the mauve reads clean, not muddy */
+  --kinari:        #f4f0ea;   /* page bg, warm ivory */
+  --kinari-2:      #ebe4e3;   /* subtle band, warm greige w/ faint mauve */
+  --washi:         #e9e1da;   /* card / panel */
+  --washi-deep:    #d9cfc9;   /* hover / pressed surface */
+  --shoji:         #fbf8f4;   /* lightest highlight, modal */
 
-  /* Inks (text) */
-  --sumi:          #2a2622;   /* primary text / logo */
-  --sumi-2:        #5a5048;   /* secondary text */
-  --sumi-3:        #8a7f73;   /* tertiary, captions, dividers */
-  --sumi-4:        #b9aea0;   /* disabled text, hairlines */
+  /* Inks (text) — aubergine ink: even the body text belongs to the mauve family */
+  --sumi:          #2a2028;   /* primary text / logo */
+  --sumi-2:        #574c53;   /* secondary text */
+  --sumi-3:        #877c83;   /* tertiary, captions, dividers */
+  --sumi-4:        #b6abb1;   /* disabled text, hairlines */
 
-  /* Brand accent — hanairo (mauve rose) */
-  --hana:          #aa7699;
-  --hana-deep:     #7e446b;
-  --hana-pale:     #ebd6e4;
+  /* Brand — hatoba / kyō-murasaki (single-hue Kyoto mauve) */
+  --hana:          #aa7699;   /* signature mauve — the image color */
+  --hana-deep:     #6b3f5c;   /* kyō-murasaki — accents & text on light */
+  --hana-pale:     #eee1ea;   /* wisteria wash — chips, subtext on dusk */
 
-  /* Brand color surfaces — image color applied as large fields */
-  --hana-panel:    #5b3350;   /* deep mauve panel (CTA block) */
-  --hana-panel-2:  #2c2632;   /* mauve-charcoal ground (footer) */
-  --hana-wash:     #f2e6ee;   /* pale mauve band (light sections) */
+  /* Deep aubergine "dusk" grounds — the one bold field, CTA → footer */
+  --hana-panel:    #3a2233;   /* CTA block */
+  --hana-panel-2:  #2e1f2a;   /* footer, a step into dusk */
+  --hana-wash:     #f3eaf1;   /* pale wisteria (reserved) */
 
   /* Seasonal accents */
   --matcha:        #7c8a55;   /* spring → summer */
@@ -54,9 +54,9 @@
   --bg-card:       var(--washi);
   --accent:        var(--hana);
   --accent-deep:   var(--hana-deep);
-  --hairline:      rgba(42, 38, 34, 0.18);
-  --hairline-soft: rgba(42, 38, 34, 0.08);
-  --overlay:       rgba(42, 38, 34, 0.45);
+  --hairline:      rgba(42, 32, 40, 0.16);
+  --hairline-soft: rgba(42, 32, 40, 0.07);
+  --overlay:       rgba(42, 32, 40, 0.45);
 
   /* -----------------------------------------------------------------------
      TYPOGRAPHY
@@ -225,7 +225,7 @@ a:hover { background-size: 100% 1px; color: var(--accent-deep); }
   cursor: pointer;
   transition: background var(--dur-sm) var(--ease), transform 100ms var(--ease);
 }
-.btn:hover { background: #1c1916; }
+.btn:hover { background: #241a22; }
 .btn:active { transform: scale(0.98); }
 
 .btn-ghost {

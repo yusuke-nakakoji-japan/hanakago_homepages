@@ -137,7 +137,7 @@ button { font-family: inherit; }
   text-decoration: none;
   background-image: none !important;
 }
-.hk-btn:hover { background: #1c1916; color: var(--shoji); }
+.hk-btn:hover { background: #241a22; color: var(--shoji); }
 .hk-btn:active { transform: scale(0.98); }
 .hk-btn--ghost { background: transparent; color: var(--sumi); }
 .hk-btn--ghost:hover { background: rgba(42,38,34,.05); color: var(--sumi); }
