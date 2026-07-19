@@ -1,7 +1,7 @@
 /* ==========================================================================
-   Hanakago — 里山 dog-run × café website kit
-   Layout primitives shared across the three variants.
-   Variant-specific overrides live inline in each variant HTML.
+   Hanakago — 和カフェ × ドッグラン website kit
+   Layout primitives shared across the site.
+   Page-level overrides live inline in index.html (scoped under .hanakago).
    ========================================================================== */
 
 @import url('./tokens.css');
