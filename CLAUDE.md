@@ -12,6 +12,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **ビルド / lint / テスト**: 存在しない（該当なし）
 - **デプロイ**: GitHub Pages（`main` ブランチのルートを Deploy from a branch で公開）。詳細は README.md 参照
 
+## Git
+
+- **アカウント**: コミットは `yusuke-nakakoji-japan` のアカウントで行う。
+- **自動コミット**: 一括りのタスクが完了したら、日本語のメッセージで自動的にコミットする。
+
 ## アーキテクチャ
 
 ### CSS 3層構造（重要）
