@@ -112,6 +112,29 @@
   .hint{font-size:13px; color:var(--sumi-3); margin:10px 0 0}
   #toast{position:fixed; left:50%; bottom:28px; transform:translateX(-50%) translateY(20px); background:var(--sumi); color:var(--shoji); padding:10px 20px; border-radius:2px; font-size:14px; opacity:0; pointer-events:none; transition:opacity .25s, transform .25s}
   #toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+
+  code{font-family:ui-monospace,'SFMono-Regular',Consolas,monospace; font-size:.92em; background:rgba(42,32,40,.06); padding:1px 5px; border-radius:3px}
+  button.accent{background:var(--hana); border-color:var(--hana)}
+  button.accent:hover{background:var(--hana-deep); border-color:var(--hana-deep)}
+  button:disabled{opacity:.5; cursor:default}
+
+  /* GitHub 直接保存（A-②） */
+  .gh{background:var(--washi); border:1px solid var(--line-soft); border-left:3px solid var(--hana); border-radius:2px; padding:18px 20px}
+  .gh-lead{font-size:14px; color:var(--sumi-2); margin:0 0 14px}
+  .gh-help{margin:0 0 16px; font-size:13px; color:var(--sumi-2)}
+  .gh-help summary{cursor:pointer; color:var(--hana-deep); font-size:14px; letter-spacing:.03em}
+  .gh-help ol{margin:10px 0 6px; padding-left:1.4em}
+  .gh-help li{margin:4px 0}
+  .gh-help .note{color:var(--sumi-3); font-size:12px; margin:8px 0 0}
+  .gh-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  .gh-remember{display:flex; gap:8px; align-items:flex-start; font-size:13px; color:var(--sumi-2); margin-top:12px; cursor:pointer}
+  .gh-remember input{margin-top:4px}
+  .gh-status{margin-top:14px; padding:12px 14px; border-radius:2px; font-size:14px; line-height:1.7; white-space:pre-wrap; word-break:break-word}
+  .gh-status.ok{background:rgba(124,138,85,.12); border:1px solid rgba(124,138,85,.35); color:#4d552f}
+  .gh-status.err{background:rgba(154,90,90,.10); border:1px solid rgba(154,90,90,.35); color:#8f4f4f}
+  .gh-status.busy{background:var(--shoji); border:1px solid var(--line); color:var(--sumi-2)}
+  .gh-status a{color:inherit}
+  @media(max-width:560px){ .gh-grid{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -152,6 +175,42 @@
     </div>
     <textarea id="out" readonly spellcheck="false"></textarea>
     <p class="hint">この内容で <code>content/news.js</code> を置き換え、コミットしてください。</p>
+
+    <h2 class="sec">GitHub に直接保存（任意）</h2>
+    <div class="gh">
+      <p class="gh-lead">GitHub トークンを使って、コピー＆コミットの手間なく <code>content/news.js</code> を直接更新します。使わなくても、上の「書き出し」だけで運用できます。</p>
+
+      <details class="gh-help">
+        <summary>▶ 初回だけ必要：トークンの作り方（クリックで開く）</summary>
+        <ol>
+          <li>GitHub → 右上アイコン → <strong>Settings</strong> → 左下 <strong>Developer settings</strong> → <strong>Fine-grained personal access tokens</strong> → <strong>Generate new token</strong></li>
+          <li><strong>Repository access</strong>：「Only select repositories」→ <code>hanakago_homepages</code> を選択</li>
+          <li><strong>Permissions</strong> → Repository permissions → <strong>Contents</strong> を <strong>Read and write</strong> に設定</li>
+          <li>生成された <code>github_pat_…</code> をコピーし、下の「トークン」に貼り付け</li>
+        </ol>
+        <p class="note">※ トークンはこのリポジトリを書き換えられる鍵です。他人に渡さない・公開の場所に貼らないこと。上の権限（このリポジトリの Contents だけ）に絞れば、万一漏れても被害範囲を最小にできます。有効期限も短めがおすすめです。</p>
+      </details>
+
+      <div class="gh-grid">
+        <label class="field">オーナー<input type="text" id="ghOwner" value="yusuke-nakakoji-japan" autocomplete="off"></label>
+        <label class="field">リポジトリ<input type="text" id="ghRepo" value="hanakago_homepages" autocomplete="off"></label>
+        <label class="field">ブランチ<input type="text" id="ghBranch" value="main" autocomplete="off"></label>
+        <label class="field">ファイルパス<input type="text" id="ghPath" value="content/news.js" autocomplete="off"></label>
+      </div>
+      <label class="field">トークン（<code>github_pat_…</code> または <code>ghp_…</code>）
+        <input type="password" id="ghToken" placeholder="ここに貼り付け" autocomplete="off">
+      </label>
+      <label class="field">コミットメッセージ
+        <input type="text" id="ghMsg" value="お知らせを更新" autocomplete="off">
+      </label>
+      <label class="gh-remember"><input type="checkbox" id="ghRemember"> このブラウザにトークンを保存して、次回の入力を省略する（自分専用のPCのみ推奨。共有PCでは付けないでください）</label>
+
+      <div class="out-actions" style="margin-top:16px">
+        <button id="ghSaveBtn" class="accent">GitHub に保存（コミット）</button>
+        <button id="ghClearBtn" class="ghost small">保存したトークンを消去</button>
+      </div>
+      <div id="ghStatus" class="gh-status" hidden></div>
+    </div>
 
   </div>
 
@@ -376,6 +435,100 @@
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
       setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
       toast('news.js をダウンロードしました');
+    });
+
+    /* ===== A-②：GitHub へ直接コミット ===== */
+    var GH_KEY = 'hanakago_news_gh_token';
+
+    function ghVal(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+    function ghStatus(kind, html){
+      var el = document.getElementById('ghStatus');
+      el.hidden = false; el.className = 'gh-status ' + kind; el.innerHTML = html;
+    }
+    // 日本語を含む文字列を安全に base64 化（UTF-8 → base64）
+    function utf8ToBase64(str){
+      var bytes = new TextEncoder().encode(str), bin = '';
+      for (var i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+      return btoa(bin);
+    }
+    function ghHeaders(token){
+      return {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'Content-Type': 'application/json'
+      };
+    }
+
+    // 保存済みトークンがあれば復元
+    try {
+      var savedTok = localStorage.getItem(GH_KEY);
+      if (savedTok) { document.getElementById('ghToken').value = savedTok; document.getElementById('ghRemember').checked = true; }
+    } catch (_e) {}
+
+    document.getElementById('ghSaveBtn').addEventListener('click', function(){
+      var owner  = ghVal('ghOwner'),
+          repo   = ghVal('ghRepo'),
+          branch = ghVal('ghBranch') || 'main',
+          pathf  = ghVal('ghPath'),
+          token  = document.getElementById('ghToken').value.trim(),
+          msg    = ghVal('ghMsg') || 'お知らせを更新';
+
+      if (!owner || !repo || !pathf) { ghStatus('err', 'オーナー・リポジトリ・ファイルパスを入力してください。'); return; }
+      if (!token) { ghStatus('err', 'トークンを入力してください。作り方は上の説明を開いてください。'); return; }
+
+      // 保存する/しないをここで反映
+      try {
+        if (document.getElementById('ghRemember').checked) localStorage.setItem(GH_KEY, token);
+        else localStorage.removeItem(GH_KEY);
+      } catch (_e) {}
+
+      refreshOutput();
+      var content = outEl.value;
+      var apiBase = 'https://api.github.com/repos/' + encodeURIComponent(owner) + '/' + encodeURIComponent(repo) +
+                    '/contents/' + pathf.split('/').map(encodeURIComponent).join('/');
+
+      var btn = this; btn.disabled = true;
+      ghStatus('busy', 'GitHub に接続しています…');
+
+      // 1) 現在のファイルの sha を取得（無ければ新規作成）
+      fetch(apiBase + '?ref=' + encodeURIComponent(branch), { headers: ghHeaders(token) })
+        .then(function(res){
+          if (res.status === 404) return { sha: undefined }; // 新規作成
+          if (res.status === 401) throw new Error('認証に失敗しました（401）。トークンが正しいか・期限切れでないか確認してください。');
+          if (res.status === 403) throw new Error('権限がありません（403）。トークンに「Contents: Read and write」があるか、対象リポジトリが選ばれているか確認してください。');
+          if (!res.ok) throw new Error('現在のファイル取得に失敗（' + res.status + '）。オーナー／リポジトリ／ブランチ／パスをご確認ください。');
+          return res.json();
+        })
+        // 2) PUT でコミット
+        .then(function(cur){
+          var body = { message: msg, content: utf8ToBase64(content), branch: branch };
+          if (cur && cur.sha) body.sha = cur.sha;
+          return fetch(apiBase, { method: 'PUT', headers: ghHeaders(token), body: JSON.stringify(body) });
+        })
+        .then(function(res){ return res.json().then(function(data){ return { ok: res.ok, status: res.status, data: data }; }); })
+        .then(function(r){
+          if (!r.ok) {
+            if (r.status === 409) throw new Error('競合しました（409）。他の変更が先に入っています。「読み込み直す」で最新を取り込み、再編集してから保存してください。');
+            var m = (r.data && r.data.message) ? r.data.message : ('HTTP ' + r.status);
+            throw new Error('保存に失敗（' + r.status + '）：' + m);
+          }
+          var url = (r.data.commit && r.data.commit.html_url) || '';
+          ghStatus('ok', '✅ 保存しました。GitHub Pages への反映まで数十秒〜数分かかります。' +
+                          (url ? '\nコミット: <a href="' + url + '" target="_blank" rel="noopener">' + url + '</a>' : ''));
+        })
+        .catch(function(err){
+          ghStatus('err', '⚠ ' + ((err && err.message) ? err.message : String(err)) +
+                          '\n（そもそも通信できない場合は、ネット接続や、ローカルで開いている場合はブラウザの制限をご確認ください）');
+        })
+        .then(function(){ btn.disabled = false; });
+    });
+
+    document.getElementById('ghClearBtn').addEventListener('click', function(){
+      try { localStorage.removeItem(GH_KEY); } catch (_e) {}
+      document.getElementById('ghToken').value = '';
+      document.getElementById('ghRemember').checked = false;
+      ghStatus('busy', '保存していたトークンを消去しました。');
     });
 
     var toastTimer;
