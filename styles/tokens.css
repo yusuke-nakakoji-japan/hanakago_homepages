@@ -27,10 +27,10 @@
   --sumi-3:        #8a7f73;   /* tertiary, captions, dividers */
   --sumi-4:        #b9aea0;   /* disabled text, hairlines */
 
-  /* Brand accent — hanairo (sakura rose) */
-  --hana:          #c97a82;
-  --hana-deep:     #9a4b56;
-  --hana-pale:     #ead4d6;
+  /* Brand accent — hanairo (mauve rose) */
+  --hana:          #aa7699;
+  --hana-deep:     #7e446b;
+  --hana-pale:     #ebd6e4;
 
   /* Seasonal accents */
   --matcha:        #7c8a55;   /* spring → summer */
