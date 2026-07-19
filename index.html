@@ -17,6 +17,10 @@
 .hanakago .hk-brand__name { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; line-height: 1; align-self: center; }
 .hanakago .hk-brand__jp { font-family: var(--font-display-jp); font-weight: 500; font-size: 14px; letter-spacing: 0.12em; color: var(--sumi); }
 .hanakago .hk-brand__en { font-family: var(--font-display-en); font-style: italic; font-size: 12px; letter-spacing: 0.08em; color: var(--sumi-3); }
+/* Header sits over the mauve hero at the top — lighten brand text until scrolled */
+.hanakago .hk-header:not(.is-scrolled) .hk-brand__jp { color: var(--shoji); }
+.hanakago .hk-header:not(.is-scrolled) .hk-brand__en { color: rgba(251,248,244,.82); }
+.hanakago .hk-header:not(.is-scrolled) .hk-brand__logo { filter: drop-shadow(0 0 7px rgba(255,251,247,.55)); }
 
 .hanakago .hk-hero {
   position: relative;
@@ -25,15 +29,14 @@
   display: grid;
   align-items: stretch;
   overflow: hidden;
-  background: var(--kinari);
-}
-.hanakago .hk-hero__image { position: absolute; inset: 62px 0 0 0; z-index: 0; }
-.hanakago .hk-hero__image img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: blur(6px); transform: scale(1.06); }
-.hanakago .hk-hero__veil {
-  position: absolute; inset: 0; z-index: 1;
   background:
-    radial-gradient(ellipse 80% 74% at 50% 48%, rgba(249,245,240,.82) 0%, rgba(248,244,238,.62) 44%, rgba(245,241,235,.24) 78%, rgba(245,241,235,0) 100%),
-    linear-gradient(180deg, rgba(245,241,235,.30) 0%, rgba(245,241,235,.12) 42%, rgba(245,241,235,.14) 62%, rgba(238,225,234,.50) 100%);
+    radial-gradient(ellipse 90% 64% at 50% 38%, #c496b3 0%, #a97298 48%, rgba(169,114,152,0) 82%),
+    linear-gradient(180deg, #a97298 0%, #9a6488 52%, #7c4c6a 100%);
+}
+.hanakago .hk-hero__image { display: none; }
+.hanakago .hk-hero__veil {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse 54% 34% at 50% 38%, rgba(255,251,247,.20) 0%, rgba(255,251,247,0) 72%);
 }
 .hanakago .hk-hero__inner {
   position: relative; z-index: 2;
@@ -48,16 +51,17 @@
 }
 .hanakago .hk-hero__logo {
   width: 100%; height: auto; display: block;
+  filter: drop-shadow(0 0 24px rgba(255,251,247,.45)) drop-shadow(0 3px 9px rgba(58,34,51,.22));
 }
 .hanakago .hk-hero__copy {
   margin: -20px 0 0;
   font-family: var(--font-display-jp); font-weight: 600;
   font-size: clamp(22px, 2.7vw, 34px);
   letter-spacing: 0.24em;
-  color: var(--sumi);
+  color: var(--shoji);
   text-align: center;
   text-indent: 0.24em;
-  text-shadow: 0 1px 2px rgba(249,245,240,.92), 0 2px 18px rgba(249,245,240,.75);
+  text-shadow: 0 1px 3px rgba(58,34,51,.45), 0 2px 20px rgba(58,34,51,.32);
 }
 
 /* News */
