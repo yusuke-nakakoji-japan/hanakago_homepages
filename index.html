@@ -21,6 +21,7 @@
 .hanakago .hk-header:not(.is-scrolled) .hk-brand__jp { color: var(--shoji); }
 .hanakago .hk-header:not(.is-scrolled) .hk-brand__en { color: rgba(251,248,244,.82); }
 .hanakago .hk-header:not(.is-scrolled) .hk-brand__logo { filter: drop-shadow(0 0 7px rgba(255,251,247,.55)); }
+.hanakago .hk-brand__jp, .hanakago .hk-brand__en, .hanakago .hk-brand__logo { transition: color var(--dur-sm) var(--ease), filter var(--dur-sm) var(--ease); }
 
 .hanakago .hk-hero {
   position: relative;
@@ -1221,11 +1222,19 @@ body.has-mobile-menu-open { overflow: hidden; }
 <script>
 /* ────────────────── HEADER scroll ────────────────── */
 const hdr = document.getElementById('hdr');
-const onScroll = () => {
-  if (window.scrollY > 60) hdr.classList.add('is-scrolled');
-  else hdr.classList.remove('is-scrolled');
+const heroEl = document.querySelector('.hk-hero');
+/* Solidify the header only after the mauve hero is passed, so it never
+   turns into a cream bar while still floating over the mauve hero. */
+let scrollThreshold = 60;
+const measureHeader = () => {
+  scrollThreshold = heroEl ? Math.max(60, heroEl.offsetHeight - hdr.offsetHeight - 8) : 60;
 };
+const onScroll = () => {
+  hdr.classList.toggle('is-scrolled', window.scrollY > scrollThreshold);
+};
+measureHeader();
 window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', () => { measureHeader(); onScroll(); }, { passive: true });
 onScroll();
 
 /* ────────────────── LIVE HOURS ─────────────────────
