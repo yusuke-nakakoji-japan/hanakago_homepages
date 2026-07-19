@@ -76,7 +76,7 @@
   transition: background var(--dur-sm) var(--ease);
 }
 .hanakago .hk-news__head:hover { background: rgba(255,255,255,.30); }
-.hanakago .hk-news__date  { font-family: var(--font-display-en); font-style: italic; color: var(--matcha-deep); font-size: var(--t-base); letter-spacing: 0.05em; }
+.hanakago .hk-news__date  { font-family: var(--font-display-en); font-style: italic; color: var(--accent-deep); font-size: var(--t-base); letter-spacing: 0.05em; }
 .hanakago .hk-news__title { font-family: var(--font-body-jp); font-size: var(--t-base); color: var(--sumi-2); }
 .hanakago .hk-news__chev {
   width: 24px; height: 24px; position: relative;
@@ -91,7 +91,7 @@
 }
 .hanakago .hk-news__chev::before { width: 14px; height: 1px; }
 .hanakago .hk-news__chev::after  { width: 1px; height: 14px; transition: opacity var(--dur-sm) var(--ease); }
-.hanakago .hk-news__head[aria-expanded="true"] .hk-news__chev          { transform: rotate(180deg); color: var(--matcha-deep); }
+.hanakago .hk-news__head[aria-expanded="true"] .hk-news__chev          { transform: rotate(180deg); color: var(--accent-deep); }
 .hanakago .hk-news__head[aria-expanded="true"] .hk-news__chev::after   { opacity: 0; }
 .hanakago .hk-news__body {
   display: grid; grid-template-rows: 0fr;
@@ -142,7 +142,7 @@
   font-size: var(--t-sm); color: var(--sumi-3); line-height: 1.7;
   letter-spacing: 0.06em;
 }
-.hanakago .hk-about__sign em { font-family: var(--font-display-en); font-style: italic; color: var(--matcha-deep); font-size: var(--t-xs); letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: var(--s-1); }
+.hanakago .hk-about__sign em { font-family: var(--font-display-en); font-style: italic; color: var(--accent-deep); font-size: var(--t-xs); letter-spacing: 0.18em; text-transform: uppercase; display: block; margin-bottom: var(--s-1); }
 /* Menu */
 .hanakago .hk-menu { background: var(--kinari-2); }
 
@@ -215,12 +215,12 @@
   border: 0; padding: 0; cursor: pointer;
   transition: background 240ms var(--ease), width 240ms var(--ease);
 }
-.hanakago .hk-menu__dot.is-active { background: var(--matcha-deep); width: 44px; }
-.hanakago .hk-menu__dot:focus-visible { outline: 2px solid var(--matcha-deep); outline-offset: 4px; }
+.hanakago .hk-menu__dot.is-active { background: var(--accent-deep); width: 44px; }
+.hanakago .hk-menu__dot:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 4px; }
 .hanakago .hk-menu__featured-label {
   text-align: center;
   font-family: var(--font-display-jp); font-style: normal;
-  font-size: var(--t-sm); color: var(--matcha-deep);
+  font-size: var(--t-sm); color: var(--accent-deep);
   letter-spacing: 0.14em;
   margin: var(--s-6) 0 calc(var(--s-6) * -1);
 }
@@ -500,10 +500,10 @@
   font-size: var(--t-base); letter-spacing: 0.10em; color: var(--sumi);
   transition: border-color 300ms var(--ease);
 }
-.hanakago .hk-gphoto:hover .hk-gphoto__plate { border-bottom-color: var(--matcha-deep); }
+.hanakago .hk-gphoto:hover .hk-gphoto__plate { border-bottom-color: var(--accent-deep); }
 .hanakago .hk-gphoto__no {
   font-family: var(--font-display-en); font-style: italic;
-  font-size: var(--t-sm); color: var(--matcha-deep); letter-spacing: 0.12em;
+  font-size: var(--t-sm); color: var(--accent-deep); letter-spacing: 0.12em;
 }
 
 /* Access */
@@ -513,7 +513,7 @@
   display: inline-flex; align-items: center; gap: 6px;
   margin-top: 4px;
   font-family: var(--font-display-en); font-style: italic;
-  font-size: var(--t-sm); color: var(--matcha-deep);
+  font-size: var(--t-sm); color: var(--accent-deep);
   letter-spacing: 0.06em;
   text-decoration: none;
   transition: color 180ms var(--ease);
@@ -698,10 +698,10 @@ body.has-lightbox-open .hk-menu-btn--fixed { display: none !important; }
   text-decoration: none;
 }
 .hanakago .hk-tree__link:active,
-.hanakago .hk-tree__link:hover { background: rgba(86,96,59,.08); color: var(--matcha-deep); }
+.hanakago .hk-tree__link:hover { background: rgba(126,68,107,.08); color: var(--accent-deep); }
 .hanakago .hk-tree__mark {
   width: 14px; height: 14px; flex: 0 0 14px;
-  background: var(--matcha-deep);
+  background: var(--accent-deep);
   /* Hanakago small leaf-style marker — diamond shape */
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0 50%);
   opacity: 0.85;

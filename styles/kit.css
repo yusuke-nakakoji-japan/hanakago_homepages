@@ -61,7 +61,7 @@ button { font-family: inherit; }
   background-position: left 100%;
   transition: background-size var(--dur-sm) var(--ease), color var(--dur-sm) var(--ease);
 }
-.hk-nav a:hover { background-size: 100% 1px; color: var(--matcha-deep); }
+.hk-nav a:hover { background-size: 100% 1px; color: var(--accent-deep); }
 
 .hk-hours-pill {
   display: inline-flex;
@@ -82,7 +82,7 @@ button { font-family: inherit; }
   border-radius: 50%;
   background: var(--sumi-4);
 }
-.hk-hours-pill.is-open::before { background: var(--matcha); box-shadow: 0 0 0 3px rgba(124,138,85,.18); }
+.hk-hours-pill.is-open::before { background: var(--accent); box-shadow: 0 0 0 3px rgba(170,118,153,.18); }
 .hk-hours-pill.is-closed::before { background: var(--sumi-4); }
 
 /* ---------------------------------------------------------------- SECTION */
@@ -98,7 +98,7 @@ button { font-family: inherit; }
   font-family: var(--font-display-en);
   font-style: italic;
   font-size: var(--t-md);
-  color: var(--matcha-deep);
+  color: var(--accent-deep);
   letter-spacing: 0.06em;
   display: inline-block;
 }
@@ -255,7 +255,7 @@ button { font-family: inherit; }
 .hk-pricing__col:last-child { border-right: 0; }
 .hk-pricing__plan {
   font-family: var(--font-display-en); font-style: italic;
-  font-size: var(--t-md); color: var(--matcha-deep);
+  font-size: var(--t-md); color: var(--accent-deep);
   letter-spacing: 0.06em; margin-bottom: var(--s-3);
 }
 .hk-pricing__jp {
@@ -285,7 +285,7 @@ button { font-family: inherit; }
 }
 .hk-rule__no {
   font-family: var(--font-display-en); font-style: italic;
-  color: var(--matcha-deep); font-size: var(--t-base);
+  color: var(--accent-deep); font-size: var(--t-base);
   letter-spacing: 0.06em; padding-top: 2px;
 }
 .hk-rule__body { font-size: var(--t-sm); color: var(--sumi-2); line-height: 1.85; }
