@@ -26,7 +26,7 @@
 .hanakago .hk-hero {
   position: relative;
   min-height: 62vh;
-  margin-top: 10px;
+  margin-top: 0;
   display: grid;
   align-items: stretch;
   overflow: hidden;
@@ -702,7 +702,16 @@ body.has-lightbox-open .hk-menu-btn--fixed { display: none !important; }
   letter-spacing: 0.16em;
   color: var(--sumi);
   box-shadow: 0 8px 22px -16px rgba(42,38,34,.45);
+  transition: background var(--dur-sm) var(--ease), border-color var(--dur-sm) var(--ease), color var(--dur-sm) var(--ease), box-shadow var(--dur-sm) var(--ease);
 }
+/* Over the mauve hero (before scroll): outline style so it blends instead of a cream box */
+.hanakago .hk-menu-btn.over-hero:not(.is-open) {
+  background: rgba(255,251,247,.10);
+  border-color: rgba(255,251,247,.62);
+  color: var(--shoji);
+  box-shadow: none;
+}
+.hanakago .hk-menu-btn.over-hero:not(.is-open) .hk-menu-btn__icon span { background: var(--shoji); }
 .hanakago .hk-menu-btn--fixed {
   position: fixed; top: 14px; right: 14px; z-index: 1100;
 }
@@ -1402,6 +1411,7 @@ body.has-mobile-menu-open { overflow: hidden; }
 /* ────────────────── HEADER scroll ────────────────── */
 const hdr = document.getElementById('hdr');
 const heroEl = document.querySelector('.hk-hero');
+const menuBtnEl = document.getElementById('menuBtn');
 /* Solidify the header only after the mauve hero is passed, so it never
    turns into a cream bar while still floating over the mauve hero. */
 let scrollThreshold = 60;
@@ -1409,7 +1419,9 @@ const measureHeader = () => {
   scrollThreshold = heroEl ? Math.max(60, heroEl.offsetHeight - hdr.offsetHeight - 8) : 60;
 };
 const onScroll = () => {
-  hdr.classList.toggle('is-scrolled', window.scrollY > scrollThreshold);
+  const scrolled = window.scrollY > scrollThreshold;
+  hdr.classList.toggle('is-scrolled', scrolled);
+  if (menuBtnEl) menuBtnEl.classList.toggle('over-hero', !scrolled);
 };
 measureHeader();
 window.addEventListener('scroll', onScroll, { passive: true });
