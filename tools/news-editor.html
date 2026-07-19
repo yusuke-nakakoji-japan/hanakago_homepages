@@ -69,20 +69,40 @@
   .row2{display:grid; grid-template-columns:200px 1fr; gap:14px}
   .empty{color:var(--sumi-3); font-size:14px; padding:12px 0}
 
-  /* preview */
-  .pv{background:var(--kinari-2); border:1px solid var(--line-soft); border-radius:2px; padding:8px 22px}
-  .pv-item{border-top:1px solid var(--line-soft); padding:18px 0}
+  /* preview — 実サイトと同じアコーディオン挙動 */
+  .pv{background:var(--kinari-2); border:1px solid var(--line-soft); border-radius:2px; padding:0 22px; list-style:none; margin:0}
+  .pv-item{border-top:1px solid var(--line-soft)}
   .pv-item:first-child{border-top:0}
-  .pv-head{display:grid; grid-template-columns:auto auto 1fr; gap:18px; align-items:center}
+  .pv-head{
+    width:100%; background:transparent; border:0; cursor:pointer; text-align:left; color:inherit;
+    display:grid; grid-template-columns:120px 100px 1fr 24px; gap:24px; align-items:center;
+    padding:24px 0; font-family:var(--jp); letter-spacing:.02em;
+  }
+  .pv-head:hover{background:rgba(255,255,255,.30)}
   .pv-date{font-family:var(--en); font-style:italic; color:var(--hana); font-size:17px; letter-spacing:.05em}
-  .pv-chip{justify-self:start; font-size:13px; padding:3px 12px; border-radius:999px; border:1px solid var(--line); color:var(--sumi-2)}
-  .pv-title{font-size:16px; color:var(--sumi-2)}
-  .pv-body{margin-top:10px; color:var(--sumi-2); font-size:14px; line-height:1.95; max-width:56ch}
-  .pv-body p{margin:0}
-  .pv-body p + p{margin-top:8px}
-  .pv-head.no-chip{grid-template-columns:auto 1fr}
+  .pv-chip{justify-self:start; font-size:13px; padding:4px 12px; border-radius:999px; border:1px solid var(--line); color:var(--sumi-2)}
+  .pv-title{font-size:17px; color:var(--sumi-2)}
+  .pv-chev{width:24px; height:24px; position:relative; display:inline-block; transition:transform .24s cubic-bezier(.22,.61,.36,1); color:var(--sumi-3)}
+  .pv-chev::before,.pv-chev::after{content:''; position:absolute; background:currentColor; left:50%; top:50%; transform:translate(-50%,-50%)}
+  .pv-chev::before{width:14px; height:1px}
+  .pv-chev::after{width:1px; height:14px; transition:opacity .24s ease}
+  .pv-head[aria-expanded="true"] .pv-chev{transform:rotate(180deg); color:var(--hana)}
+  .pv-head[aria-expanded="true"] .pv-chev::after{opacity:0}
+  .pv-body{display:grid; grid-template-rows:0fr; transition:grid-template-rows .32s cubic-bezier(.22,.61,.36,1)}
+  .pv-head[aria-expanded="true"] + .pv-body{grid-template-rows:1fr}
+  .pv-body-inner{overflow:hidden; display:grid; grid-template-columns:120px 100px 1fr 24px; gap:24px}
+  .pv-head[aria-expanded="true"] + .pv-body .pv-body-inner{padding:0 0 32px}
+  .pv-body-text{grid-column:3 / 4; color:var(--sumi-2); font-size:15px; line-height:1.95; max-width:56ch}
+  .pv-body-text p{margin:0}
+  .pv-body-text p + p{margin-top:12px}
   @media(max-width:560px){
-    .pv-head{grid-template-columns:1fr; gap:4px}
+    .pv-head{grid-template-columns:1fr 24px; gap:4px 12px}
+    .pv-date{grid-column:1; grid-row:1; font-size:14px}
+    .pv-chip{grid-column:1; grid-row:2}
+    .pv-title{grid-column:1; grid-row:3; font-size:15px; margin-top:4px}
+    .pv-chev{grid-column:2; grid-row:1 / 4; align-self:center}
+    .pv-body-inner{grid-template-columns:1fr; padding-right:24px}
+    .pv-body-text{grid-column:1}
     .row2{grid-template-columns:1fr}
   }
 
@@ -121,8 +141,8 @@
     <div id="list"></div>
 
     <h2 class="sec">プレビュー</h2>
-    <div class="pv" id="pvList"></div>
-    <p class="hint">実際のサイトでは本文は見出しをクリックすると開きます。ここでは確認のため開いた状態で表示しています。</p>
+    <ul class="pv" id="pvList"></ul>
+    <p class="hint">実際のサイトと同じ表示です。見出しをクリックすると「＋」が「−」になり、本文が開きます（もう一度クリックで閉じます）。</p>
 
     <h2 class="sec">書き出し（content/news.js に反映）</h2>
     <div class="out-actions">
@@ -159,6 +179,8 @@
       "   ========================================================================= */\n";
 
     var items = [];
+    var nextId = 1;                 // 各項目に振る一時ID（開閉状態の追跡用。news.js には出力しない）
+    var expanded = {};              // { id: true } … プレビューで開いている項目
     var listEl = document.getElementById('list');
     var pvEl   = document.getElementById('pvList');
     var outEl  = document.getElementById('out');
@@ -184,8 +206,10 @@
 
     function loadFromData(){
       var src = Array.isArray(window.HANAKAGO_NEWS) ? window.HANAKAGO_NEWS : [];
+      expanded = {};
       items = src.map(function(n){
         return {
+          _id:   nextId++,
           date:  n.date || '',
           tag:   n.tag  || '',
           title: n.title || '',
@@ -230,22 +254,24 @@
     }
 
     function renderPreview(){
-      if (!items.length){ pvEl.innerHTML = '<div class="empty">（表示するお知らせはありません）</div>'; return; }
+      if (!items.length){ pvEl.innerHTML = '<li class="empty" style="list-style:none">（表示するお知らせはありません）</li>'; return; }
       pvEl.innerHTML = items.map(function(it){
         var hasChip = !!(it.tag && it.tag.trim());
+        var isOpen  = !!expanded[it._id];
         var paras = it.body.filter(function(p){ return p && p.trim() !== ''; });
         var bodyHtml = paras.length
           ? paras.map(function(p){ return '<p>' + escHtml(p) + '</p>'; }).join('')
-          : '';
+          : '<p style="color:var(--sumi-3)">（本文未入力）</p>';
         return '' +
-          '<div class="pv-item">' +
-            '<div class="pv-head' + (hasChip ? '' : ' no-chip') + '">' +
+          '<li class="pv-item">' +
+            '<button type="button" class="pv-head" data-id="' + it._id + '" aria-expanded="' + (isOpen ? 'true' : 'false') + '">' +
               '<span class="pv-date">' + escHtml(it.date || '日付未入力') + '</span>' +
               (hasChip ? '<span class="pv-chip">' + escHtml(it.tag) + '</span>' : '') +
               '<span class="pv-title">' + escHtml(it.title || '（見出し未入力）') + '</span>' +
-            '</div>' +
-            (bodyHtml ? '<div class="pv-body">' + bodyHtml + '</div>' : '') +
-          '</div>';
+              '<span class="pv-chev" aria-hidden="true"></span>' +
+            '</button>' +
+            '<div class="pv-body"><div class="pv-body-inner"><div class="pv-body-text">' + bodyHtml + '</div></div></div>' +
+          '</li>';
       }).join('');
     }
 
@@ -302,8 +328,18 @@
       renderAll();
     });
 
+    // --- プレビューの開閉（実サイトと同じアコーディオン。状態は expanded に保持）
+    pvEl.addEventListener('click', function(e){
+      var head = e.target.closest('.pv-head');
+      if (!head) return;
+      var id = Number(head.getAttribute('data-id'));
+      var open = head.getAttribute('aria-expanded') === 'true';
+      head.setAttribute('aria-expanded', open ? 'false' : 'true');
+      if (open) delete expanded[id]; else expanded[id] = true;
+    });
+
     document.getElementById('addBtn').addEventListener('click', function(){
-      items.unshift({ date:'', tag:'', title:'', body:[] });
+      items.unshift({ _id: nextId++, date:'', tag:'', title:'', body:[] });
       renderAll();
       var first = listEl.querySelector('.item input[data-f="date"]');
       if (first) first.focus();
