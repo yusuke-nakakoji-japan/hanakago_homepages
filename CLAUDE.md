@@ -14,7 +14,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Git
 
-- **アカウント**: コミットは `yusuke-nakakoji-japan` のアカウントで行う。
+- **アカウント**: コミットは `yusuke-nakakoji-japan` のアカウントで行う（`user.name` = `yusuke-nakakoji-japan` / `user.email` = `yusuke-nakakoji-japan@users.noreply.github.com`）。
 - **自動コミット**: 一括りのタスクが完了したら、日本語のメッセージで自動的にコミットする。
 
 ## アーキテクチャ
