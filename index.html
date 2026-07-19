@@ -299,60 +299,70 @@
   color: var(--sumi-2); line-height: 2.05; max-width: 62ch;
   margin: var(--s-5) 0 var(--s-7);
 }
-/* 来店前に効く要点（常時表示） */
-.hanakago .hk-guide__points {
-  list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 0 var(--s-8);
-  border-top: 1px solid var(--hairline-soft);
+/* ---- 施設利用規約 全文を読ませる誘導（native details） ---- */
+.hanakago .hk-terms { margin-top: var(--s-8); }
+
+/* 閉じているとき: 「読みたくなる」招待パネル（summary 全体がボタン） */
+.hanakago .hk-terms__cta {
+  list-style: none; cursor: pointer; display: block; position: relative;
+  max-width: 620px; margin: 0; text-align: left;
+  padding: var(--s-8) var(--s-7) var(--s-7);
+  background: var(--shoji);
+  border: 1px solid var(--hana-pale);
+  transition: border-color var(--dur-sm) var(--ease), box-shadow var(--dur-md) var(--ease), transform var(--dur-sm) var(--ease);
 }
-.hanakago .hk-guide__point {
-  display: grid; grid-template-columns: auto 1fr; gap: var(--s-3);
-  padding: var(--s-4) 0;
-  border-bottom: 1px dashed var(--hairline-soft);
+.hanakago .hk-terms__cta::-webkit-details-marker { display: none; }
+.hanakago .hk-terms__cta::before {
+  content: ''; position: absolute; left: var(--s-7); top: -1px;
+  width: 56px; height: 2px;
+  background: var(--accent);
 }
-.hanakago .hk-guide__point-mark { color: var(--accent); font-size: var(--t-base); line-height: 1.7; }
-.hanakago .hk-guide__point-body { font-size: var(--t-sm); color: var(--sumi-2); line-height: 1.85; }
-.hanakago .hk-guide__point-body strong {
-  display: block;
-  font-family: var(--font-display-jp); font-weight: 500;
-  font-size: var(--t-base); color: var(--sumi);
-  letter-spacing: 0.06em; margin-bottom: 2px;
+.hanakago .hk-terms__cta:hover { border-color: var(--hana); box-shadow: var(--shadow-float); transform: translateY(-2px); }
+.hanakago .hk-terms__cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.hanakago .hk-terms__cta-title {
+  display: block; font-family: var(--font-display-jp); font-weight: 500;
+  font-size: var(--t-xl); color: var(--sumi); letter-spacing: 0.14em;
 }
-/* 施設利用規約 全文（native details 単一開閉） */
-.hanakago .hk-terms { margin-top: var(--s-7); border-top: 1px solid var(--hairline); }
-.hanakago .hk-terms__summary {
-  list-style: none; cursor: pointer;
-  display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
-  padding: var(--s-5) 0 0;
-  font-family: var(--font-display-jp); font-weight: 500;
-  font-size: var(--t-md); color: var(--sumi); letter-spacing: 0.10em;
-  transition: color var(--dur-sm) var(--ease);
+.hanakago .hk-terms__cta-note {
+  display: block; font-size: var(--t-sm); color: var(--sumi-2);
+  margin: var(--s-3) 0 var(--s-6); line-height: 1.9;
 }
-.hanakago .hk-terms__summary::-webkit-details-marker { display: none; }
-.hanakago .hk-terms__summary:hover { color: var(--accent-deep); }
-.hanakago .hk-terms__summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
-.hanakago .hk-terms__chev {
-  width: 20px; height: 20px; position: relative; flex: 0 0 auto;
-  color: var(--sumi-3);
-  transition: color var(--dur-sm) var(--ease);
+.hanakago .hk-terms__cta-btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  padding: 15px 36px;
+  background: var(--accent); color: var(--shoji);
+  border-radius: var(--r-1);
+  font-family: var(--font-body-jp); font-size: var(--t-sm); letter-spacing: 0.18em;
+  transition: background var(--dur-sm) var(--ease), color var(--dur-sm) var(--ease);
 }
-.hanakago .hk-terms__chev::before,
-.hanakago .hk-terms__chev::after {
-  content: ''; position: absolute; background: currentColor;
-  left: 50%; top: 50%; transform: translate(-50%, -50%);
+.hanakago .hk-terms__cta:hover .hk-terms__cta-btn { background: var(--accent-deep); }
+.hanakago .hk-terms__cta-arrow {
+  width: 8px; height: 8px; margin-top: -4px;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg); transition: transform var(--dur-sm) var(--ease);
 }
-.hanakago .hk-terms__chev::before { width: 14px; height: 1px; }
-.hanakago .hk-terms__chev::after  { width: 1px; height: 14px; transition: opacity var(--dur-sm) var(--ease); }
-.hanakago .hk-terms[open] .hk-terms__chev { color: var(--accent); }
-.hanakago .hk-terms[open] .hk-terms__chev::after { opacity: 0; }
-.hanakago .hk-terms__body { padding-top: var(--s-6); }
+.hanakago .hk-terms[open] .hk-terms__cta-arrow { transform: rotate(-135deg); margin-top: 3px; }
+.hanakago .hk-terms[open] .hk-terms__cta-open  { display: none; }
+.hanakago .hk-terms:not([open]) .hk-terms__cta-close { display: none; }
+/* 開いたとき: 招待感を静めて本文を主役に。ボタンは「とじる」テキストへ */
+.hanakago .hk-terms[open] .hk-terms__cta {
+  border: 0; background: transparent; padding: 0 0 var(--s-2);
+  box-shadow: none; transform: none;
+}
+.hanakago .hk-terms[open] .hk-terms__cta::before { display: none; }
+.hanakago .hk-terms[open] .hk-terms__cta-title,
+.hanakago .hk-terms[open] .hk-terms__cta-note { display: none; }
+.hanakago .hk-terms[open] .hk-terms__cta-btn {
+  background: transparent; color: var(--accent-deep); padding: var(--s-2) 0; letter-spacing: 0.16em;
+}
+.hanakago .hk-terms[open] .hk-terms__cta:hover .hk-terms__cta-btn { color: var(--accent); }
+.hanakago .hk-terms__body { max-width: 760px; margin: 0; padding-top: var(--s-6); }
 .hanakago .hk-terms__meta {
   font-family: var(--font-display-en); font-style: italic;
   color: var(--accent); font-size: var(--t-sm); letter-spacing: 0.06em;
   margin: 0 0 var(--s-5);
 }
-.hanakago .hk-terms__articles { list-style: none; margin: 0; padding: 0; max-width: 78ch; }
+.hanakago .hk-terms__articles { list-style: none; margin: 0; padding: 0; }
 .hanakago .hk-terms__article { padding: var(--s-5) 0; border-top: 1px solid var(--hairline-soft); }
 .hanakago .hk-terms__article:first-child { border-top: 0; padding-top: 0; }
 .hanakago .hk-terms__art-title {
@@ -367,7 +377,7 @@
 .hanakago .hk-terms__enact {
   margin: var(--s-6) 0 0; padding-top: var(--s-5);
   border-top: 1px solid var(--hairline-soft);
-  font-size: var(--t-sm); color: var(--sumi-2); line-height: 2; max-width: 78ch;
+  font-size: var(--t-sm); color: var(--sumi-2); line-height: 2;
 }
 @media (prefers-reduced-motion: no-preference) {
   .hanakago .hk-terms[open] .hk-terms__body { animation: hk-terms-in var(--dur-md) var(--ease); }
@@ -375,7 +385,7 @@
 }
 @media print {
   .hanakago .hk-terms > .hk-terms__body { display: block !important; }
-  .hanakago .hk-terms__chev { display: none; }
+  .hanakago .hk-terms__cta { display: none !important; }
 }
 /* Footer 施設利用規約 link */
 .hanakago .hk-footer__terms {
@@ -483,7 +493,9 @@
     margin-left: auto; margin-right: auto;
   }
   .hanakago .hk-pricing { grid-template-columns: 1fr; gap: var(--s-3); }
-  .hanakago .hk-guide__points { grid-template-columns: 1fr; gap: 0; }
+  .hanakago .hk-terms__cta { padding: var(--s-7) var(--s-5); }
+  .hanakago .hk-terms__cta::before { left: var(--s-5); }
+  .hanakago .hk-terms__cta-btn { display: flex; width: 100%; justify-content: center; }
 
   /* Gallery — keep 2 columns + the staggered look on mobile too */
   .hanakago .hk-gallery-wrap .hk-gallery { grid-template-columns: repeat(2, 1fr); gap: var(--s-3); }
@@ -1044,33 +1056,18 @@ body.has-mobile-menu-open { overflow: hidden; }
         <span class="hk-eyebrow">— House Rules —</span>
         <h2 class="hk-h2">ご利用にあたって</h2>
       </header>
-      <p class="hk-guide__lead">花かごは、カフェ・テラス・ドッグランを含む施設全体で、みなさまに気持ちよくお過ごしいただくためのお願いをしています。ご来店の前に、下の要点だけでもご確認ください。</p>
+      <p class="hk-guide__lead">花かごは、カフェ・テラス・ドッグランを含む施設全体で、みなさまに安心してお過ごしいただくための約束事を定めています。ご来店・ご利用の前に、下記の施設利用規約を必ずお読みください。</p>
 
-      <!-- 来店前に効く要点（常時表示） -->
-      <ul class="hk-guide__points">
-        <li class="hk-guide__point">
-          <span class="hk-guide__point-mark" aria-hidden="true">◇</span>
-          <span class="hk-guide__point-body"><strong>予防接種証明のご提示</strong>一年以内の狂犬病・混合ワクチン接種証明書を、初回ご利用時にご提示ください。</span>
-        </li>
-        <li class="hk-guide__point">
-          <span class="hk-guide__point-mark" aria-hidden="true">◇</span>
-          <span class="hk-guide__point-body"><strong>施設内は終日禁煙</strong>ドッグラン・カフェ・テラス席・駐車場を含め、電子・加熱式たばこも禁煙です。</span>
-        </li>
-        <li class="hk-guide__point">
-          <span class="hk-guide__point-mark" aria-hidden="true">◇</span>
-          <span class="hk-guide__point-body"><strong>犬の同伴はテラス席</strong>カフェ室内へのワンちゃんのご同伴はご遠慮ください。</span>
-        </li>
-        <li class="hk-guide__point">
-          <span class="hk-guide__point-mark" aria-hidden="true">◇</span>
-          <span class="hk-guide__point-body"><strong>排泄物はお持ち帰り</strong>マナーポーチをご用意しています。お持ち帰りにご協力ください。</span>
-        </li>
-      </ul>
-
-      <!-- 施設利用規約 全文（既定は折りたたみ） -->
+      <!-- 施設利用規約 全文（全文を読ませる前提の誘導パネル。既定は折りたたみ） -->
       <details class="hk-terms">
-        <summary class="hk-terms__summary">
-          <span class="hk-terms__summary-label">施設利用規約 全文を読む</span>
-          <span class="hk-terms__chev" aria-hidden="true"></span>
+        <summary class="hk-terms__cta">
+          <span class="hk-terms__cta-title">施設利用規約</span>
+          <span class="hk-terms__cta-note">ご来店・ご利用の前に、必ず全文（全14条）をお読みください。</span>
+          <span class="hk-terms__cta-btn">
+            <span class="hk-terms__cta-open">全文を読む</span>
+            <span class="hk-terms__cta-close">とじる</span>
+            <span class="hk-terms__cta-arrow" aria-hidden="true"></span>
+          </span>
         </summary>
         <div class="hk-terms__body">
           <p class="hk-terms__meta">和カフェ＆ドッグラン 花かご ／ 施設利用規約</p>
