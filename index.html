@@ -1246,82 +1246,16 @@ body.has-mobile-menu-open { overflow: hidden; }
   </section>
 
   <!-- =================================================== NEWS
-       お知らせを追加・更新するときは、<li class="hk-news__item"> ブロックを
-       コピーして一番上に貼り付け、4 箇所（日付・タグ・見出し・本文）を
-       書き換えてください。クリックで本文が展開します。
+       お知らせの中身は content/news.js に分離しています。
+       追加・変更は content/news.js を編集するだけで、この HTML は触りません
+       （JS が起動時に読み込んで下の一覧を自動生成します）。
+       クリックで本文が展開します。
   -->
   <section class="hk-news" id="news">
     <div class="hk-section">
       <span class="hk-eyebrow">— News —</span>
       <h2 class="hk-h2">お知らせ</h2>
-      <ul class="hk-news__list">
-
-        <li class="hk-news__item">
-          <button class="hk-news__head" type="button" aria-expanded="false">
-            <span class="hk-news__date">2026.05.10</span>
-            <span class="hk-chip">お品書き</span>
-            <span class="hk-news__title">秋の上生菓子と、新しい煎茶のお品書きを公開いたしました。</span>
-            <span class="hk-news__chev" aria-hidden="true"></span>
-          </button>
-          <div class="hk-news__body">
-            <div class="hk-news__body-inner">
-              <div class="hk-news__body-text">
-                <p>九月の上生菓子は「月白」「野菊」「初紅葉」の三種。煎茶は、和束の新作を二種お品書きに加えました。お席にてお品書きをご覧いただけます。</p>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li class="hk-news__item">
-          <button class="hk-news__head" type="button" aria-expanded="false">
-            <span class="hk-news__date">2026.05.02</span>
-            <span class="hk-chip">ドッグラン</span>
-            <span class="hk-news__title">ドッグランの芝の張替を行いました。ふかふかとした足元で。</span>
-            <span class="hk-news__chev" aria-hidden="true"></span>
-          </button>
-          <div class="hk-news__body">
-            <div class="hk-news__body-inner">
-              <div class="hk-news__body-text">
-                <p>庭の天然芝を一面張り替えました。しばらくはふかふかとした感触をお楽しみいただけます。雨上がりはお足ふきをご用意しておりますので、お声がけください。</p>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li class="hk-news__item">
-          <button class="hk-news__head" type="button" aria-expanded="false">
-            <span class="hk-news__date">2026.04.18</span>
-            <span class="hk-chip">営業</span>
-            <span class="hk-news__title">営業日変更のお知らせ。金・土・日の三日間の営業となります。</span>
-            <span class="hk-news__chev" aria-hidden="true"></span>
-          </button>
-          <div class="hk-news__body">
-            <div class="hk-news__body-inner">
-              <div class="hk-news__body-text">
-                <p>営業日を金曜・土曜・日曜の三日間に変更いたしました。営業時間は通常どおり、11:00 〜 17:30（L.O. 17:00）です。</p>
-                <p>ご予約・お問い合わせは、ページ下部の連絡先よりお願いいたします。</p>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li class="hk-news__item">
-          <button class="hk-news__head" type="button" aria-expanded="false">
-            <span class="hk-news__date">2026.04.02</span>
-            <span class="hk-chip">入荷</span>
-            <span class="hk-news__title">宇治より、新茶を入荷いたしました。今年は香りが特に良いです。</span>
-            <span class="hk-news__chev" aria-hidden="true"></span>
-          </button>
-          <div class="hk-news__body">
-            <div class="hk-news__body-inner">
-              <div class="hk-news__body-text">
-                <p>宇治・和束の新茶が届きました。煎茶として、また玉露の三煎仕立てでお出ししております。茶葉のお持ち帰り（30g 袋入り）もご用意しております。</p>
-              </div>
-            </div>
-          </div>
-        </li>
-
-      </ul>
+      <ul class="hk-news__list" id="hkNewsList"></ul>
     </div>
   </section>
 
@@ -1386,6 +1320,9 @@ body.has-mobile-menu-open { overflow: hidden; }
   z-index: 3;
 }
 </style>
+
+<!-- お知らせデータ（正本）。編集は content/news.js のみ -->
+<script src="content/news.js"></script>
 
 <script>
 /* ────────────────── HEADER scroll ────────────────── */
@@ -1478,13 +1415,78 @@ const closeLb = () => { lb.classList.remove('is-open'); document.body.classList.
 lb.addEventListener('click', (e) => { if (e.target === lb || e.target.classList.contains('hk-lightbox__close')) closeLb(); });
 window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
 
-/* ────────────────── NEWS expander ────────────── */
-document.querySelectorAll('.hk-news__head').forEach(btn => {
-  btn.addEventListener('click', () => {
+/* ────────────────── NEWS (content/news.js から生成) ───── */
+(() => {
+  const list = document.getElementById('hkNewsList');
+  if (!list) return;
+
+  // content/news.js の window.HANAKAGO_NEWS から一覧を組み立てる（上にあるほど新しい）
+  const items = Array.isArray(window.HANAKAGO_NEWS) ? window.HANAKAGO_NEWS : [];
+  const frag = document.createDocumentFragment();
+
+  items.forEach(n => {
+    const li = document.createElement('li');
+    li.className = 'hk-news__item';
+
+    const head = document.createElement('button');
+    head.className = 'hk-news__head';
+    head.type = 'button';
+    head.setAttribute('aria-expanded', 'false');
+
+    const date = document.createElement('span');
+    date.className = 'hk-news__date';
+    date.textContent = n.date || '';
+    head.appendChild(date);
+
+    if (n.tag) {
+      const chip = document.createElement('span');
+      chip.className = 'hk-chip';
+      chip.textContent = n.tag;
+      head.appendChild(chip);
+    }
+
+    const title = document.createElement('span');
+    title.className = 'hk-news__title';
+    title.textContent = n.title || '';
+    head.appendChild(title);
+
+    const chev = document.createElement('span');
+    chev.className = 'hk-news__chev';
+    chev.setAttribute('aria-hidden', 'true');
+    head.appendChild(chev);
+
+    li.appendChild(head);
+
+    const body = document.createElement('div');
+    body.className = 'hk-news__body';
+    const inner = document.createElement('div');
+    inner.className = 'hk-news__body-inner';
+    const text = document.createElement('div');
+    text.className = 'hk-news__body-text';
+
+    const paras = Array.isArray(n.body) ? n.body : (n.body ? [n.body] : []);
+    paras.forEach(p => {
+      const el = document.createElement('p');
+      el.textContent = p;
+      text.appendChild(el);
+    });
+
+    inner.appendChild(text);
+    body.appendChild(inner);
+    li.appendChild(body);
+    frag.appendChild(li);
+  });
+
+  list.appendChild(frag);
+
+  // 開閉（イベント委譲なので生成後の項目にもそのまま効く）
+  list.addEventListener('click', (e) => {
+    const btn = e.target.closest('.hk-news__head');
+    if (!btn) return;
     const open = btn.getAttribute('aria-expanded') === 'true';
     btn.setAttribute('aria-expanded', open ? 'false' : 'true');
   });
-});
+})();
 
 /* ────────────────── MENU CAROUSEL ─────────────── */
 (() => {
