@@ -15,15 +15,6 @@
 window.HANAKAGO_NEWS = [
 
   {
-    date:  "2026.07.19",
-    tag:   "test",
-    title: "test",
-    body: [
-      "test"
-    ]
-  },
-
-  {
     date:  "2026.07.31",
     tag:   "開店",
     title: "花かご、開店いたしました。皆さまのお越しをお待ちしております。",
