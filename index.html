@@ -916,7 +916,7 @@ body.has-mobile-menu-open { overflow: hidden; }
         <ul class="hk-menu__featured" id="menuTrack">
           <li class="hk-menu__item" data-idx="0">
             <div class="hk-menu__item-img">
-              <img src="assets/images/menu/m1.jpeg" alt="">
+              <img src="assets/images/menu/plate.jpeg" alt="">
             </div>
             <div class="hk-menu__item-meta">
               <h4 class="hk-menu__item-name">花かごの和パフェ</h4>
@@ -932,7 +932,7 @@ body.has-mobile-menu-open { overflow: hidden; }
           </li>
           <li class="hk-menu__item" data-idx="1">
             <div class="hk-menu__item-img">
-              <img src="assets/images/menu/m2.jpeg" alt="">
+              <img src="assets/images/menu/bento.jpeg" alt="">
             </div>
             <div class="hk-menu__item-meta">
               <h4 class="hk-menu__item-name">玉露の三煎</h4>
@@ -948,7 +948,7 @@ body.has-mobile-menu-open { overflow: hidden; }
           </li>
           <li class="hk-menu__item" data-idx="2">
             <div class="hk-menu__item-img">
-              <img src="assets/images/menu/m3.jpeg" alt="">
+              <img src="assets/images/menu/pudding.jpeg" alt="">
             </div>
             <div class="hk-menu__item-meta">
               <h4 class="hk-menu__item-name">上生菓子三種盛り</h4>
@@ -959,6 +959,22 @@ body.has-mobile-menu-open { overflow: hidden; }
               <div class="hk-menu__item-foot">
                 <span class="hk-chip">お点前付</span>
                 <span class="hk-menu__item-price">¥1,800</span>
+              </div>
+            </div>
+          </li>
+          <li class="hk-menu__item" data-idx="3">
+            <div class="hk-menu__item-img">
+              <img src="assets/images/menu/egg-sando.png" alt="">
+            </div>
+            <div class="hk-menu__item-meta">
+              <h4 class="hk-menu__item-name">本日のひと品</h4>
+              <p class="hk-menu__item-desc">
+                季節の食材でご用意する、その日のひと品。<br>
+                内容は日によって変わります。
+              </p>
+              <div class="hk-menu__item-foot">
+                <span class="hk-chip">日替り</span>
+                <span class="hk-menu__item-price">¥—</span>
               </div>
             </div>
           </li>
@@ -973,6 +989,7 @@ body.has-mobile-menu-open { overflow: hidden; }
             <button class="hk-menu__dot is-active" data-idx="0" aria-label="No.01 花かごの和パフェ" type="button"></button>
             <button class="hk-menu__dot" data-idx="1" aria-label="No.02 玉露 三煎" type="button"></button>
             <button class="hk-menu__dot" data-idx="2" aria-label="No.03 上生菓子 三種盛り" type="button"></button>
+            <button class="hk-menu__dot" data-idx="3" aria-label="No.04 本日のひと品" type="button"></button>
           </div>
 
           <button class="hk-menu__arrow hk-menu__arrow--next" id="menuNext" aria-label="次のメニュー" type="button">
@@ -1174,33 +1191,33 @@ body.has-mobile-menu-open { overflow: hidden; }
       <!-- Simple responsive photo grid — every image shows as a 3:2 thumbnail;
            tap any to open the full image in the lightbox. -->
       <div class="hk-gallery">
-        <button class="hk-gphoto" type="button" data-cap="木漏れ日の庭" data-src="assets/images/gallery/01-komorebi.jpeg">
-          <span class="hk-gphoto__frame"><img src="assets/images/gallery/01-komorebi.jpeg" alt="木漏れ日の庭" loading="lazy"></span>
-          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">01</span>木漏れ日の庭</span>
+        <button class="hk-gphoto" type="button" data-cap="花かごの玄関" data-src="assets/images/gallery/01-entrance.jpeg">
+          <span class="hk-gphoto__frame"><img src="assets/images/gallery/01-entrance.jpeg" alt="花かごの玄関" loading="lazy"></span>
+          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">01</span>花かごの玄関</span>
         </button>
-        <button class="hk-gphoto" type="button" data-cap="縁側の席" data-src="assets/images/gallery/02-engawa.jpeg">
-          <span class="hk-gphoto__frame"><img src="assets/images/gallery/02-engawa.jpeg" alt="縁側の席" loading="lazy"></span>
-          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">02</span>縁側の席</span>
+        <button class="hk-gphoto" type="button" data-cap="テラス席" data-src="assets/images/gallery/02-terrace.jpeg">
+          <span class="hk-gphoto__frame"><img src="assets/images/gallery/02-terrace.jpeg" alt="テラス席" loading="lazy"></span>
+          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">02</span>テラス席</span>
         </button>
-        <button class="hk-gphoto" type="button" data-cap="芝のドッグラン" data-src="assets/images/gallery/03-dogran.jpeg">
-          <span class="hk-gphoto__frame"><img src="assets/images/gallery/03-dogran.jpeg" alt="芝のドッグラン" loading="lazy"></span>
-          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">03</span>芝のドッグラン</span>
+        <button class="hk-gphoto" type="button" data-cap="窓辺のカウンター席" data-src="assets/images/gallery/03-counter.jpeg">
+          <span class="hk-gphoto__frame"><img src="assets/images/gallery/03-counter.jpeg" alt="窓辺のカウンター席" loading="lazy"></span>
+          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">03</span>窓辺のカウンター席</span>
         </button>
-        <button class="hk-gphoto" type="button" data-cap="玉露の一服" data-src="assets/images/gallery/04-gyokuro.jpeg">
-          <span class="hk-gphoto__frame"><img src="assets/images/gallery/04-gyokuro.jpeg" alt="玉露の一服" loading="lazy"></span>
-          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">04</span>玉露の一服</span>
+        <button class="hk-gphoto" type="button" data-cap="芝のドッグラン" data-src="assets/images/gallery/04-dogrun.jpeg">
+          <span class="hk-gphoto__frame"><img src="assets/images/gallery/04-dogrun.jpeg" alt="芝のドッグラン" loading="lazy"></span>
+          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">04</span>芝のドッグラン</span>
         </button>
-        <button class="hk-gphoto" type="button" data-cap="上生菓子" data-src="assets/images/gallery/05-wagashi.jpeg">
-          <span class="hk-gphoto__frame"><img src="assets/images/gallery/05-wagashi.jpeg" alt="上生菓子" loading="lazy"></span>
-          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">05</span>上生菓子</span>
+        <button class="hk-gphoto" type="button" data-cap="店内の席" data-src="assets/images/gallery/05-interior.jpeg">
+          <span class="hk-gphoto__frame"><img src="assets/images/gallery/05-interior.jpeg" alt="店内の席" loading="lazy"></span>
+          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">05</span>店内の席</span>
         </button>
-        <button class="hk-gphoto" type="button" data-cap="お庭で寛ぐ" data-src="assets/images/gallery/06-niwa.jpeg">
-          <span class="hk-gphoto__frame"><img src="assets/images/gallery/06-niwa.jpeg" alt="お庭で寛ぐ" loading="lazy"></span>
-          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">06</span>お庭で寛ぐ</span>
+        <button class="hk-gphoto" type="button" data-cap="お店の看板" data-src="assets/images/gallery/06-open.jpeg">
+          <span class="hk-gphoto__frame"><img src="assets/images/gallery/06-open.jpeg" alt="お店の看板" loading="lazy"></span>
+          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">06</span>お店の看板</span>
         </button>
-        <button class="hk-gphoto" type="button" data-cap="土間の店内" data-src="assets/images/gallery/07-doma.jpeg">
-          <span class="hk-gphoto__frame"><img src="assets/images/gallery/07-doma.jpeg" alt="土間の店内" loading="lazy"></span>
-          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">07</span>土間の店内</span>
+        <button class="hk-gphoto" type="button" data-cap="駐車場" data-src="assets/images/gallery/07-parking.jpeg">
+          <span class="hk-gphoto__frame"><img src="assets/images/gallery/07-parking.jpeg" alt="駐車場" loading="lazy"></span>
+          <span class="hk-gphoto__plate"><span class="hk-gphoto__no">07</span>駐車場</span>
         </button>
       </div>
     </div>
