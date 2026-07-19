@@ -149,11 +149,11 @@
     <div class="guide">
       <h2>使い方（3ステップ）</h2>
       <ol>
-        <li>下のフォームで、お知らせを追加・修正・並べ替え・削除します（上にあるほど新しく表示されます）。</li>
-        <li>「<strong>news.js を書き出す</strong>」の内容を <code>content/news.js</code> に貼り付けて保存（または「ダウンロード」で置き換え）。</li>
-        <li>その変更をコミットするとサイトに反映されます。</li>
+        <li>下のフォームで、お知らせを追加・修正・並べ替え・削除します（上にあるほど新しく表示されます）。<strong>プレビューがそのまま公開後の見た目・内容です。</strong></li>
+        <li>「<strong>GitHub に保存（コミット）</strong>」を押します（表示されている内容がそのまま保存されます。事前の「書き出し」操作は不要）。</li>
+        <li>1分ほど待って、サイトを <code>Ctrl + F5</code>（スーパーリロード）で開き直すと反映されます。</li>
       </ol>
-      <p class="note">※ このページは編集内容を保存・送信しません。あくまで <code>news.js</code> の中身を作るための道具です。開いただけ・入力しただけでは、サイトは何も変わりません。</p>
+      <p class="note">※ このページが外部に送信するのは「GitHub に保存」を押したときだけ（あなたのトークンを使って GitHub に書き込みます）。開いただけ・入力しただけでは何も送信されず、サイトも変わりません。</p>
     </div>
 
     <h2 class="sec">お知らせ一覧</h2>
@@ -167,18 +167,9 @@
     <ul class="pv" id="pvList"></ul>
     <p class="hint">実際のサイトと同じ表示です。見出しをクリックすると「＋」が「−」になり、本文が開きます（もう一度クリックで閉じます）。</p>
 
-    <h2 class="sec">書き出し（content/news.js に反映）</h2>
-    <div class="out-actions">
-      <button id="genBtn">news.js を書き出す</button>
-      <button id="copyBtn" class="ghost">コピー</button>
-      <button id="dlBtn" class="ghost">news.js をダウンロード</button>
-    </div>
-    <textarea id="out" readonly spellcheck="false"></textarea>
-    <p class="hint">この内容で <code>content/news.js</code> を置き換え、コミットしてください。</p>
-
-    <h2 class="sec">GitHub に直接保存（任意）</h2>
+    <h2 class="sec">保存（プレビューの内容がそのまま反映されます）</h2>
     <div class="gh">
-      <p class="gh-lead">GitHub トークンを使って、コピー＆コミットの手間なく <code>content/news.js</code> を直接更新します。使わなくても、上の「書き出し」だけで運用できます。</p>
+      <p class="gh-lead"><strong>いま上のプレビューに表示されている内容が、そのまま保存されます。</strong>「書き出す」などの事前操作は不要です。下のボタンで <code>content/news.js</code> を GitHub に直接更新します。</p>
 
       <details class="gh-help">
         <summary>▶ 初回だけ必要：トークンの作り方（クリックで開く）</summary>
@@ -211,6 +202,17 @@
       </div>
       <div id="ghStatus" class="gh-status" hidden></div>
     </div>
+
+    <h2 class="sec">手動で反映する場合（任意・トークンを使わないとき）</h2>
+    <details class="gh-help">
+      <summary>▶ news.js の中身をコピー／ダウンロードする（クリックで開く）</summary>
+      <p class="hint">編集すると自動で更新されます。トークンを使わず手動でコミットしたいときだけ使用します（この内容を <code>content/news.js</code> に貼り付け、または置き換えてコミット）。</p>
+      <div class="out-actions">
+        <button id="copyBtn" class="ghost">コピー</button>
+        <button id="dlBtn" class="ghost">news.js をダウンロード</button>
+      </div>
+      <textarea id="out" readonly spellcheck="false"></textarea>
+    </details>
 
   </div>
 
@@ -408,12 +410,6 @@
     document.getElementById('reloadBtn').addEventListener('click', function(){
       if (!confirm('編集中の内容を破棄して、現在の news.js を読み込み直しますか？')) return;
       loadFromData(); renderAll();
-    });
-
-    document.getElementById('genBtn').addEventListener('click', function(){
-      refreshOutput();
-      outEl.scrollIntoView({ behavior:'smooth', block:'center' });
-      toast('書き出しました');
     });
 
     document.getElementById('copyBtn').addEventListener('click', function(){
