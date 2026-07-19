@@ -284,20 +284,7 @@
 .hanakago .hk-pricing__price .unit { font-size: var(--t-xs); }
 .hanakago .hk-pricing__note { font-size: var(--t-xs); line-height: 1.8; }
 
-/* Rules (continuation of Dog Garden section) */
-.hanakago .hk-dog__rules {
-  margin-top: var(--s-4);
-  padding-top: var(--s-5);
-  border-top: 1px solid var(--hairline-soft);
-}
-.hanakago .hk-dog__rules::before {
-  content: 'ご利用にあたって';
-  display: block;
-  font-family: var(--font-display-jp); font-weight: 500;
-  font-size: var(--t-md); color: var(--sumi);
-  letter-spacing: 0.14em;
-  margin-bottom: var(--s-4);
-}
+/* Dog notes — dog-run practical remarks kept in the Dog Garden section */
 .hanakago .hk-dog__notes {
   margin: var(--s-5) 0 0;
   padding-top: var(--s-4);
@@ -305,7 +292,97 @@
   font-size: var(--t-sm); color: var(--sumi-3);
   line-height: 1.85;
 }
-.hanakago .hk-dog__rules .hk-rules { grid-template-columns: repeat(3, 1fr); gap: var(--s-5) var(--s-7); }
+
+/* ------------------------------ ご利用にあたって / 施設利用規約 */
+.hanakago .hk-guide { background: var(--kinari-2); position: relative; }
+.hanakago .hk-guide__lead {
+  color: var(--sumi-2); line-height: 2.05; max-width: 62ch;
+  margin: var(--s-5) 0 var(--s-7);
+}
+/* 来店前に効く要点（常時表示） */
+.hanakago .hk-guide__points {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 0 var(--s-8);
+  border-top: 1px solid var(--hairline-soft);
+}
+.hanakago .hk-guide__point {
+  display: grid; grid-template-columns: auto 1fr; gap: var(--s-3);
+  padding: var(--s-4) 0;
+  border-bottom: 1px dashed var(--hairline-soft);
+}
+.hanakago .hk-guide__point-mark { color: var(--accent); font-size: var(--t-base); line-height: 1.7; }
+.hanakago .hk-guide__point-body { font-size: var(--t-sm); color: var(--sumi-2); line-height: 1.85; }
+.hanakago .hk-guide__point-body strong {
+  display: block;
+  font-family: var(--font-display-jp); font-weight: 500;
+  font-size: var(--t-base); color: var(--sumi);
+  letter-spacing: 0.06em; margin-bottom: 2px;
+}
+/* 施設利用規約 全文（native details 単一開閉） */
+.hanakago .hk-terms { margin-top: var(--s-7); border-top: 1px solid var(--hairline); }
+.hanakago .hk-terms__summary {
+  list-style: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--s-4);
+  padding: var(--s-5) 0 0;
+  font-family: var(--font-display-jp); font-weight: 500;
+  font-size: var(--t-md); color: var(--sumi); letter-spacing: 0.10em;
+  transition: color var(--dur-sm) var(--ease);
+}
+.hanakago .hk-terms__summary::-webkit-details-marker { display: none; }
+.hanakago .hk-terms__summary:hover { color: var(--accent-deep); }
+.hanakago .hk-terms__summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }
+.hanakago .hk-terms__chev {
+  width: 20px; height: 20px; position: relative; flex: 0 0 auto;
+  color: var(--sumi-3);
+  transition: color var(--dur-sm) var(--ease);
+}
+.hanakago .hk-terms__chev::before,
+.hanakago .hk-terms__chev::after {
+  content: ''; position: absolute; background: currentColor;
+  left: 50%; top: 50%; transform: translate(-50%, -50%);
+}
+.hanakago .hk-terms__chev::before { width: 14px; height: 1px; }
+.hanakago .hk-terms__chev::after  { width: 1px; height: 14px; transition: opacity var(--dur-sm) var(--ease); }
+.hanakago .hk-terms[open] .hk-terms__chev { color: var(--accent); }
+.hanakago .hk-terms[open] .hk-terms__chev::after { opacity: 0; }
+.hanakago .hk-terms__body { padding-top: var(--s-6); }
+.hanakago .hk-terms__meta {
+  font-family: var(--font-display-en); font-style: italic;
+  color: var(--accent); font-size: var(--t-sm); letter-spacing: 0.06em;
+  margin: 0 0 var(--s-5);
+}
+.hanakago .hk-terms__articles { list-style: none; margin: 0; padding: 0; max-width: 78ch; }
+.hanakago .hk-terms__article { padding: var(--s-5) 0; border-top: 1px solid var(--hairline-soft); }
+.hanakago .hk-terms__article:first-child { border-top: 0; padding-top: 0; }
+.hanakago .hk-terms__art-title {
+  font-family: var(--font-display-jp); font-weight: 500;
+  font-size: var(--t-base); color: var(--sumi);
+  letter-spacing: 0.08em; margin: 0 0 var(--s-3);
+}
+.hanakago .hk-terms__article > p { font-size: var(--t-sm); color: var(--sumi-2); line-height: 1.95; margin: 0; }
+.hanakago .hk-terms__sub { margin: var(--s-2) 0 0; padding-left: 1.6em; }
+.hanakago .hk-terms__sub li { font-size: var(--t-sm); color: var(--sumi-2); line-height: 1.95; margin: 4px 0; }
+.hanakago .hk-terms__note { font-size: var(--t-xs); color: var(--sumi-3); margin: var(--s-3) 0 0; }
+.hanakago .hk-terms__enact {
+  margin: var(--s-6) 0 0; padding-top: var(--s-5);
+  border-top: 1px solid var(--hairline-soft);
+  font-size: var(--t-sm); color: var(--sumi-2); line-height: 2; max-width: 78ch;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hanakago .hk-terms[open] .hk-terms__body { animation: hk-terms-in var(--dur-md) var(--ease); }
+  @keyframes hk-terms-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
+@media print {
+  .hanakago .hk-terms > .hk-terms__body { display: block !important; }
+  .hanakago .hk-terms__chev { display: none; }
+}
+/* Footer 施設利用規約 link */
+.hanakago .hk-footer__terms {
+  font-family: var(--font-body-jp); font-style: normal;
+  letter-spacing: 0.08em; color: var(--sumi-4);
+}
+.hanakago .hk-footer__terms:hover { color: var(--shoji); }
 /* ==================== RESPONSIVE ==================== */
 /* Tablet and below */
 @media (max-width: 1080px) {
@@ -313,7 +390,6 @@
   .hanakago .hk-footer__inner { grid-template-columns: 1fr; gap: var(--s-7); }
   .hanakago .hk-dog__head { grid-template-columns: 1fr; }
   .hanakago .hk-dog__head .hk-sub { grid-column: 1; grid-row: auto; text-align: left; align-self: start; }
-  .hanakago .hk-dog__rules .hk-rules { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* Mobile */
@@ -407,7 +483,7 @@
     margin-left: auto; margin-right: auto;
   }
   .hanakago .hk-pricing { grid-template-columns: 1fr; gap: var(--s-3); }
-  .hanakago .hk-dog__rules .hk-rules { grid-template-columns: 1fr; }
+  .hanakago .hk-guide__points { grid-template-columns: 1fr; gap: 0; }
 
   /* Gallery — keep 2 columns + the staggered look on mobile too */
   .hanakago .hk-gallery-wrap .hk-gallery { grid-template-columns: repeat(2, 1fr); gap: var(--s-3); }
@@ -943,59 +1019,161 @@ body.has-mobile-menu-open { overflow: hidden; }
             </div>
           </div>
 
-          <div class="hk-dog__rules">
-            <div class="hk-rules">
-              <div class="hk-rule">
-                <span class="hk-rule__no">01</span>
-                <div class="hk-rule__body">
-                  <strong>予防接種について</strong>
-                  一年以内の狂犬病・混合ワクチン接種証明書を初回時にご提示ください。
-                </div>
-              </div>
-              <div class="hk-rule">
-                <span class="hk-rule__no">02</span>
-                <div class="hk-rule__body">
-                  <strong>発情期・体調について</strong>
-                  メス犬の発情期および体調のすぐれない子はご遠慮いただいております。
-                </div>
-              </div>
-              <div class="hk-rule">
-                <span class="hk-rule__no">03</span>
-                <div class="hk-rule__body">
-                  <strong>リードについて</strong>
-                  ドッグラン内はノーリードで結構ですが、出入口の前後では必ずお付けください。
-                </div>
-              </div>
-              <div class="hk-rule">
-                <span class="hk-rule__no">04</span>
-                <div class="hk-rule__body">
-                  <strong>排泄物の処理</strong>
-                  排泄物は必ずお持ち帰りください。マナーポーチをご準備しております。
-                </div>
-              </div>
-              <div class="hk-rule">
-                <span class="hk-rule__no">05</span>
-                <div class="hk-rule__body">
-                  <strong>カフェ店内へのご同伴</strong>
-                  縁側席・テラス席はワンちゃん同伴可。土間席はご同伴をお控えください。
-                </div>
-              </div>
-              <div class="hk-rule">
-                <span class="hk-rule__no">06</span>
-                <div class="hk-rule__body">
-                  <strong>事故・怪我について</strong>
-                  ワンちゃん同士の事故等につきましては、当店は責任を負いかねます。
-                </div>
-              </div>
-            </div>
-
-            <p class="hk-dog__notes">
-              ※ お子様連れの方、初めての方は、入場前にスタッフへお声がけください。<br>
-              ※ 雨天時はお庭の状態により、ご利用をお断りする場合がございます。
-            </p>
-          </div>
+          <p class="hk-dog__notes">
+            ※ お子様連れの方、初めての方は、入場前にスタッフへお声がけください。<br>
+            ※ 雨天時はお庭の状態により、ご利用をお断りする場合がございます。
+          </p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ==================================== ご利用にあたって / 施設利用規約 -->
+  <section class="hk-guide" id="guide">
+    <div class="hk-section">
+      <header class="hk-guide__head">
+        <span class="hk-eyebrow">— House Rules —</span>
+        <h2 class="hk-h2">ご利用にあたって</h2>
+      </header>
+      <p class="hk-guide__lead">花かごは、カフェ・テラス・ドッグランを含む施設全体で、みなさまに気持ちよくお過ごしいただくためのお願いをしています。ご来店の前に、下の要点だけでもご確認ください。</p>
+
+      <!-- 来店前に効く要点（常時表示） -->
+      <ul class="hk-guide__points">
+        <li class="hk-guide__point">
+          <span class="hk-guide__point-mark" aria-hidden="true">◇</span>
+          <span class="hk-guide__point-body"><strong>予防接種証明のご提示</strong>一年以内の狂犬病・混合ワクチン接種証明書を、初回ご利用時にご提示ください。</span>
+        </li>
+        <li class="hk-guide__point">
+          <span class="hk-guide__point-mark" aria-hidden="true">◇</span>
+          <span class="hk-guide__point-body"><strong>施設内は終日禁煙</strong>ドッグラン・カフェ・テラス席・駐車場を含め、電子・加熱式たばこも禁煙です。</span>
+        </li>
+        <li class="hk-guide__point">
+          <span class="hk-guide__point-mark" aria-hidden="true">◇</span>
+          <span class="hk-guide__point-body"><strong>犬の同伴はテラス席</strong>カフェ室内へのワンちゃんのご同伴はご遠慮ください。</span>
+        </li>
+        <li class="hk-guide__point">
+          <span class="hk-guide__point-mark" aria-hidden="true">◇</span>
+          <span class="hk-guide__point-body"><strong>排泄物はお持ち帰り</strong>マナーポーチをご用意しています。お持ち帰りにご協力ください。</span>
+        </li>
+      </ul>
+
+      <!-- 施設利用規約 全文（既定は折りたたみ） -->
+      <details class="hk-terms">
+        <summary class="hk-terms__summary">
+          <span class="hk-terms__summary-label">施設利用規約 全文を読む</span>
+          <span class="hk-terms__chev" aria-hidden="true"></span>
+        </summary>
+        <div class="hk-terms__body">
+          <p class="hk-terms__meta">和カフェ＆ドッグラン 花かご ／ 施設利用規約</p>
+          <ol class="hk-terms__articles">
+            <li class="hk-terms__article">
+              <h3 class="hk-terms__art-title">第1条（目的）</h3>
+              <p>本規約は、和カフェ＆ドッグラン 花かご（以下「当施設」といいます。）をご利用いただくすべてのお客様に、安全かつ快適にご利用いただくための事項を定めるものです。</p>
+            </li>
+            <li class="hk-terms__article">
+              <h3 class="hk-terms__art-title">第2条（利用条件）</h3>
+              <p>ドッグランは、以下の条件を満たす犬のみ利用可能とします。</p>
+              <ol class="hk-terms__sub">
+                <li>狂犬病予防接種および混合ワクチン接種が有効期間内であること。</li>
+                <li>健康状態が良好であること（感染症・皮膚病・発情期は利用不可）。</li>
+                <li>飼い主が適切に制御できること（呼び戻しが可能である等）。</li>
+              </ol>
+            </li>
+            <li class="hk-terms__article">
+              <h3 class="hk-terms__art-title">第3条（エリア区分）</h3>
+              <ol class="hk-terms__sub">
+                <li>当施設は、犬の大きさ・体重等に応じて利用エリアを区分します。</li>
+                <li>利用者は指定されたエリアのみ利用するものとします。</li>
+                <li>無断で指定されたエリア以外へ立ち入る行為を禁止します。</li>
+                <li>エリア区分の詳細は別途定めます。</li>
+              </ol>
+            </li>
+            <li class="hk-terms__article">
+              <h3 class="hk-terms__art-title">第4条（入場制限）</h3>
+              <p>次のいずれかに該当する場合は、利用をお断りすることがあります。</p>
+              <ol class="hk-terms__sub">
+                <li>他の犬や人に危害を加えるおそれがある場合</li>
+                <li>運営者またはスタッフの指示に従わない場合</li>
+                <li>その他、運営者が利用に適さないと判断した場合</li>
+              </ol>
+            </li>
+            <li class="hk-terms__article">
+              <h3 class="hk-terms__art-title">第5条（利用者の責任）</h3>
+              <p>利用者は次の事項を遵守してください。</p>
+              <ol class="hk-terms__sub">
+                <li>愛犬から目を離さず、常時管理してください。</li>
+                <li>排泄物は速やかに処理し、お持ち帰りください。</li>
+                <li>他の犬や利用者とのトラブルは、当事者間で誠実に解決してください。</li>
+                <li>咬傷事故その他愛犬に起因する事故については、飼い主が責任を負うものとします。</li>
+                <li>他のお客様や近隣住民へのご配慮をお願いします。</li>
+              </ol>
+            </li>
+            <li class="hk-terms__article">
+              <h3 class="hk-terms__art-title">第6条（禁止事項）</h3>
+              <p>次の行為を禁止します。</p>
+              <ol class="hk-terms__sub">
+                <li>犬への給餌（おやつを含みます。ただし、犬の飲水は除きます。）</li>
+                <li>発情期の犬の入場</li>
+                <li>過度な吠えや追い回しを放置する行為</li>
+                <li>営業・勧誘その他これに類する行為</li>
+                <li>飲酒後の利用</li>
+                <li>当施設内（ドッグラン・カフェ・テラス席・駐車場を含みます。）での喫煙（電子たばこ・加熱式たばこを含みます。）</li>
+                <li>許可なく他のお客様が写る写真・動画を撮影し、SNSその他インターネット上へ投稿する行為</li>
+                <li>施設・設備・芝生等を故意または著しく損傷する行為</li>
+              </ol>
+              <p class="hk-terms__note">※ 人および犬の飲み物の持ち込みは可能です。</p>
+            </li>
+            <li class="hk-terms__article">
+              <h3 class="hk-terms__art-title">第7条（カフェ利用）</h3>
+              <ol class="hk-terms__sub">
+                <li>犬を同伴できるのはテラス席のみとします。</li>
+                <li>カフェ室内への犬の立ち入りは禁止します。</li>
+                <li>テラス席ではリードを着用してください。</li>
+                <li>テーブル・椅子へ犬を乗せることは禁止します。</li>
+                <li>人用の飲食物を犬へ与えないでください。</li>
+                <li>テラス席で排泄があった場合は、速やかに利用者が処理し、必要に応じてスタッフへお申し出ください。</li>
+                <li>吠え続ける等、他のお客様のご迷惑となる場合は、ご利用をお断りすることがあります。</li>
+              </ol>
+            </li>
+            <li class="hk-terms__article">
+              <h3 class="hk-terms__art-title">第8条（衛生管理）</h3>
+              <ol class="hk-terms__sub">
+                <li>排泄物は必ず処理してください。</li>
+                <li>マーキング癖のある犬にはマナーベルトの着用を推奨します。</li>
+                <li>芝生・施設・設備を破損した場合は、修復費等をご負担いただく場合があります。</li>
+              </ol>
+            </li>
+            <li class="hk-terms__article">
+              <h3 class="hk-terms__art-title">第9条（事故・免責）</h3>
+              <ol class="hk-terms__sub">
+                <li>当施設内および駐車場内で発生した事故、怪我、盗難その他のトラブルについて、当施設に故意または重大な過失がある場合を除き、責任を負いません。</li>
+                <li>利用者間または犬同士のトラブルについては、当事者間で解決していただきます。</li>
+              </ol>
+            </li>
+            <li class="hk-terms__article">
+              <h3 class="hk-terms__art-title">第10条（利用停止）</h3>
+              <p>利用者が本規約に違反した場合、または運営者が施設運営上支障があると判断した場合は、利用を中止していただき、今後の利用をお断りすることがあります。</p>
+            </li>
+            <li class="hk-terms__article">
+              <h3 class="hk-terms__art-title">第11条（施設運営上の措置）</h3>
+              <p>運営者は、安全確保、衛生管理および他のお客様への配慮のため、必要に応じて利用方法、利用範囲または利用時間等を制限することがあります。</p>
+            </li>
+            <li class="hk-terms__article">
+              <h3 class="hk-terms__art-title">第12条（規約の変更）</h3>
+              <p>本規約は必要に応じて変更する場合があります。変更後の規約は、当施設ホームページに掲載した時点で効力を生じるものとします。</p>
+            </li>
+            <li class="hk-terms__article">
+              <h3 class="hk-terms__art-title">第13条（規約への同意）</h3>
+              <p>利用者は、当施設をご利用いただいた時点で、本規約の内容を確認し、これに同意したものとみなします。</p>
+            </li>
+            <li class="hk-terms__article">
+              <h3 class="hk-terms__art-title">第14条（協議事項）</h3>
+              <p>本規約に定めのない事項または本規約の解釈について疑義が生じた場合は、利用者と当施設が誠意をもって協議し、解決するものとします。</p>
+            </li>
+          </ol>
+          <p class="hk-terms__enact">制定日　令和8年7月31日<br>和カフェ＆ドッグラン 花かご</p>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -1179,6 +1357,7 @@ body.has-mobile-menu-open { overflow: hidden; }
     <div class="hk-footer__pattern" aria-hidden="true"></div>
     <div class="hk-footer__legal">
       <span>© 2026 花かご Hanakago café and dog garden</span>
+      <a class="hk-footer__terms" href="#guide">施設利用規約</a>
     </div>
   </footer>
 </div>
