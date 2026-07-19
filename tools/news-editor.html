@@ -149,11 +149,11 @@
     <div class="guide">
       <h2>使い方（3ステップ）</h2>
       <ol>
-        <li>下のフォームで、お知らせを追加・修正・並べ替え・削除します（上にあるほど新しく表示されます）。<strong>プレビューがそのまま公開後の見た目・内容です。</strong></li>
-        <li>「<strong>GitHub に保存（コミット）</strong>」を押します（表示されている内容がそのまま保存されます。事前の「書き出し」操作は不要）。</li>
-        <li>1分ほど待って、サイトを <code>Ctrl + F5</code>（スーパーリロード）で開き直すと反映されます。</li>
+        <li>お知らせを追加・修正・並べ替え・削除します（上にあるほど新しく表示されます）。</li>
+        <li>「<strong>ホームページに適用</strong>」を押します。</li>
+        <li>1分ほど待って、サイトの画面を更新すると反映されます。</li>
       </ol>
-      <p class="note">※ このページが外部に送信するのは「GitHub に保存」を押したときだけ（あなたのトークンを使って GitHub に書き込みます）。開いただけ・入力しただけでは何も送信されず、サイトも変わりません。</p>
+      <p class="note">※ このページが外部に送信するのは「ホームページに適用」を押したときだけです。開いただけ・入力しただけでは何も送信されず、サイトも変わりません。</p>
     </div>
 
     <h2 class="sec">お知らせ一覧</h2>
@@ -167,9 +167,9 @@
     <ul class="pv" id="pvList"></ul>
     <p class="hint">実際のサイトと同じ表示です。見出しをクリックすると「＋」が「−」になり、本文が開きます（もう一度クリックで閉じます）。</p>
 
-    <h2 class="sec">保存（プレビューの内容がそのまま反映されます）</h2>
+    <h2 class="sec">ホームページに反映</h2>
     <div class="gh">
-      <p class="gh-lead"><strong>いま上のプレビューに表示されている内容が、そのまま保存されます。</strong>「書き出す」などの事前操作は不要です。下のボタンで <code>content/news.js</code> を GitHub に直接更新します。</p>
+      <p class="gh-lead">編集が終わったら、下のボタンでホームページに反映します。初回だけトークンの準備が必要です（下の説明を参照）。</p>
 
       <details class="gh-help">
         <summary>▶ 初回だけ必要：トークンの作り方（クリックで開く）</summary>
@@ -182,22 +182,13 @@
         <p class="note">※ トークンはこのリポジトリを書き換えられる鍵です。他人に渡さない・公開の場所に貼らないこと。上の権限（このリポジトリの Contents だけ）に絞れば、万一漏れても被害範囲を最小にできます。有効期限も短めがおすすめです。</p>
       </details>
 
-      <div class="gh-grid">
-        <label class="field">オーナー<input type="text" id="ghOwner" value="yusuke-nakakoji-japan" autocomplete="off"></label>
-        <label class="field">リポジトリ<input type="text" id="ghRepo" value="hanakago_homepages" autocomplete="off"></label>
-        <label class="field">ブランチ<input type="text" id="ghBranch" value="main" autocomplete="off"></label>
-        <label class="field">ファイルパス<input type="text" id="ghPath" value="content/news.js" autocomplete="off"></label>
-      </div>
       <label class="field">トークン（<code>github_pat_…</code> または <code>ghp_…</code>）
         <input type="password" id="ghToken" placeholder="ここに貼り付け" autocomplete="off">
-      </label>
-      <label class="field">コミットメッセージ
-        <input type="text" id="ghMsg" value="お知らせを更新" autocomplete="off">
       </label>
       <label class="gh-remember"><input type="checkbox" id="ghRemember"> このブラウザにトークンを保存して、次回の入力を省略する（自分専用のPCのみ推奨。共有PCでは付けないでください）</label>
 
       <div class="out-actions" style="margin-top:16px">
-        <button id="ghSaveBtn" class="accent">GitHub に保存（コミット）</button>
+        <button id="ghSaveBtn" class="accent">ホームページに適用</button>
         <button id="ghClearBtn" class="ghost small">保存したトークンを消去</button>
       </div>
       <div id="ghStatus" class="gh-status" hidden></div>
@@ -230,7 +221,7 @@
       "   =========================================================================\n" +
       "\n" +
       "   ■ 編集方法は2通り（どちらでも可）\n" +
-      "     1. tools/news-editor.html をブラウザで開いてフォームで編集し、書き出す\n" +
+      "     1. tools/news-editor.html をブラウザで開いてフォームで編集し、「ホームページに適用」を押す\n" +
       "     2. このファイルを直接編集する\n" +
       "        - { ... } を丸ごとコピーして上に貼り、date/tag/title/body を書き換える\n" +
       "        - 上にあるほど新しい。tag は不要なら \"\" 。body は段落ごとに \"...\" を , で区切る\n" +
@@ -435,8 +426,13 @@
 
     /* ===== A-②：GitHub へ直接コミット ===== */
     var GH_KEY = 'hanakago_news_gh_token';
+    // 固定設定（フォームからは操作しない）
+    var GH_OWNER  = 'yusuke-nakakoji-japan';
+    var GH_REPO   = 'hanakago_homepages';
+    var GH_BRANCH = 'main';
+    var GH_PATH   = 'content/news.js';
+    var GH_MSG    = 'お知らせを更新';
 
-    function ghVal(id){ var el = document.getElementById(id); return el ? el.value.trim() : ''; }
     function ghStatus(kind, html){
       var el = document.getElementById('ghStatus');
       el.hidden = false; el.className = 'gh-status ' + kind; el.innerHTML = html;
@@ -463,14 +459,13 @@
     } catch (_e) {}
 
     document.getElementById('ghSaveBtn').addEventListener('click', function(){
-      var owner  = ghVal('ghOwner'),
-          repo   = ghVal('ghRepo'),
-          branch = ghVal('ghBranch') || 'main',
-          pathf  = ghVal('ghPath'),
+      var owner  = GH_OWNER,
+          repo   = GH_REPO,
+          branch = GH_BRANCH,
+          pathf  = GH_PATH,
           token  = document.getElementById('ghToken').value.trim(),
-          msg    = ghVal('ghMsg') || 'お知らせを更新';
+          msg    = GH_MSG;
 
-      if (!owner || !repo || !pathf) { ghStatus('err', 'オーナー・リポジトリ・ファイルパスを入力してください。'); return; }
       if (!token) { ghStatus('err', 'トークンを入力してください。作り方は上の説明を開いてください。'); return; }
 
       // 保存する/しないをここで反映
@@ -493,7 +488,7 @@
           if (res.status === 404) return { sha: undefined }; // 新規作成
           if (res.status === 401) throw new Error('認証に失敗しました（401）。トークンが正しいか・期限切れでないか確認してください。');
           if (res.status === 403) throw new Error('権限がありません（403）。トークンに「Contents: Read and write」があるか、対象リポジトリが選ばれているか確認してください。');
-          if (!res.ok) throw new Error('現在のファイル取得に失敗（' + res.status + '）。オーナー／リポジトリ／ブランチ／パスをご確認ください。');
+          if (!res.ok) throw new Error('現在のファイル取得に失敗（' + res.status + '）。少し時間をおいて再度お試しください。');
           return res.json();
         })
         // 2) PUT でコミット
@@ -510,8 +505,8 @@
             throw new Error('保存に失敗（' + r.status + '）：' + m);
           }
           var url = (r.data.commit && r.data.commit.html_url) || '';
-          ghStatus('ok', '✅ 保存しました。GitHub Pages への反映まで数十秒〜数分かかります。' +
-                          (url ? '\nコミット: <a href="' + url + '" target="_blank" rel="noopener">' + url + '</a>' : ''));
+          ghStatus('ok', '✅ ホームページに反映しました。実際に表示されるまで数十秒〜数分かかります。少し待ってから、サイトの画面を更新して確認してください。' +
+                          (url ? '\n変更の記録: <a href="' + url + '" target="_blank" rel="noopener">' + url + '</a>' : ''));
         })
         .catch(function(err){
           ghStatus('err', '⚠ ' + ((err && err.message) ? err.message : String(err)) +
