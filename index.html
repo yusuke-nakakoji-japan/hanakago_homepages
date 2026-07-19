@@ -295,6 +295,9 @@
 .hanakago .hk-pricing__price .yen { font-size: var(--t-sm); }
 .hanakago .hk-pricing__price .unit { font-size: var(--t-xs); }
 .hanakago .hk-pricing__note { font-size: var(--t-xs); line-height: 1.8; }
+/* 一律料金（単一プラン）の表示。3列グリッドを1列に畳み、中央寄せにする */
+.hanakago .hk-pricing--single { grid-template-columns: 1fr; }
+.hanakago .hk-pricing--single .hk-pricing__col { border-right: 0; text-align: center; }
 
 /* Dog notes — dog-run practical remarks kept in the Dog Garden section */
 .hanakago .hk-dog__notes {
@@ -1041,24 +1044,12 @@ body.has-mobile-menu-open { overflow: hidden; }
 完全予約制ではありませんが、混雑時はお待ちいただく場合がございます。</p>
           </div>
 
-          <div class="hk-pricing" role="table" aria-label="ドッグラン 料金表">
+          <div class="hk-pricing hk-pricing--single" role="table" aria-label="ドッグラン 料金表">
             <div class="hk-pricing__col">
-              <div class="hk-pricing__plan">— 1 hour</div>
-              <div class="hk-pricing__jp">1時間券</div>
-              <div class="hk-pricing__price"><span class="yen">¥</span>1,000<span class="unit">/ 匹</span></div>
-              <div class="hk-pricing__note">2匹目以降は ¥500 / 匹。<br>飼い主の同伴人数に上限はございません。</div>
-            </div>
-            <div class="hk-pricing__col">
-              <div class="hk-pricing__plan">— Half day</div>
-              <div class="hk-pricing__jp">半日券</div>
-              <div class="hk-pricing__price"><span class="yen">¥</span>1,800<span class="unit">/ 匹</span></div>
-              <div class="hk-pricing__note">12:00–15:00 もしくは 15:00–閉店。<br>カフェのご利用 ¥500 以上で ¥200 引。</div>
-            </div>
-            <div class="hk-pricing__col">
-              <div class="hk-pricing__plan">— Members</div>
-              <div class="hk-pricing__jp">月会員</div>
-              <div class="hk-pricing__price"><span class="yen">¥</span>4,800<span class="unit">/ 月</span></div>
-              <div class="hk-pricing__note">月内 何度でも 1時間券。<br>初回時に予防接種証明書のご提示をお願いいたします。</div>
+              <div class="hk-pricing__plan">— Admission</div>
+              <div class="hk-pricing__jp">ご利用料金</div>
+              <div class="hk-pricing__price"><span class="yen">¥</span>500<span class="unit">/ 匹</span></div>
+              <div class="hk-pricing__note">一匹あたり一律の料金です。<br>飼い主の同伴人数に上限はございません。</div>
             </div>
           </div>
 
@@ -1307,7 +1298,7 @@ body.has-mobile-menu-open { overflow: hidden; }
         <p>お席のご予約はカフェ席のみ、お電話にて承っております。<br>ドッグランはご予約不要でご利用いただけます。</p>
       </div>
       <div class="hk-cta__actions">
-        <a href="tel:0771-22-0123" class="hk-btn">📞 0771-22-0123 に電話する →</a>
+        <a href="tel:0771-22-0123" class="hk-btn">📞 店舗に電話する →</a>
       </div>
     </div>
   </section>
