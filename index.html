@@ -32,8 +32,8 @@
 .hanakago .hk-hero__veil {
   position: absolute; inset: 0; z-index: 1;
   background:
-    linear-gradient(180deg, rgba(245,239,228,.40) 0%, rgba(245,239,228,.20) 50%, rgba(245,239,228,.45) 100%),
-    radial-gradient(ellipse at center, rgba(245,239,228,.30) 0%, rgba(245,239,228,.62) 70%, rgba(245,239,228,.78) 100%);
+    radial-gradient(ellipse at 50% 46%, rgba(251,247,239,.30) 0%, rgba(236,214,228,.40) 58%, rgba(170,118,153,.42) 100%),
+    linear-gradient(180deg, rgba(170,118,153,.16) 0%, rgba(245,239,228,.06) 48%, rgba(170,118,153,.20) 100%);
 }
 .hanakago .hk-hero__inner {
   position: relative; z-index: 2;
@@ -60,7 +60,7 @@
 }
 
 /* News */
-.hanakago .hk-news { background: var(--kinari-2); }
+.hanakago .hk-news { background: var(--hana-wash); }
 .hanakago .hk-news__list { list-style: none; padding: 0; margin: var(--s-6) 0 0; }
 .hanakago .hk-news__item { border-bottom: 1px solid var(--hairline-soft); }
 .hanakago .hk-news__item:first-of-type { border-top: 1px solid var(--hairline-soft); }
@@ -537,7 +537,7 @@
 
 /* CTA band */
 .hanakago .hk-cta {
-  background: var(--sumi);
+  background: var(--hana-panel);
   color: var(--shoji);
   position: relative;
   overflow: hidden;
@@ -565,15 +565,15 @@
 .hanakago .hk-cta__note {
   margin: var(--s-2) 0 0;
   font-size: var(--t-xs);
-  color: var(--sumi-4);
+  color: var(--hana-pale);
   letter-spacing: 0.04em;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 .hanakago .hk-cta h2 { color: var(--shoji); font-family: var(--font-display-jp);
   font-weight: 500; font-size: var(--t-2xl); letter-spacing: 0.06em; line-height: 1.5; margin: 0;
   text-wrap: pretty; }
 .hanakago .hk-cta p {
-  color: var(--sumi-4);
+  color: var(--hana-pale);
   margin: var(--s-2) 0 0;
   line-height: 1.95;
   text-wrap: pretty;
@@ -1162,7 +1162,7 @@ body.has-mobile-menu-open { overflow: hidden; }
       </div>
       <div class="hk-cta__actions">
         <a href="#" class="hk-btn">カフェ席を予約する →</a>
-        <a href="#" class="hk-btn hk-btn--ghost" style="color: rgb(42, 38, 34); border-color: var(--shoji)">お問い合わせ →</a>
+        <a href="#" class="hk-btn hk-btn--ghost" style="background: transparent; color: var(--shoji); border-color: var(--shoji)">お問い合わせ →</a>
       </div>
       <p class="hk-cta__note">※ お電話でのご予約は承っておりません。</p>
     </div>

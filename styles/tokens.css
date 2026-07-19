@@ -32,6 +32,11 @@
   --hana-deep:     #7e446b;
   --hana-pale:     #ebd6e4;
 
+  /* Brand color surfaces — image color applied as large fields */
+  --hana-panel:    #5b3350;   /* deep mauve panel (CTA block) */
+  --hana-panel-2:  #2c2632;   /* mauve-charcoal ground (footer) */
+  --hana-wash:     #f2e6ee;   /* pale mauve band (light sections) */
+
   /* Seasonal accents */
   --matcha:        #7c8a55;   /* spring → summer */
   --matcha-deep:   #56603b;

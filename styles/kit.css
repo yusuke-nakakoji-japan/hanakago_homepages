@@ -202,7 +202,7 @@ button { font-family: inherit; }
 .hk-reveal.is-in { opacity: 1; transform: none; }
 
 /* ------------------------------------------------------------- FOOTER */
-.hk-footer { position: relative; background: var(--sumi); color: var(--shoji); overflow: hidden; }
+.hk-footer { position: relative; background: var(--hana-panel-2); color: var(--shoji); overflow: hidden; }
 .hk-footer__pattern {
   position: absolute; inset: 0;
   background-image: url('../assets/patterns/pattern-seigaiha.svg');
