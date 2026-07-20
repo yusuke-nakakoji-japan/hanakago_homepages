@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="整骨院 曽我部の蔵 イメージ（仮）">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e8ded5"/>
+      <stop offset="1" stop-color="#d6c8bd"/>
+    </linearGradient>
+    <pattern id="namako" width="34" height="34" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <path d="M0 17 H34 M17 0 V34" stroke="#c9bab0" stroke-width="2"/>
+    </pattern>
+  </defs>
+
+  <!-- backdrop -->
+  <rect width="1200" height="800" fill="url(#sky)"/>
+
+  <!-- soft moon -->
+  <circle cx="884" cy="228" r="88" fill="#efe7de" opacity="0.5"/>
+
+  <!-- ground -->
+  <line x1="150" y1="628" x2="1050" y2="628" stroke="#b7a79c" stroke-width="2"/>
+
+  <!-- kura (storehouse) -->
+  <g>
+    <!-- roof -->
+    <path d="M372 352 L600 236 L828 352 Z" fill="#3b3138"/>
+    <rect x="366" y="346" width="468" height="20" rx="4" fill="#3b3138"/>
+    <rect x="560" y="250" width="80" height="14" rx="4" fill="#54464f"/>
+
+    <!-- wall -->
+    <rect x="404" y="366" width="392" height="262" fill="#f5efe8" stroke="#cbbdb4" stroke-width="2"/>
+
+    <!-- namako-kabe (diamond lattice on the lower wall) -->
+    <rect x="404" y="506" width="392" height="122" fill="url(#namako)"/>
+    <rect x="404" y="506" width="392" height="122" fill="none" stroke="#cbbdb4" stroke-width="2"/>
+
+    <!-- windows -->
+    <g stroke="#3b3138" stroke-width="3" fill="#efe7de">
+      <rect x="456" y="408" width="66" height="66" rx="3"/>
+      <rect x="678" y="408" width="66" height="66" rx="3"/>
+    </g>
+    <g stroke="#3b3138" stroke-width="2">
+      <line x1="489" y1="408" x2="489" y2="474"/>
+      <line x1="456" y1="441" x2="522" y2="441"/>
+      <line x1="711" y1="408" x2="711" y2="474"/>
+      <line x1="678" y1="441" x2="744" y2="441"/>
+    </g>
+
+    <!-- door -->
+    <rect x="552" y="506" width="96" height="122" fill="#3b3138"/>
+    <rect x="564" y="518" width="72" height="110" fill="none" stroke="#6b5d64" stroke-width="2"/>
+  </g>
+
+  <!-- caption -->
+  <text x="600" y="716" text-anchor="middle"
+        font-family="'Yu Mincho','Hiragino Mincho ProN','Shippori Mincho',serif"
+        font-size="40" fill="#5a4d54" letter-spacing="10">曽我部の蔵</text>
+</svg>
