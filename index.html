@@ -528,22 +528,25 @@
   .hanakago .hk-gphoto__plate { font-size: var(--t-sm); margin-top: var(--s-2); gap: 8px; }
   .hanakago .hk-gphoto__no { font-size: var(--t-xs); }
 
-  /* Access */
-  .hanakago .hk-access__grid { grid-template-columns: 1fr; gap: var(--s-5); }
-  .hanakago .hk-access__head { padding-right: 0; border-right: 0; }
-  .hanakago .hk-access__row { grid-template-columns: 1fr; gap: 4px; padding: var(--s-3) 0; }
-  .hanakago .hk-access__row dt { font-size: var(--t-xs); }
-  .hanakago .hk-access__map-link { font-size: var(--t-xs); }
+  /* Access — 基本スタイルがこのメディアクエリより後(640行目以降)に定義されて
+     いるため、同詳細度だと後勝ちで負ける。.hk-access を前置きして詳細度を上げ、
+     モバイル指定が確実に勝つようにする（Gallery と同じ回避策）。 */
+  .hanakago .hk-access .hk-access__grid { grid-template-columns: 1fr; gap: var(--s-5); }
+  .hanakago .hk-access .hk-access__head { padding-right: 0; border-right: 0; }
+  .hanakago .hk-access .hk-access__row { grid-template-columns: 1fr; gap: 4px; padding: var(--s-3) 0; }
+  .hanakago .hk-access .hk-access__row dt { font-size: var(--t-xs); }
+  .hanakago .hk-access .hk-access__map-link { font-size: var(--t-xs); }
 
-  /* 整骨院 */
-  .hanakago .hk-clinic__lead { grid-template-columns: 1fr; gap: var(--s-5); }
-  .hanakago .hk-clinic__lead .hk-clinic__copy { padding-left: 0; border-left: 0; }
-  .hanakago .hk-clinic__hero-img {
+  /* 整骨院 — Access と同様、基本スタイルが後に定義されているため
+     .hk-clinic を前置きして詳細度を上げ、モバイル指定を確実に勝たせる。 */
+  .hanakago .hk-clinic .hk-clinic__lead { grid-template-columns: 1fr; gap: var(--s-5); }
+  .hanakago .hk-clinic .hk-clinic__lead .hk-clinic__copy { padding-left: 0; border-left: 0; }
+  .hanakago .hk-clinic .hk-clinic__hero-img {
     aspect-ratio: 3 / 2; max-height: 220px; width: auto; max-width: 100%;
     margin-left: auto; margin-right: auto;
   }
-  .hanakago .hk-clinic__row { grid-template-columns: 1fr; gap: 4px; padding: var(--s-3) 0; }
-  .hanakago .hk-clinic__row dt { font-size: var(--t-xs); }
+  .hanakago .hk-clinic .hk-clinic__row { grid-template-columns: 1fr; gap: 4px; padding: var(--s-3) 0; }
+  .hanakago .hk-clinic .hk-clinic__row dt { font-size: var(--t-xs); }
 
   /* CTA — centered, full-width buttons on mobile */
   .hanakago .hk-cta__inner {
