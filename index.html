@@ -326,7 +326,7 @@
 }
 
 /* ------------------------------ ご利用にあたって / 施設利用規約 */
-.hanakago .hk-guide { background: var(--kinari-2); position: relative; }
+.hanakago .hk-guide { background: var(--kinari); position: relative; }
 .hanakago .hk-guide__lead {
   color: var(--sumi-2); line-height: 2.05; max-width: 62ch;
   margin: var(--s-5) 0 var(--s-7);
@@ -530,6 +530,7 @@
 
   /* Access */
   .hanakago .hk-access__grid { grid-template-columns: 1fr; gap: var(--s-5); }
+  .hanakago .hk-access__head { padding-right: 0; border-right: 0; }
   .hanakago .hk-access__row { grid-template-columns: 1fr; gap: 4px; padding: var(--s-3) 0; }
   .hanakago .hk-access__row dt { font-size: var(--t-xs); }
   .hanakago .hk-access__map-link { font-size: var(--t-xs); }
@@ -637,7 +638,8 @@
 
 /* Access */
 .hanakago .hk-access { background: var(--kinari); position: relative; overflow: hidden; }
-.hanakago .hk-access__grid { display: grid; grid-template-columns: 1fr; gap: var(--s-9); align-items: start; max-width: 720px; }
+.hanakago .hk-access__grid { display: grid; grid-template-columns: 360px 1fr; gap: var(--s-9); align-items: start; }
+.hanakago .hk-access__head { padding-right: var(--s-7); border-right: 1px solid var(--hairline); }
 .hanakago .hk-access__map-link {
   display: inline-flex; align-items: center; gap: 6px;
   margin-top: 4px;
@@ -648,7 +650,7 @@
   transition: color 180ms var(--ease);
 }
 .hanakago .hk-access__map-link:hover { color: var(--sumi); }
-.hanakago .hk-access__info { margin: 0; display: grid; gap: 0; padding-top: var(--s-2); }
+.hanakago .hk-access__info { margin: 0; display: grid; gap: 0; }
 .hanakago .hk-access__row {
   display: grid; grid-template-columns: 110px 1fr; gap: var(--s-4);
   padding: var(--s-4) 0; border-bottom: 1px solid var(--hairline-soft);
@@ -1394,37 +1396,36 @@ body.has-mobile-menu-open { overflow: hidden; }
   <section class="hk-access" id="access">
     <div class="hk-section">
       <div class="hk-access__grid">
-        
-        <div>
+        <header class="hk-access__head">
           <span class="hk-eyebrow">— Access —</span>
           <h2 class="hk-h2">店舗情報</h2>
-          <dl class="hk-access__info">
-            <div class="hk-access__row">
-              <dt>📍 住所</dt>
-              <dd>〒621-0028<br>京都府亀岡市曽我部町西条中檀ノ上 1-1<br>
-                <a class="hk-access__map-link"
-                   href="https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E9%83%BD%E5%BA%9C%E4%BA%80%E5%B2%A1%E5%B8%82%E6%9B%BD%E6%88%91%E9%83%A8%E7%94%BA%E8%A5%BF%E6%9D%A1%E4%B8%AD%E6%AA%80%E3%83%8E%E4%B8%8A1-1"
-                   target="_blank" rel="noopener noreferrer">Google マップで開く →</a>
-              </dd>
-            </div>
-            <div class="hk-access__row">
-              <dt>📞 電話</dt>
-              <dd><span class="hk-access__phone">0771-22-0123</span></dd>
-            </div>
-            <div class="hk-access__row">
-              <dt>🕐 営業</dt>
-              <dd>10:00 — 16:00<br>金・土・日のみ営業</dd>
-            </div>
-            <div class="hk-access__row">
-              <dt>🚗 駐車場</dt>
-              <dd>車10台・バイク5台 (無料)</dd>
-            </div>
-            <div class="hk-access__row">
-              <dt>📷 SNS</dt>
-              <dd><a href="https://www.instagram.com/hanakago.kameoka/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer">@hanakago.kameoka</a></dd>
-            </div>
-          </dl>
-        </div>
+        </header>
+        <dl class="hk-access__info">
+          <div class="hk-access__row">
+            <dt>📍 住所</dt>
+            <dd>〒621-0028<br>京都府亀岡市曽我部町西条中檀ノ上 1-1<br>
+              <a class="hk-access__map-link"
+                 href="https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E9%83%BD%E5%BA%9C%E4%BA%80%E5%B2%A1%E5%B8%82%E6%9B%BD%E6%88%91%E9%83%A8%E7%94%BA%E8%A5%BF%E6%9D%A1%E4%B8%AD%E6%AA%80%E3%83%8E%E4%B8%8A1-1"
+                 target="_blank" rel="noopener noreferrer">Google マップで開く →</a>
+            </dd>
+          </div>
+          <div class="hk-access__row">
+            <dt>📞 電話</dt>
+            <dd><span class="hk-access__phone">0771-22-0123</span></dd>
+          </div>
+          <div class="hk-access__row">
+            <dt>🕐 営業</dt>
+            <dd>10:00 — 16:00<br>金・土・日のみ営業</dd>
+          </div>
+          <div class="hk-access__row">
+            <dt>🚗 駐車場</dt>
+            <dd>車10台・バイク5台 (無料)</dd>
+          </div>
+          <div class="hk-access__row">
+            <dt>📷 SNS</dt>
+            <dd><a href="https://www.instagram.com/hanakago.kameoka/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener noreferrer">@hanakago.kameoka</a></dd>
+          </div>
+        </dl>
       </div>
     </div>
   </section>
