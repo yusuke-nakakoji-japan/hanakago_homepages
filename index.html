@@ -181,6 +181,34 @@
 /* Menu */
 .hanakago .hk-menu { background: var(--kinari-2); }
 
+/* Cafe lead — dog-run 型のヒーロー(画像＋コピー)。お品書きは下のカルーセルへ */
+.hanakago .hk-menu__inner { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-6); }
+.hanakago .hk-menu__head {
+  padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--hairline-soft);
+}
+.hanakago .hk-menu__body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-6); }
+.hanakago .hk-menu__lead {
+  display: grid; grid-template-columns: 440px minmax(0, 1fr);
+  gap: var(--s-6);
+  align-items: center;
+}
+.hanakago .hk-menu__hero-img {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  max-width: 440px;
+}
+.hanakago .hk-menu__hero-img img { width: 100%; height: 100%; object-fit: cover; }
+.hanakago .hk-menu__copy { color: var(--sumi-2); line-height: 2.05; max-width: 64ch; margin: 0; }
+.hanakago .hk-menu__lead .hk-menu__copy {
+  padding-left: var(--s-6);
+  border-left: 1px solid var(--hairline-soft);
+  max-width: none;
+  /* スペースの無い和文はグリッドの min-width:auto でトラックが min-content まで
+     広がり折り返さない。min-width:0 でトラックを 1fr に収めて確実に折り返す。 */
+  min-width: 0;
+}
+
 .hanakago .hk-menu__featured {
   list-style: none; padding: 0; margin: 0;
   display: flex;
@@ -215,7 +243,7 @@
 }
 .hanakago .hk-menu__carousel {
   position: relative;
-  margin-top: var(--s-6);
+  margin-top: 0;
 }
 .hanakago .hk-menu__nav {
   margin-top: var(--s-5);
@@ -257,7 +285,7 @@
   font-family: var(--font-display-jp); font-style: normal;
   font-size: var(--t-sm); color: var(--accent);
   letter-spacing: 0.14em;
-  margin: var(--s-6) 0 calc(var(--s-6) * -1);
+  margin: 0;
 }
 .hanakago .hk-menu__item-img { width: 360px; height: 240px; overflow: hidden; }
 .hanakago .hk-menu__item-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -471,6 +499,12 @@
   .hanakago .hk-about__head { padding-right: 0; border-right: 0; }
 
   /* Menu */
+  .hanakago .hk-menu__lead { grid-template-columns: 1fr; gap: var(--s-5); }
+  .hanakago .hk-menu__lead .hk-menu__copy { padding-left: 0; border-left: 0; }
+  .hanakago .hk-menu__hero-img {
+    aspect-ratio: 3 / 2; max-height: 220px; width: auto; max-width: 100%;
+    margin-left: auto; margin-right: auto;
+  }
   .hanakago .hk-menu__featured { gap: var(--s-3); padding: 6px 20px; margin: 0 -20px; }
   .hanakago .hk-menu__item { flex-basis: calc(100% - 56px); grid-template-columns: 1fr; gap: 0; height: auto; }
   .hanakago .hk-menu__item-img { width: 100%; height: auto; aspect-ratio: 3 / 2; }
@@ -1026,95 +1060,107 @@ body.has-mobile-menu-open { overflow: hidden; }
   <!-- =================================================== MENU -->
   <section class="hk-menu" id="menu">
     <div class="hk-section">
-      <span class="hk-eyebrow">— Cafe —</span>
-      <h2 class="hk-h2">カフェ</h2>
-      <p class="hk-sub">お食事・甘味・お飲みものを、季節のひと品とともに。お庭を眺めながら、ごゆっくりお楽しみください。</p>
+      <div class="hk-menu__inner">
+        <header class="hk-menu__head">
+          <span class="hk-eyebrow">— Cafe —</span>
+          <h2 class="hk-h2">カフェ</h2>
+        </header>
 
-      <p class="hk-menu__featured-label">— お品書き（一部） —</p>
-
-      <div class="hk-menu__carousel" data-carousel>
-        <ul class="hk-menu__featured" id="menuTrack">
-          <li class="hk-menu__item" data-idx="0">
-            <div class="hk-menu__item-img">
-              <img src="assets/images/menu/plate.jpeg" alt="">
+        <div class="hk-menu__body">
+          <div class="hk-menu__lead">
+            <div class="hk-menu__hero-img">
+              <img src="assets/images/menu/cafe.jpg" alt="花かごの店内">
             </div>
-            <div class="hk-menu__item-meta">
-              <h4 class="hk-menu__item-name">花かご御膳</h4>
-              <p class="hk-menu__item-desc">
-                竹かごに、鶏の唐揚げと季節の小鉢を彩りよく。<br>
-                赤飯とお吸い物を添えた、お昼の一膳。
-              </p>
-              <div class="hk-menu__item-foot">
-                <span class="hk-chip">看板</span>
-                <span class="hk-menu__item-price">¥1,580</span>
-              </div>
-            </div>
-          </li>
-          <li class="hk-menu__item" data-idx="1">
-            <div class="hk-menu__item-img">
-              <img src="assets/images/menu/bento.jpeg" alt="">
-            </div>
-            <div class="hk-menu__item-meta">
-              <h4 class="hk-menu__item-name">花かご弁当</h4>
-              <p class="hk-menu__item-desc">
-                彩りのおかずとごはんを詰め合わせた、お持ち帰りのお弁当。<br>
-                お散歩やドッグランのお供に。
-              </p>
-              <div class="hk-menu__item-foot">
-                <span class="hk-chip">テイクアウト</span>
-                <span class="hk-menu__item-price">¥880</span>
-              </div>
-            </div>
-          </li>
-          <li class="hk-menu__item" data-idx="2">
-            <div class="hk-menu__item-img">
-              <img src="assets/images/menu/pudding.jpeg" alt="">
-            </div>
-            <div class="hk-menu__item-meta">
-              <h4 class="hk-menu__item-name">かぼちゃプリン</h4>
-              <p class="hk-menu__item-desc">
-                かぼちゃを使った、なめらかな自家製プリン。<br>
-                やさしい甘さに仕上げました。
-              </p>
-              <div class="hk-menu__item-foot">
-                <span class="hk-chip">甘味</span>
-                <span class="hk-menu__item-price">¥480</span>
-              </div>
-            </div>
-          </li>
-          <li class="hk-menu__item" data-idx="3">
-            <div class="hk-menu__item-img">
-              <img src="assets/images/menu/egg-sando.png" alt="">
-            </div>
-            <div class="hk-menu__item-meta">
-              <h4 class="hk-menu__item-name">だし巻き玉子サンド</h4>
-              <p class="hk-menu__item-desc">
-                ふんわり焼いただし巻き玉子を、やわらかなパンで。<br>
-                だしの香るやさしい味わい。
-              </p>
-              <div class="hk-menu__item-foot">
-                <span class="hk-chip">人気</span>
-                <span class="hk-menu__item-price">¥580</span>
-              </div>
-            </div>
-          </li>
-        </ul>
-
-        <div class="hk-menu__nav">
-          <button class="hk-menu__arrow hk-menu__arrow--prev" id="menuPrev" aria-label="前のメニュー" type="button">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 L8 12 L15 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </button>
-
-          <div class="hk-menu__dots" id="menuDots" role="tablist" aria-label="メニュー切替">
-            <button class="hk-menu__dot is-active" data-idx="0" aria-label="No.01 花かご御膳" type="button"></button>
-            <button class="hk-menu__dot" data-idx="1" aria-label="No.02 花かご弁当" type="button"></button>
-            <button class="hk-menu__dot" data-idx="2" aria-label="No.03 かぼちゃプリン" type="button"></button>
-            <button class="hk-menu__dot" data-idx="3" aria-label="No.04 だし巻き玉子サンド" type="button"></button>
+            <p class="hk-menu__copy">お食事・甘味・お飲みものを、季節のひと品とともに。お庭を眺めながら、ごゆっくりお楽しみください。</p>
           </div>
 
-          <button class="hk-menu__arrow hk-menu__arrow--next" id="menuNext" aria-label="次のメニュー" type="button">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5 L16 12 L9 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </button>
+          <p class="hk-menu__featured-label">— お品書き（一部） —</p>
+
+          <div class="hk-menu__carousel" data-carousel>
+            <ul class="hk-menu__featured" id="menuTrack">
+              <li class="hk-menu__item" data-idx="0">
+                <div class="hk-menu__item-img">
+                  <img src="assets/images/menu/plate.jpeg" alt="">
+                </div>
+                <div class="hk-menu__item-meta">
+                  <h4 class="hk-menu__item-name">花かご御膳</h4>
+                  <p class="hk-menu__item-desc">
+                    竹かごに、鶏の唐揚げと季節の小鉢を彩りよく。<br>
+                    赤飯とお吸い物を添えた、お昼の一膳。
+                  </p>
+                  <div class="hk-menu__item-foot">
+                    <span class="hk-chip">看板</span>
+                    <span class="hk-menu__item-price">¥1,580</span>
+                  </div>
+                </div>
+              </li>
+              <li class="hk-menu__item" data-idx="1">
+                <div class="hk-menu__item-img">
+                  <img src="assets/images/menu/bento.jpeg" alt="">
+                </div>
+                <div class="hk-menu__item-meta">
+                  <h4 class="hk-menu__item-name">花かご弁当</h4>
+                  <p class="hk-menu__item-desc">
+                    彩りのおかずとごはんを詰め合わせた、お持ち帰りのお弁当。<br>
+                    お散歩やドッグランのお供に。
+                  </p>
+                  <div class="hk-menu__item-foot">
+                    <span class="hk-chip">テイクアウト</span>
+                    <span class="hk-menu__item-price">¥880</span>
+                  </div>
+                </div>
+              </li>
+              <li class="hk-menu__item" data-idx="2">
+                <div class="hk-menu__item-img">
+                  <img src="assets/images/menu/pudding.jpeg" alt="">
+                </div>
+                <div class="hk-menu__item-meta">
+                  <h4 class="hk-menu__item-name">かぼちゃプリン</h4>
+                  <p class="hk-menu__item-desc">
+                    かぼちゃを使った、なめらかな自家製プリン。<br>
+                    やさしい甘さに仕上げました。
+                  </p>
+                  <div class="hk-menu__item-foot">
+                    <span class="hk-chip">甘味</span>
+                    <span class="hk-menu__item-price">¥480</span>
+                  </div>
+                </div>
+              </li>
+              <li class="hk-menu__item" data-idx="3">
+                <div class="hk-menu__item-img">
+                  <img src="assets/images/menu/egg-sando.png" alt="">
+                </div>
+                <div class="hk-menu__item-meta">
+                  <h4 class="hk-menu__item-name">だし巻き玉子サンド</h4>
+                  <p class="hk-menu__item-desc">
+                    ふんわり焼いただし巻き玉子を、やわらかなパンで。<br>
+                    だしの香るやさしい味わい。
+                  </p>
+                  <div class="hk-menu__item-foot">
+                    <span class="hk-chip">人気</span>
+                    <span class="hk-menu__item-price">¥580</span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+
+            <div class="hk-menu__nav">
+              <button class="hk-menu__arrow hk-menu__arrow--prev" id="menuPrev" aria-label="前のメニュー" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 L8 12 L15 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+
+              <div class="hk-menu__dots" id="menuDots" role="tablist" aria-label="メニュー切替">
+                <button class="hk-menu__dot is-active" data-idx="0" aria-label="No.01 花かご御膳" type="button"></button>
+                <button class="hk-menu__dot" data-idx="1" aria-label="No.02 花かご弁当" type="button"></button>
+                <button class="hk-menu__dot" data-idx="2" aria-label="No.03 かぼちゃプリン" type="button"></button>
+                <button class="hk-menu__dot" data-idx="3" aria-label="No.04 だし巻き玉子サンド" type="button"></button>
+              </div>
+
+              <button class="hk-menu__arrow hk-menu__arrow--next" id="menuNext" aria-label="次のメニュー" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5 L16 12 L9 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
