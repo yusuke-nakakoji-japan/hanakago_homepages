@@ -535,6 +535,12 @@
   .hanakago .hk-access__map-link { font-size: var(--t-xs); }
 
   /* 整骨院 */
+  .hanakago .hk-clinic__lead { grid-template-columns: 1fr; gap: var(--s-5); }
+  .hanakago .hk-clinic__lead .hk-clinic__copy { padding-left: 0; border-left: 0; }
+  .hanakago .hk-clinic__hero-img {
+    aspect-ratio: 3 / 2; max-height: 220px; width: auto; max-width: 100%;
+    margin-left: auto; margin-right: auto;
+  }
   .hanakago .hk-clinic__row { grid-template-columns: 1fr; gap: 4px; padding: var(--s-3) 0; }
   .hanakago .hk-clinic__row dt { font-size: var(--t-xs); }
 
@@ -665,8 +671,22 @@
   padding-bottom: var(--s-4);
   border-bottom: 1px solid var(--hairline-soft);
 }
+.hanakago .hk-clinic__kicker {
+  margin: var(--s-2) 0 0;
+  font-family: var(--font-body-jp); font-size: var(--t-sm);
+  color: var(--sumi-3); letter-spacing: 0.08em;
+}
 .hanakago .hk-clinic__body { display: grid; gap: var(--s-6); }
+.hanakago .hk-clinic__lead {
+  display: grid; grid-template-columns: 440px 1fr;
+  gap: var(--s-6); align-items: center;
+}
+.hanakago .hk-clinic__hero-img { aspect-ratio: 3 / 2; overflow: hidden; max-width: 440px; }
+.hanakago .hk-clinic__hero-img img { width: 100%; height: 100%; object-fit: cover; }
 .hanakago .hk-clinic__copy { color: var(--sumi-2); line-height: 2.05; max-width: 64ch; margin: 0; }
+.hanakago .hk-clinic__lead .hk-clinic__copy {
+  padding-left: var(--s-6); border-left: 1px solid var(--hairline-soft); max-width: none;
+}
 .hanakago .hk-clinic__flag {
   display: inline-block; margin-top: var(--s-3);
   font-size: var(--t-sm); color: var(--sumi-3); letter-spacing: 0.04em;
@@ -988,7 +1008,7 @@ body.has-mobile-menu-open { overflow: hidden; }
         </header>
         <div class="hk-about__body">
           <p class="p-lg">京都の街なかから、車でおおよそ三十分。 
-カフェとドッグランが楽しめる複合施設です。<br>さらに同じ敷地には整骨院を併設。愛犬と過ごす日に、自分の体を整える時間もいっしょに。</p>
+カフェとドッグランが楽しめる複合施設です。<br>同じ敷地には整骨院「曽我部の蔵」を併設。体のメンテナンスも、同じ場所で。</p>
           <div class="hk-about__sign">
             摘みたての花のように、ひと束にしてお届けする。<br>
             その想いで、店名を「花かご」といたしました。
@@ -1131,26 +1151,31 @@ body.has-mobile-menu-open { overflow: hidden; }
     </div>
   </section>
 
-  <!-- ============================ 併設の整骨院（別経営・完全予約制）
-       花かごと同じ敷地内にある、別経営の整骨院のご案内。
-       花かごの予約・電話とは別導線です。整骨院から情報が届き次第、
-       下記【要更新】の各所（名称・電話・診療時間・Instagram・地図）を
-       書き換えてください。写真・紹介文は後追いで追加できます。
+  <!-- ============================ 併設の整骨院「曽我部の蔵」（別経営・完全予約制）
+       花かごと同じ敷地内にある、別経営の整骨院のご案内。花かごの予約・電話とは別導線。
+       残りの【要更新】: 電話・診療時間・地図（Google マップ登録後）、
+       および画像（assets/images/clinic/ に置いて src を合わせる）。
   -->
   <section class="hk-clinic" id="seikotsuin">
     <div class="hk-section">
       <div class="hk-clinic__inner">
         <header class="hk-clinic__head">
           <span class="hk-eyebrow">— Partner —</span>
-          <!-- 【要更新】整骨院の正式名称に差し替え -->
-          <h2 class="hk-h2">併設の整骨院</h2>
+          <h2 class="hk-h2">曽我部の蔵</h2>
+          <p class="hk-clinic__kicker">花かごに併設の整骨院</p>
         </header>
 
         <div class="hk-clinic__body">
-          <p class="hk-clinic__copy">
-            花かごと同じ敷地内にある整骨院です。ドッグランで愛犬を遊ばせたあと、カフェでひと息ついたあとに。こわばった体も、同じ場所でゆっくり整えて。<br>
-            <span class="hk-clinic__flag">※ 花かごとは<strong>別経営</strong>・<strong>完全予約制</strong>です。</span>
-          </p>
+          <div class="hk-clinic__lead">
+            <div class="hk-clinic__hero-img">
+              <!-- 【要更新】曽我部の蔵のイメージ画像を assets/images/clinic/ に置き、src を差し替え -->
+              <img src="assets/images/clinic/clinic.jpeg" alt="整骨院 曽我部の蔵">
+            </div>
+            <p class="hk-clinic__copy">
+              肩・腰のこわばりや、日々の疲れをやわらげる施術を行う整骨院です。花かごと同じ敷地にありますので、体のメンテナンスにもぜひ。<br>
+              <span class="hk-clinic__flag">※ 花かごとは<strong>別経営</strong>・<strong>完全予約制</strong>です。</span>
+            </p>
+          </div>
 
           <dl class="hk-clinic__info">
             <div class="hk-clinic__row">
@@ -1165,8 +1190,7 @@ body.has-mobile-menu-open { overflow: hidden; }
             </div>
             <div class="hk-clinic__row">
               <dt>📷 Instagram</dt>
-              <!-- 【要更新】整骨院の別アカウントの URL をリンクに差し替え -->
-              <dd>準備中</dd>
+              <dd><a href="https://www.instagram.com/sogabeseitai?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">@sogabeseitai</a></dd>
             </div>
             <div class="hk-clinic__row">
               <dt>📍 地図</dt>
