@@ -60,6 +60,23 @@
   -webkit-mask-image: radial-gradient(ellipse 58% 54% at 50% 38%, #000 32%, rgba(0,0,0,0) 74%);
   mask-image: radial-gradient(ellipse 58% 54% at 50% 38%, #000 32%, rgba(0,0,0,0) 74%);
 }
+/* ヒーロー下端を「線」ではなく「気配」で受ける。屏風の素破霞（すやりがすみ）に
+   ならい、淡い横霞を下方へ三段重ね、最下端は生成り（--kinari）のソリッドへ溶かして
+   直下 About セクションとの継ぎ目を消す。ぼかしは使わず放射グラデの減衰だけで柔らかく
+   し、下辺は硬いまま保って色を確実に一致させる。 */
+.hanakago .hk-hero__mist {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(ellipse 42% 4.5% at 34% 66%, rgba(251,248,244,.28) 0%, rgba(251,248,244,0) 72%),
+    radial-gradient(ellipse 56% 6%   at 66% 76%, rgba(251,248,244,.32) 0%, rgba(251,248,244,0) 74%),
+    radial-gradient(ellipse 74% 8%   at 46% 86%, rgba(244,240,234,.42) 0%, rgba(244,240,234,0) 76%),
+    linear-gradient(180deg,
+      rgba(244,240,234,0)   0%,
+      rgba(244,240,234,0)   58%,
+      rgba(244,240,234,.28) 78%,
+      rgba(244,240,234,.75) 92%,
+      rgba(244,240,234,1)  100%);
+}
 .hanakago .hk-hero__inner {
   position: relative; z-index: 2;
   max-width: var(--container); width: 100%; margin: 0 auto;
@@ -900,6 +917,7 @@ body.has-mobile-menu-open { overflow: hidden; }
     </div>
     <div class="hk-hero__veil"></div>
     <div class="hk-hero__frost"></div>
+    <div class="hk-hero__mist"></div>
 
     <div class="hk-hero__inner">
       <div class="hk-hero__brand"><img class="hk-hero__logo" src="assets/images/logo/logo.png" alt="和カフェ・花かご Hana Kago"><p class="hk-hero__copy">心安らぐ、ひとときを</p></div>
