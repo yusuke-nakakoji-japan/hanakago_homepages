@@ -534,8 +534,7 @@
   .hanakago .hk-access__row dt { font-size: var(--t-xs); }
   .hanakago .hk-access__map-link { font-size: var(--t-xs); }
 
-  /* 整骨院パネル */
-  .hanakago .hk-clinic__panel { padding: var(--s-6) var(--s-5); }
+  /* 整骨院 */
   .hanakago .hk-clinic__row { grid-template-columns: 1fr; gap: 4px; padding: var(--s-3) 0; }
   .hanakago .hk-clinic__row dt { font-size: var(--t-xs); }
 
@@ -659,30 +658,26 @@
 }
 .hanakago .hk-access__phone { font-family: var(--font-body-jp); font-style: normal; font-size: var(--t-base); color: var(--sumi); letter-spacing: 0.04em; }
 
-/* 併設の整骨院 — 別経営・完全予約制の「ご案内」パネル。当店サービスと切り分けて見せる */
-.hanakago .hk-clinic { background: var(--kinari-2); position: relative; }
-.hanakago .hk-clinic__panel {
-  max-width: 620px;
-  padding: var(--s-8) var(--s-7) var(--s-7);
-  background: var(--shoji);
-  border: 1px solid var(--hana-pale);
-  border-radius: var(--r-1);
+/* 併設の整骨院 — 別経営・完全予約制のご案内。ドッグランと同じ「見出し（下線）＋本文＋情報＋注記」構成 */
+.hanakago .hk-clinic { background: var(--washi); position: relative; }
+.hanakago .hk-clinic__inner { display: grid; gap: var(--s-6); }
+.hanakago .hk-clinic__head {
+  padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--hairline-soft);
 }
-.hanakago .hk-clinic__head { margin-bottom: var(--s-4); }
-.hanakago .hk-clinic__lead {
-  color: var(--sumi-2); line-height: 2.05; max-width: 52ch;
-  margin: 0 0 var(--s-3);
-}
-.hanakago .hk-clinic__sep {
-  margin: 0 0 var(--s-2);
+.hanakago .hk-clinic__body { display: grid; gap: var(--s-6); }
+.hanakago .hk-clinic__copy { color: var(--sumi-2); line-height: 2.05; max-width: 64ch; margin: 0; }
+.hanakago .hk-clinic__flag {
+  display: inline-block; margin-top: var(--s-3);
   font-size: var(--t-sm); color: var(--sumi-3); letter-spacing: 0.04em;
 }
-.hanakago .hk-clinic__sep strong { color: var(--accent); font-weight: 600; }
-.hanakago .hk-clinic__info { margin: var(--s-4) 0 0; display: grid; gap: 0; }
+.hanakago .hk-clinic__flag strong { color: var(--accent); font-weight: 600; }
+.hanakago .hk-clinic__info { margin: 0; display: grid; gap: 0; max-width: 640px; }
 .hanakago .hk-clinic__row {
-  display: grid; grid-template-columns: 130px 1fr; gap: var(--s-4);
+  display: grid; grid-template-columns: 132px 1fr; gap: var(--s-4);
   padding: var(--s-4) 0; border-bottom: 1px solid var(--hairline-soft);
 }
+.hanakago .hk-clinic__row:first-child { border-top: 1px solid var(--hairline-soft); }
 .hanakago .hk-clinic__row dt {
   display: flex; align-items: center; gap: 8px;
   font-family: var(--font-body-jp); font-size: var(--t-sm);
@@ -700,11 +695,12 @@
   text-decoration: none; transition: color 180ms var(--ease);
 }
 .hanakago .hk-clinic__map-link:hover { color: var(--sumi); }
-.hanakago .hk-clinic__note {
-  margin: var(--s-5) 0 0;
+.hanakago .hk-clinic__actions { justify-self: start; }
+.hanakago .hk-clinic__notes {
+  margin: 0; padding-top: var(--s-4);
+  border-top: 1px dashed var(--hairline-soft);
   font-size: var(--t-sm); color: var(--sumi-3); line-height: 1.85;
 }
-.hanakago .hk-clinic__actions { margin-top: var(--s-6); }
 
 /* CTA band */
 .hanakago .hk-cta {
@@ -992,7 +988,7 @@ body.has-mobile-menu-open { overflow: hidden; }
         </header>
         <div class="hk-about__body">
           <p class="p-lg">京都の街なかから、車でおおよそ三十分。 
-カフェとドッグラン、そして同じ敷地の整骨院。<br>犬も、心も、体も、ひとつの場所でほどける複合施設です。</p>
+カフェとドッグランが楽しめる複合施設です。<br>さらに同じ敷地には整骨院を併設。愛犬と過ごす日に、自分の体を整える時間もいっしょに。</p>
           <div class="hk-about__sign">
             摘みたての花のように、ひと束にしてお届けする。<br>
             その想いで、店名を「花かご」といたしました。
@@ -1143,54 +1139,53 @@ body.has-mobile-menu-open { overflow: hidden; }
   -->
   <section class="hk-clinic" id="seikotsuin">
     <div class="hk-section">
-      <div class="hk-clinic__panel">
+      <div class="hk-clinic__inner">
         <header class="hk-clinic__head">
           <span class="hk-eyebrow">— Partner —</span>
           <!-- 【要更新】整骨院の正式名称に差し替え -->
           <h2 class="hk-h2">併設の整骨院</h2>
         </header>
 
-        <p class="hk-clinic__lead">
-          花かごと同じ敷地内にある整骨院です。ドッグランで愛犬を遊ばせたあと、
-          カフェでひと息ついたあとに。こわばった体も、同じ場所でゆっくり整えて。
-        </p>
-        <p class="hk-clinic__sep">
-          ※ 花かごとは<strong>別経営</strong>・<strong>完全予約制</strong>です。
-        </p>
+        <div class="hk-clinic__body">
+          <p class="hk-clinic__copy">
+            花かごと同じ敷地内にある整骨院です。ドッグランで愛犬を遊ばせたあと、カフェでひと息ついたあとに。こわばった体も、同じ場所でゆっくり整えて。<br>
+            <span class="hk-clinic__flag">※ 花かごとは<strong>別経営</strong>・<strong>完全予約制</strong>です。</span>
+          </p>
 
-        <dl class="hk-clinic__info">
-          <div class="hk-clinic__row">
-            <dt>📞 電話（専用）</dt>
-            <!-- 【要更新】整骨院の専用電話番号に差し替え -->
-            <dd><span class="hk-clinic__phone">準備中</span></dd>
-          </div>
-          <div class="hk-clinic__row">
-            <dt>🕐 診療</dt>
-            <!-- 【要更新】診療日・時間・予約方法を記載 -->
-            <dd>完全予約制（診療日・時間は準備中）</dd>
-          </div>
-          <div class="hk-clinic__row">
-            <dt>📷 Instagram</dt>
-            <!-- 【要更新】整骨院の別アカウントの URL をリンクに差し替え -->
-            <dd>準備中</dd>
-          </div>
-          <div class="hk-clinic__row">
-            <dt>📍 地図</dt>
-            <dd>京都府亀岡市曽我部町（花かごと同じ敷地）
-              <!-- 【要更新】整骨院の Google マップ登録後、次の行を有効化してピンの URL を差し込む
-              <br><a class="hk-clinic__map-link" href="ここに整骨院のGoogleマップURL" target="_blank" rel="noopener noreferrer">Google マップで開く →</a>
-              -->
-            </dd>
-          </div>
-        </dl>
+          <dl class="hk-clinic__info">
+            <div class="hk-clinic__row">
+              <dt>📞 電話（専用）</dt>
+              <!-- 【要更新】整骨院の専用電話番号に差し替え -->
+              <dd><span class="hk-clinic__phone">準備中</span></dd>
+            </div>
+            <div class="hk-clinic__row">
+              <dt>🕐 診療</dt>
+              <!-- 【要更新】診療日・時間・予約方法を記載 -->
+              <dd>完全予約制（診療日・時間は準備中）</dd>
+            </div>
+            <div class="hk-clinic__row">
+              <dt>📷 Instagram</dt>
+              <!-- 【要更新】整骨院の別アカウントの URL をリンクに差し替え -->
+              <dd>準備中</dd>
+            </div>
+            <div class="hk-clinic__row">
+              <dt>📍 地図</dt>
+              <dd>京都府亀岡市曽我部町（花かごと同じ敷地）
+                <!-- 【要更新】整骨院の Google マップ登録後、次の行を有効化してピンの URL を差し込む
+                <br><a class="hk-clinic__map-link" href="ここに整骨院のGoogleマップURL" target="_blank" rel="noopener noreferrer">Google マップで開く →</a>
+                -->
+              </dd>
+            </div>
+          </dl>
 
-        <p class="hk-clinic__note">
-          ご予約・お問い合わせは整骨院へ直接お願いいたします（花かごではお受けできません）。
-        </p>
+          <div class="hk-clinic__actions">
+            <!-- 【要更新】href="tel:整骨院の電話番号" を追加して有効化 -->
+            <a class="hk-btn hk-btn--ghost">📞 整骨院に電話する →</a>
+          </div>
 
-        <div class="hk-clinic__actions">
-          <!-- 【要更新】href="tel:整骨院の電話番号" を追加して有効化 -->
-          <a class="hk-btn hk-btn--ghost">📞 整骨院に電話する →</a>
+          <p class="hk-clinic__notes">
+            ※ ご予約・お問い合わせは整骨院へ直接お願いいたします（花かごではお受けできません）。
+          </p>
         </div>
       </div>
     </div>
