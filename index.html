@@ -299,6 +299,8 @@
   border-top: 1px solid var(--hairline-soft);
 }
 .hanakago .hk-menu__item-price { font-family: var(--font-display-jp); font-size: var(--t-base); color: var(--sumi); }
+.hanakago .hk-menu__item-price .hk-menu__item-tax { font-size: 0.7em; color: var(--sumi-3); margin-left: 2px; letter-spacing: 0.02em; }
+.hanakago .hk-menu__item-note { font-size: var(--t-xs); color: var(--sumi-4); letter-spacing: 0.04em; margin: 0; }
 .hanakago .hk-menu__item-foot .hk-chip { font-size: var(--t-xs); padding: 3px 10px; }
 
 /* Dog run */
@@ -1069,7 +1071,7 @@ body.has-mobile-menu-open { overflow: hidden; }
             <div class="hk-menu__hero-img">
               <img src="assets/images/menu/cafe.jpg" alt="花かごの店内">
             </div>
-            <p class="hk-menu__copy">お食事・甘味・お飲みものを、季節のひと品とともに。お庭を眺めながら、ごゆっくりお楽しみください。</p>
+            <p class="hk-menu__copy">地元野菜メインのお食事・甘味・お飲みものを、ごゆっくりお楽しみください。</p>
           </div>
 
           <p class="hk-menu__featured-label">— お品書き（一部） —</p>
@@ -1086,9 +1088,10 @@ body.has-mobile-menu-open { overflow: hidden; }
                     竹かごに、鶏の唐揚げと季節の小鉢を彩りよく。<br>
                     赤飯とお吸い物を添えた、お昼の一膳。
                   </p>
+                  <p class="hk-menu__item-note">11:30–14:00 まで</p>
                   <div class="hk-menu__item-foot">
-                    <span class="hk-chip">看板</span>
-                    <span class="hk-menu__item-price">¥1,580</span>
+                    <span class="hk-chip">ランチ</span>
+                    <span class="hk-menu__item-price">¥1,100<span class="hk-menu__item-tax">（税込）</span></span>
                   </div>
                 </div>
               </li>
@@ -1103,8 +1106,8 @@ body.has-mobile-menu-open { overflow: hidden; }
                     お散歩やドッグランのお供に。
                   </p>
                   <div class="hk-menu__item-foot">
-                    <span class="hk-chip">テイクアウト</span>
-                    <span class="hk-menu__item-price">¥880</span>
+                    <span class="hk-chip">テイクアウト可</span>
+                    <span class="hk-menu__item-price">¥500<span class="hk-menu__item-tax">（税込）</span></span>
                   </div>
                 </div>
               </li>
@@ -1120,7 +1123,7 @@ body.has-mobile-menu-open { overflow: hidden; }
                   </p>
                   <div class="hk-menu__item-foot">
                     <span class="hk-chip">甘味</span>
-                    <span class="hk-menu__item-price">¥480</span>
+                    <span class="hk-menu__item-price">¥300<span class="hk-menu__item-tax">（税込）</span></span>
                   </div>
                 </div>
               </li>
@@ -1129,14 +1132,14 @@ body.has-mobile-menu-open { overflow: hidden; }
                   <img src="assets/images/menu/egg-sando.png" alt="">
                 </div>
                 <div class="hk-menu__item-meta">
-                  <h4 class="hk-menu__item-name">だし巻き玉子サンド</h4>
+                  <h4 class="hk-menu__item-name">だし香る玉子サンド</h4>
                   <p class="hk-menu__item-desc">
                     ふんわり焼いただし巻き玉子を、やわらかなパンで。<br>
                     だしの香るやさしい味わい。
                   </p>
                   <div class="hk-menu__item-foot">
-                    <span class="hk-chip">人気</span>
-                    <span class="hk-menu__item-price">¥580</span>
+                    <span class="hk-chip">テイクアウト可</span>
+                    <span class="hk-menu__item-price">¥400<span class="hk-menu__item-tax">（税込）</span></span>
                   </div>
                 </div>
               </li>
@@ -1151,7 +1154,7 @@ body.has-mobile-menu-open { overflow: hidden; }
                 <button class="hk-menu__dot is-active" data-idx="0" aria-label="No.01 花かご御膳" type="button"></button>
                 <button class="hk-menu__dot" data-idx="1" aria-label="No.02 花かご弁当" type="button"></button>
                 <button class="hk-menu__dot" data-idx="2" aria-label="No.03 かぼちゃプリン" type="button"></button>
-                <button class="hk-menu__dot" data-idx="3" aria-label="No.04 だし巻き玉子サンド" type="button"></button>
+                <button class="hk-menu__dot" data-idx="3" aria-label="No.04 だし香る玉子サンド" type="button"></button>
               </div>
 
               <button class="hk-menu__arrow hk-menu__arrow--next" id="menuNext" aria-label="次のメニュー" type="button">
@@ -1186,13 +1189,12 @@ body.has-mobile-menu-open { overflow: hidden; }
           <div class="hk-pricing hk-pricing--single" role="table" aria-label="ドッグラン 料金表">
             <div class="hk-pricing__col">
               <div class="hk-pricing__jp">ご利用料金</div>
-              <div class="hk-pricing__price"><span class="yen">¥</span>500<span class="unit">/ 匹</span></div>
-              <div class="hk-pricing__note">1回のご利用につき、一律の料金です。<br>飼い主の同伴人数に上限はございません。</div>
+              <div class="hk-pricing__price"><span class="yen">¥</span>500<span class="unit">/ 組</span></div>
+              <div class="hk-pricing__note">1日のご利用につき、1組あたりの料金です（税込）。<br>飼い主の同伴人数に上限はございません。</div>
             </div>
           </div>
 
           <p class="hk-dog__notes">
-            ※ お子様連れの方、初めての方は、入場前にスタッフへお声がけください。<br>
             ※ 雨天時はお庭の状態により、ご利用をお断りする場合がございます。
           </p>
         </div>
@@ -1200,10 +1202,9 @@ body.has-mobile-menu-open { overflow: hidden; }
     </div>
   </section>
 
-  <!-- ============================ 併設の整骨院「曽我部の蔵」（別経営・完全予約制）
+  <!-- ============================ 併設の整骨院「曽我部の蔵」（別経営・予約制）
        花かごと同じ敷地内にある、別経営の整骨院のご案内。花かごの予約・電話とは別導線。
-       残りの【要更新】: 電話・診療時間・地図（Google マップ登録後）、
-       および画像（assets/images/clinic/ に置いて src を合わせる）。
+       残りの【要更新】: 診療日・時間、および画像（assets/images/clinic/ に置いて src を合わせる）。
   -->
   <section class="hk-clinic" id="seikotsuin">
     <div class="hk-section">
@@ -1223,38 +1224,28 @@ body.has-mobile-menu-open { overflow: hidden; }
             </div>
             <p class="hk-clinic__copy">
               肩・腰のこわばりや、日々の疲れをやわらげる施術を行う整骨院です。花かごと同じ敷地にありますので、体のメンテナンスにもぜひ。<br>
-              <span class="hk-clinic__flag">※ 花かごとは<strong>別経営</strong>・<strong>完全予約制</strong>です。</span>
+              <span class="hk-clinic__flag">※ 花かごとは<strong>別経営</strong>・<strong>予約制</strong>です。</span>
             </p>
           </div>
 
           <dl class="hk-clinic__info">
             <div class="hk-clinic__row">
               <dt>📞 電話（専用）</dt>
-              <!-- 【要更新】整骨院の専用電話番号に差し替え -->
-              <dd><span class="hk-clinic__phone">準備中</span></dd>
+              <dd><span class="hk-clinic__phone">090-7873-9990</span></dd>
             </div>
             <div class="hk-clinic__row">
               <dt>🕐 診療</dt>
               <!-- 【要更新】診療日・時間・予約方法を記載 -->
-              <dd>完全予約制（診療日・時間は準備中）</dd>
+              <dd>予約制（診療日・時間は準備中）</dd>
             </div>
             <div class="hk-clinic__row">
               <dt>📷 Instagram</dt>
               <dd><a href="https://www.instagram.com/sogabeseitai?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">@sogabeseitai</a></dd>
             </div>
-            <div class="hk-clinic__row">
-              <dt>📍 地図</dt>
-              <dd>京都府亀岡市曽我部町（花かごと同じ敷地）
-                <!-- 【要更新】整骨院の Google マップ登録後、次の行を有効化してピンの URL を差し込む
-                <br><a class="hk-clinic__map-link" href="ここに整骨院のGoogleマップURL" target="_blank" rel="noopener noreferrer">Google マップで開く →</a>
-                -->
-              </dd>
-            </div>
           </dl>
 
           <div class="hk-clinic__actions">
-            <!-- 【要更新】href="tel:整骨院の電話番号" を追加して有効化 -->
-            <a class="hk-btn hk-btn--ghost">📞 整骨院に電話する →</a>
+            <a class="hk-btn hk-btn--ghost" href="tel:090-7873-9990">📞 整骨院に電話する →</a>
           </div>
 
           <p class="hk-clinic__notes">
@@ -1450,9 +1441,9 @@ body.has-mobile-menu-open { overflow: hidden; }
         <dl class="hk-access__info">
           <div class="hk-access__row">
             <dt>📍 住所</dt>
-            <dd>〒621-0028<br>京都府亀岡市曽我部町西条中檀ノ上 1-1<br>
+            <dd>〒621-0028<br>京都府亀岡市曽我部町西条中檀ノ上 1-2<br>
               <a class="hk-access__map-link"
-                 href="https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E9%83%BD%E5%BA%9C%E4%BA%80%E5%B2%A1%E5%B8%82%E6%9B%BD%E6%88%91%E9%83%A8%E7%94%BA%E8%A5%BF%E6%9D%A1%E4%B8%AD%E6%AA%80%E3%83%8E%E4%B8%8A1-1"
+                 href="https://www.google.com/maps/search/?api=1&query=%E4%BA%AC%E9%83%BD%E5%BA%9C%E4%BA%80%E5%B2%A1%E5%B8%82%E6%9B%BD%E6%88%91%E9%83%A8%E7%94%BA%E8%A5%BF%E6%9D%A1%E4%B8%AD%E6%AA%80%E3%83%8E%E4%B8%8A1-2"
                  target="_blank" rel="noopener noreferrer">Google マップで開く →</a>
             </dd>
           </div>
@@ -1466,7 +1457,7 @@ body.has-mobile-menu-open { overflow: hidden; }
           </div>
           <div class="hk-access__row">
             <dt>🚗 駐車場</dt>
-            <dd>車10台・バイク5台 (無料)</dd>
+            <dd>車10台・バイク、自転車も駐車可(無料)</dd>
           </div>
           <div class="hk-access__row">
             <dt>📷 SNS</dt>
