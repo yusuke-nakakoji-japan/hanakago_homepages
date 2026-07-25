@@ -453,6 +453,40 @@
   letter-spacing: 0.08em; color: var(--sumi-4);
 }
 .hanakago .hk-footer__terms:hover { color: var(--shoji); }
+
+/* ==================== 和文の折り返し ====================
+   狭い画面では1行が15〜22字しかなく、任意の文字位置で折り返されると読みにくい。
+   文節単位で折り返し（auto-phrase）・禁則を厳密化・行末の孤立文字を抑制する。
+   いずれも未対応ブラウザでは無視され、既定の折り返しに戻るだけの上乗せ指定。 */
+.hanakago .p-lg,
+.hanakago .hk-about__sign,
+.hanakago .hk-menu__copy,
+.hanakago .hk-menu__item-desc,
+.hanakago .hk-dog__copy,
+.hanakago .hk-dog__flag,
+.hanakago .hk-pricing__note,
+.hanakago .hk-clinic__copy,
+.hanakago .hk-clinic__notes,
+.hanakago .hk-clinic__row dd,
+.hanakago .hk-guide__lead,
+.hanakago .hk-terms__cta-note,
+.hanakago .hk-terms__article > p,
+.hanakago .hk-terms__article li,
+.hanakago .hk-access__row dd,
+.hanakago .hk-news__body-text {
+  word-break: auto-phrase;
+  line-break: strict;
+  text-wrap: pretty;
+}
+
+/* 見出し・短いリード文は行の長さを揃えた方が締まる */
+.hanakago .hk-h2,
+.hanakago .hk-menu__item-name,
+.hanakago .hk-clinic__kicker,
+.hanakago .hk-terms__cta-title {
+  text-wrap: balance;
+}
+
 /* ==================== RESPONSIVE ==================== */
 /* Tablet and below */
 @media (max-width: 1080px) {
@@ -1069,7 +1103,7 @@ body.has-mobile-menu-open { overflow: hidden; }
             <div class="hk-menu__hero-img">
               <img src="assets/images/menu/cafe.jpg" alt="花かごの店内">
             </div>
-            <p class="hk-menu__copy">地元野菜メインのお食事・甘味・お飲みものを、ごゆっくりお楽しみください。</p>
+            <p class="hk-menu__copy">地元野菜メインのお食事・甘味・お飲みものを、<br>ごゆっくりお楽しみください。</p>
           </div>
 
           <p class="hk-menu__featured-label">— お品書き（一部） —</p>
@@ -1197,9 +1231,9 @@ body.has-mobile-menu-open { overflow: hidden; }
             <div class="hk-dog__hero-img">
               <img src="assets/images/dog/d1.jpeg" alt="">
             </div>
-            <p class="hk-dog__copy">約180坪の天然芝が広がる、愛犬がのびのびと遊べるドッグランです。
-小型犬・中型犬を対象とし、大型犬は特定日にご利用いただけます。
-ご利用前に利用規約をご確認ください。<br>
+            <p class="hk-dog__copy">約180坪の天然芝が広がる、愛犬がのびのびと遊べるドッグランです。<br>
+              小型犬・中型犬を対象とし、大型犬は特定日にご利用いただけます。<br>
+              ご利用前に利用規約をご確認ください。<br>
               <span class="hk-dog__flag">※ 雨天時はお庭の状態により、ご利用をお断りする場合がございます。</span></p>
           </div>
 
@@ -1237,8 +1271,11 @@ body.has-mobile-menu-open { overflow: hidden; }
             </div>
             <p class="hk-clinic__copy">
               頭痛、肩こり、腰痛、ひざの痛みなどご相談ください。<br>
-              各種手技療法により、筋肉の癒着をとり、血液・リンパの流れを促進し、筋肉の緩和から骨格調整、関節可動域の回復、心的症状の緩和、運動機能の改善・向上を図る整体療法です。<br>
-              優しく触れ、リラックスした状態で心身を緩和し、本来、人が持つ自然治癒力を高めて、ゆっくり健康体に戻していきます。<br>
+              各種手技療法により、筋肉の癒着をとり、血液・リンパの流れを促進し、<br>
+              筋肉の緩和から骨格調整、関節可動域の回復、心的症状の緩和、<br>
+              運動機能の改善・向上を図る整体療法です。<br>
+              優しく触れ、リラックスした状態で心身を緩和し、<br>
+              本来、人が持つ自然治癒力を高めて、ゆっくり健康体に戻していきます。<br>
               <span class="hk-clinic__flag">※ 花かごとは<strong>別経営</strong>・<strong>予約制</strong>です。</span>
             </p>
           </div>
