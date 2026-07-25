@@ -571,7 +571,7 @@
   .hanakago .hk-access .hk-access__row dt { font-size: var(--t-xs); }
   .hanakago .hk-access .hk-access__map-link { font-size: var(--t-xs); }
 
-  /* 整骨院 — Access と同様、基本スタイルが後に定義されているため
+  /* 整体院 — Access と同様、基本スタイルが後に定義されているため
      .hk-clinic を前置きして詳細度を上げ、モバイル指定を確実に勝たせる。 */
   .hanakago .hk-clinic .hk-clinic__lead { grid-template-columns: 1fr; gap: var(--s-5); }
   .hanakago .hk-clinic .hk-clinic__lead .hk-clinic__copy { padding-left: 0; border-left: 0; }
@@ -703,7 +703,7 @@
 }
 .hanakago .hk-access__phone { font-family: var(--font-body-jp); font-style: normal; font-size: var(--t-base); color: var(--sumi); letter-spacing: 0.04em; }
 
-/* 併設の整骨院 — 別経営・完全予約制のご案内。ドッグランと同じ「見出し（下線）＋本文＋情報＋注記」構成 */
+/* 併設の整体院 — 別経営・予約制のご案内。ドッグランと同じ「見出し（下線）＋本文＋情報＋注記」構成 */
 .hanakago .hk-clinic { background: var(--washi); position: relative; }
 .hanakago .hk-clinic__inner { display: grid; gap: var(--s-6); }
 .hanakago .hk-clinic__head {
@@ -970,7 +970,7 @@ body.has-mobile-menu-open { overflow: hidden; }
       <a href="#concept">花かごとは</a>
       <a href="#menu">カフェ</a>
       <a href="#dog">ドッグラン</a>
-      <a href="#seikotsuin">整骨院</a>
+      <a href="#seikotsuin">整体院</a>
       <a href="#gallery">ギャラリー</a>
       <a href="#access">店舗情報</a>
       <a href="#news">お知らせ</a>
@@ -1002,7 +1002,7 @@ body.has-mobile-menu-open { overflow: hidden; }
             <a href="#dog"     class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>ドッグラン</a>
           </li>
           <li class="hk-tree__item">
-            <a href="#seikotsuin" class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>整骨院</a>
+            <a href="#seikotsuin" class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>整体院</a>
           </li>
           <li class="hk-tree__item">
             <a href="#gallery" class="hk-tree__link"><span class="hk-tree__mark" aria-hidden="true"></span>ギャラリー</a>
@@ -1083,8 +1083,8 @@ body.has-mobile-menu-open { overflow: hidden; }
                 <div class="hk-menu__item-meta">
                   <h4 class="hk-menu__item-name">花かご御膳</h4>
                   <p class="hk-menu__item-desc">
-                    竹かごに、鶏の唐揚げと季節の小鉢を彩りよく。<br>
-                    赤飯とお吸い物を添えた、お昼の一膳。
+                    竹籠に、もちもちの酵素玄米、地元野菜を使った彩り豊かなお惣菜、肉料理または魚料理を盛り込みました。<br>
+                    お味噌汁とともに、心も体もほっとする、花かごおすすめの御膳です。
                   </p>
                   <p class="hk-menu__item-note">11:30–14:00 まで</p>
                   <div class="hk-menu__item-foot">
@@ -1100,8 +1100,9 @@ body.has-mobile-menu-open { overflow: hidden; }
                 <div class="hk-menu__item-meta">
                   <h4 class="hk-menu__item-name">花かご弁当</h4>
                   <p class="hk-menu__item-desc">
-                    彩りのおかずとごはんを詰め合わせた、お持ち帰りのお弁当。<br>
-                    お散歩やドッグランのお供に。
+                    花かご御膳をコンパクトに仕立てたお弁当です。<br>
+                    地元野菜を使った手づくりのお惣菜と、肉料理または魚料理を、白ご飯とともにお詰めしました。<br>
+                    店内でも、お持ち帰りでもお気軽にお楽しみいただけます。
                   </p>
                   <div class="hk-menu__item-foot">
                     <span class="hk-chip">テイクアウト可</span>
@@ -1132,8 +1133,8 @@ body.has-mobile-menu-open { overflow: hidden; }
                 <div class="hk-menu__item-meta">
                   <h4 class="hk-menu__item-name">かぼちゃプリン</h4>
                   <p class="hk-menu__item-desc">
-                    かぼちゃを使った、なめらかな自家製プリン。<br>
-                    やさしい甘さに仕上げました。
+                    かぼちゃ本来のやさしい甘味を生かし、なめらかに仕上げた手づくりプリンです。<br>
+                    どこか懐かしく、ほっとする味わいをお楽しみください。
                   </p>
                   <div class="hk-menu__item-foot">
                     <span class="hk-chip">甘味</span>
@@ -1196,9 +1197,9 @@ body.has-mobile-menu-open { overflow: hidden; }
             <div class="hk-dog__hero-img">
               <img src="assets/images/dog/d1.jpeg" alt="">
             </div>
-            <p class="hk-dog__copy">天然芝・約二百坪。木立と土塀に囲まれた静かなお庭です。
-カフェのご利用の有無に関わらずご利用いただけます。
-完全予約制ではありませんが、混雑時はお待ちいただく場合がございます。<br>
+            <p class="hk-dog__copy">約180坪の天然芝が広がる、愛犬がのびのびと遊べるドッグランです。
+小型犬・中型犬を対象とし、大型犬は特定日にご利用いただけます。
+ご利用前に利用規約をご確認ください。<br>
               <span class="hk-dog__flag">※ 雨天時はお庭の状態により、ご利用をお断りする場合がございます。</span></p>
           </div>
 
@@ -1214,8 +1215,8 @@ body.has-mobile-menu-open { overflow: hidden; }
     </div>
   </section>
 
-  <!-- ============================ 併設の整骨院「曽我部の蔵」（別経営・予約制）
-       花かごと同じ敷地内にある、別経営の整骨院のご案内。花かごの予約・電話とは別導線。
+  <!-- ============================ 併設の整体院「曽我部の蔵」（別経営・予約制）
+       花かごと同じ敷地内にある、別経営の整体院のご案内。花かごの予約・電話とは別導線。
        残りの【要更新】: 画像（assets/images/clinic/ に置いて src を合わせる）。
   -->
   <section class="hk-clinic" id="seikotsuin">
@@ -1224,7 +1225,7 @@ body.has-mobile-menu-open { overflow: hidden; }
         <header class="hk-clinic__head">
           <span class="hk-eyebrow">— Partner —</span>
           <h2 class="hk-h2">曽我部の蔵</h2>
-          <p class="hk-clinic__kicker">花かごに併設の整骨院</p>
+          <p class="hk-clinic__kicker">花かごに併設の整体院</p>
         </header>
 
         <div class="hk-clinic__body">
@@ -1232,10 +1233,12 @@ body.has-mobile-menu-open { overflow: hidden; }
             <div class="hk-clinic__hero-img">
               <!-- 仮のプレースホルダー画像(SVG)。実写ができたら assets/images/clinic/ に置き、
                    src を差し替え(推奨 3:2・1200×800px 程度) -->
-              <img src="assets/images/clinic/clinic.svg" alt="整骨院 曽我部の蔵">
+              <img src="assets/images/clinic/clinic.svg" alt="整体院 曽我部の蔵">
             </div>
             <p class="hk-clinic__copy">
-              肩・腰のこわばりや、日々の疲れをやわらげる施術を行う整骨院です。花かごと同じ敷地にありますので、体のメンテナンスにもぜひ。<br>
+              頭痛、肩こり、腰痛、ひざの痛みなどご相談ください。<br>
+              各種手技療法により、筋肉の癒着をとり、血液・リンパの流れを促進し、筋肉の緩和から骨格調整、関節可動域の回復、心的症状の緩和、運動機能の改善・向上を図る整体療法です。<br>
+              優しく触れ、リラックスした状態で心身を緩和し、本来、人が持つ自然治癒力を高めて、ゆっくり健康体に戻していきます。<br>
               <span class="hk-clinic__flag">※ 花かごとは<strong>別経営</strong>・<strong>予約制</strong>です。</span>
             </p>
           </div>
@@ -1246,7 +1249,7 @@ body.has-mobile-menu-open { overflow: hidden; }
               <dd><span class="hk-clinic__phone">090-7873-9990</span></dd>
             </div>
             <div class="hk-clinic__row">
-              <dt>🕐 診療</dt>
+              <dt>🕐 営業</dt>
               <dd>土曜日 10:00 — 18:00<br>日曜日・祝日 10:00 — 17:00<br>（予約制）</dd>
             </div>
             <div class="hk-clinic__row">
@@ -1256,7 +1259,7 @@ body.has-mobile-menu-open { overflow: hidden; }
           </dl>
 
           <div class="hk-clinic__actions">
-            <a class="hk-btn hk-btn--ghost" href="tel:090-7873-9990">📞 整骨院に電話する →</a>
+            <a class="hk-btn hk-btn--ghost" href="tel:090-7873-9990">📞 整体院に電話する →</a>
           </div>
 
           <p class="hk-clinic__notes">
