@@ -346,12 +346,10 @@
 .hanakago .hk-pricing--single { grid-template-columns: 1fr; }
 .hanakago .hk-pricing--single .hk-pricing__col { border-right: 0; text-align: center; }
 
-/* Dog notes — dog-run practical remarks kept in the Dog Garden section */
-.hanakago .hk-dog__notes {
-  margin: var(--s-5) 0 0;
-  padding-top: var(--s-4);
-  border-top: 1px dashed var(--hairline-soft);
-  font-size: var(--t-sm); color: var(--sumi-3);
+/* Dog flag — small caption appended inside the dog-run lead copy */
+.hanakago .hk-dog__flag {
+  display: inline-block; margin-top: var(--s-3);
+  font-size: var(--t-sm); color: var(--sumi-3); letter-spacing: 0.04em;
   line-height: 1.85;
 }
 
@@ -1183,7 +1181,8 @@ body.has-mobile-menu-open { overflow: hidden; }
             </div>
             <p class="hk-dog__copy">天然芝・約二百坪。木立と土塀に囲まれた静かなお庭です。
 カフェのご利用の有無に関わらずご利用いただけます。
-完全予約制ではありませんが、混雑時はお待ちいただく場合がございます。</p>
+完全予約制ではありませんが、混雑時はお待ちいただく場合がございます。<br>
+              <span class="hk-dog__flag">※ 雨天時はお庭の状態により、ご利用をお断りする場合がございます。</span></p>
           </div>
 
           <div class="hk-pricing hk-pricing--single" role="table" aria-label="ドッグラン 料金表">
@@ -1193,10 +1192,6 @@ body.has-mobile-menu-open { overflow: hidden; }
               <div class="hk-pricing__note">1日のご利用につき、1匹あたりの料金です（税込）。<br>飼い主の同伴人数に上限はございません。</div>
             </div>
           </div>
-
-          <p class="hk-dog__notes">
-            ※ 雨天時はお庭の状態により、ご利用をお断りする場合がございます。
-          </p>
         </div>
       </div>
     </div>
